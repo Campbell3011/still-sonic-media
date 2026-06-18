@@ -166,13 +166,7 @@
   <button class="lightbox-nav lightbox-next" id="lbNext">&#8250;</button>
 </div>
 <script>
-  const heroScroll = document.querySelector('.hero-scroll');
-if (heroScroll) {
-  window.addEventListener('scroll', () => {
-    heroScroll.style.opacity = Math.max(0, 0.6 - window.scrollY / 150);
-  });
-}
-const items = Array.from(document.querySelectorAll('.gallery-item'));
+  const items = Array.from(document.querySelectorAll('.gallery-item'));
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
   let current = 0;
