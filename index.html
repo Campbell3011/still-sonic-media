@@ -9,429 +9,159 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --border: #1e1e1e;
-      --text: #e8e8e8;
-      --muted: #666;
-      --accent: #c8a96e;
-      --accent-dim: rgba(200,169,110,0.12);
-    }
-
+    :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 3rem;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      letter-spacing: 0.08em;
-      color: var(--text);
-      text-decoration: none;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; letter-spacing: 0.08em; color: var(--text); text-decoration: none; }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none; color: var(--muted);
-      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--text); }
-
-    /* ── HERO ── */
-    #home {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,110,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.5rem;
-    }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 9vw, 7rem);
-      font-weight: 400; line-height: 1.0;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.25rem;
-    }
-    .hero-title em {
-      font-style: italic; color: var(--accent);
-    }
-    .hero-subtitle {
-      font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted); margin-top: 1.75rem; margin-bottom: 3rem;
-    }
-    .hero-cta {
-      display: inline-block;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
-      padding: 0.85rem 2.5rem;
-      transition: background 0.3s, color 0.3s;
-    }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    #home { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,110,0.06) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 0.25rem; }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-subtitle { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.75rem; margin-bottom: 3rem; }
+    .hero-cta { display: inline-block; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.85rem 2.5rem; transition: background 0.3s, color 0.3s; }
     .hero-cta:hover { background: var(--accent); color: var(--bg); }
-    .hero-scroll {
-      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
-      opacity: 0.6; animation: bounce 2s infinite;
-    }
-    .hero-scroll::after {
-      content: ''; width: 1px; height: 40px;
-      background: linear-gradient(to bottom, var(--muted), transparent);
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
-    }
-
-    /* ── GALLERY ── */
-    #gallery { padding: 8rem 2rem; }
-    .section-header {
-      text-align: center; margin-bottom: 5rem;
-    }
-    .section-eyebrow {
-      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--accent); display: block; margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 400;
-    }
-
-    /* masonry grid */
-    .gallery-grid {
-      columns: 3 320px; column-gap: 1rem;
-      max-width: 1400px; margin: 0 auto;
-    }
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 1rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .gallery-item img {
-      width: 100%; display: block;
-      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); opacity: 0.6; animation: bounce 2s infinite; }
+    .hero-scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent); }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; }
+    #genres { padding: 8rem 2rem 4rem; }
+    .genres-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1400px; margin: 0 auto; }
+    .genre-card { position: relative; overflow: hidden; aspect-ratio: 3/4; display: block; text-decoration: none; cursor: pointer; }
+    .genre-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.6); }
+    .genre-card:hover img { transform: scale(1.06); filter: brightness(0.75); }
+    .genre-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.75rem; }
+    .genre-card-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .genre-card-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; color: var(--text); line-height: 1.1; }
+    .genre-card-count { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,232,232,0.45); margin-top: 0.75rem; transition: color 0.3s; }
+    .genre-card:hover .genre-card-count { color: var(--accent); }
+    .genre-card-arrow { position: absolute; top: 1.5rem; right: 1.5rem; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text); font-size: 1.1rem; opacity: 0; transition: opacity 0.3s; }
+    .genre-card:hover .genre-card-arrow { opacity: 1; }
+    #gallery { padding: 6rem 2rem 8rem; }
+    .gallery-grid { columns: 3 320px; column-gap: 1rem; max-width: 1400px; margin: 0 auto; }
+    .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; cursor: pointer; }
+    .gallery-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .gallery-item:hover img { transform: scale(1.04); }
-    .gallery-item-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 50%);
-      opacity: 0; transition: opacity 0.4s;
-      display: flex; align-items: flex-end;
-      padding: 1.5rem;
-    }
+    .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
-    .gallery-item-label {
-      font-size: 0.7rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--text);
-    }
-
-    /* ── LIGHTBOX ── */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.95);
-      display: none; align-items: center; justify-content: center;
-      padding: 2rem;
-    }
+    .gallery-item-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); }
+    .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; }
     .lightbox.active { display: flex; }
-    .lightbox img {
-      max-width: 90vw; max-height: 90vh;
-      object-fit: contain;
-      animation: fadeIn 0.3s ease;
-    }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
-    .lightbox-close {
-      position: absolute; top: 1.5rem; right: 2rem;
-      font-size: 1.5rem; color: var(--muted); cursor: pointer;
-      background: none; border: none; font-family: inherit;
-      transition: color 0.2s;
-    }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 1.5rem; color: var(--muted); cursor: pointer; background: none; border: none; font-family: inherit; transition: color 0.2s; }
     .lightbox-close:hover { color: var(--text); }
-    .lightbox-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: none; border: none; color: var(--muted);
-      font-size: 2rem; cursor: pointer; padding: 1rem;
-      transition: color 0.2s;
-    }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); font-size: 2rem; cursor: pointer; padding: 1rem; transition: color 0.2s; }
     .lightbox-nav:hover { color: var(--text); }
-    .lightbox-prev { left: 1rem; }
-    .lightbox-next { right: 1rem; }
-
-    /* ── ABOUT ── */
-    #about {
-      padding: 8rem 2rem;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .about-inner {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
-      align-items: center;
-    }
-    .about-text h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400; margin-bottom: 1.5rem; line-height: 1.2;
-    }
-    .about-text p {
-      font-size: 0.95rem; line-height: 1.85; color: #aaa;
-      margin-bottom: 1.2rem;
-    }
-    .about-stats {
-      display: flex; flex-direction: column; gap: 2.5rem;
-    }
+    .lightbox-prev { left: 1rem; } .lightbox-next { right: 1rem; }
+    #about { padding: 8rem 2rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; margin-bottom: 1.5rem; line-height: 1.2; }
+    .about-text p { font-size: 0.95rem; line-height: 1.85; color: #aaa; margin-bottom: 1.2rem; }
+    .about-stats { display: flex; flex-direction: column; gap: 2.5rem; }
     .stat-item { border-left: 1px solid var(--accent); padding-left: 1.5rem; }
-    .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem; color: var(--accent); line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted); margin-top: 0.3rem;
-    }
-
-    /* ── CONTACT ── */
+    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
     #contact { padding: 8rem 2rem; text-align: center; }
     #contact .section-title { margin-bottom: 1rem; }
-    .contact-sub {
-      color: var(--muted); font-size: 0.9rem; margin-bottom: 3rem;
-      max-width: 400px; margin-left: auto; margin-right: auto;
-    }
-    .contact-email {
-      display: inline-block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; letter-spacing: 0.05em;
-      color: var(--text); text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 0.25rem;
-      transition: color 0.3s;
-    }
+    .contact-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 3rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .contact-email { display: inline-block; font-family: 'Playfair Display', serif; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 0.25rem; transition: color 0.3s; }
     .contact-email:hover { color: var(--accent); }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 2rem 3rem;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      .gallery-grid { columns: 2 160px; }
-      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
-    }
-    @media (max-width: 480px) {
-      .gallery-grid { columns: 1; }
-      .nav-links { display: none; }
-    }
+    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    @media (max-width: 1024px) { .genres-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { nav { padding: 1.2rem 1.5rem; } .nav-links { gap: 1.5rem; } .gallery-grid { columns: 2 160px; } .about-inner { grid-template-columns: 1fr; gap: 3rem; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
+    @media (max-width: 540px) { .genres-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; } .genre-card-title { font-size: 1.3rem; } }
+    @media (max-width: 480px) { .gallery-grid { columns: 1; } .nav-links { display: none; } }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <a href="#home" class="nav-logo">Still <span>Sonic</span> Media</a>
+  <a href="index.html" class="nav-logo">Still <span>Sonic</span> Media</a>
   <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="portrait.html">Portrait</a></li>
+    <li><a href="travel.html">Travel</a></li>
+    <li><a href="street.html">Street</a></li>
+    <li><a href="concert.html">Concert</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
-<!-- HERO -->
 <section id="home">
   <div class="hero-bg"></div>
   <p class="hero-eyebrow">Photography &amp; Visual Media</p>
   <h1 class="hero-title">Still<br><em>Sonic</em><br>Media</h1>
   <p class="hero-subtitle">Capturing moments across borders &amp; cultures</p>
-  <a href="#gallery" class="hero-cta">View Portfolio</a>
+  <a href="#genres" class="hero-cta">Browse Work</a>
   <div class="hero-scroll">Scroll</div>
 </section>
-
-<!-- GALLERY -->
-<section id="gallery">
+<section id="genres">
   <div class="section-header">
-    <span class="section-eyebrow">Selected Work</span>
-    <h2 class="section-title">The Portfolio</h2>
+    <span class="section-eyebrow">Explore</span>
+    <h2 class="section-title">Browse by Genre</h2>
   </div>
-
-  <div class="gallery-grid" id="galleryGrid">
-
-    <div class="gallery-item" data-index="0">
-      <img src="04_ptv_brickwall.jpg" alt="PTV — Brick Wall Portrait" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">PTV 2025 — Portrait</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="1">
-      <img src="01_camel_handler.jpg" alt="Tunisia — Camel & Handler" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia 2024 — Travel</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="2">
-      <img src="11_florida_revolut.jpg" alt="Florida — Revolut Silhouette" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">Florida 2026 — Street</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="3">
-      <img src="06_ptv_moody.jpg" alt="PTV — Moody Portrait" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">PTV 2025 — Editorial</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="4">
-      <img src="10_florida_engine.jpg" alt="Florida — Jet Engine" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">Florida 2026 — Abstract</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="5">
-      <img src="05_ptv_bw_glasses.jpg" alt="PTV — B&W Glasses Portrait" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">PTV 2025 — Portrait</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="6">
-      <img src="02_camels_chained.jpg" alt="Tunisia — Camels" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia 2024 — Travel</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="7">
-      <img src="08_emofest_portrait.jpg" alt="EMOFEST — Street Portrait" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">EMOFEST 2025 — Street</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="8">
-      <img src="12_florida_planes.jpg" alt="Florida — Airport Silhouettes" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">Florida 2026 — Travel</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="9">
-      <img src="07_ptv_fashion.jpg" alt="PTV — Fashion Detail" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">PTV 2025 — Fashion</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="10">
-      <img src="09_florida_cafe.jpg" alt="Florida — Café Portrait" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">Florida 2026 — Portrait</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="11">
-      <img src="03_camel_face.jpg" alt="Tunisia — Camel Face" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia 2024 — Wildlife</span></div>
-    </div>
-
-    <div class="gallery-item" data-index="12">
-      <img src="13_florida_lego.jpg" alt="Florida — LEGO Product Shot" loading="lazy" />
-      <div class="gallery-item-overlay"><span class="gallery-item-label">Florida 2026 — Product</span></div>
-    </div>
-
+  <div class="genres-grid">
+    <a href="portrait.html" class="genre-card"><img src="06_ptv_moody.jpg" alt="Portrait" loading="lazy" /><div class="genre-card-overlay"><div class="genre-card-label">Series</div><div class="genre-card-title">Portrait</div><div class="genre-card-count">7 images</div></div><div class="genre-card-arrow">&#8594;</div></a>
+    <a href="travel.html" class="genre-card"><img src="01_camel_handler.jpg" alt="Travel" loading="lazy" /><div class="genre-card-overlay"><div class="genre-card-label">Series</div><div class="genre-card-title">Travel</div><div class="genre-card-count">8 images</div></div><div class="genre-card-arrow">&#8594;</div></a>
+    <a href="street.html" class="genre-card"><img src="22_cleethorpes_sea.jpg" alt="Street" loading="lazy" /><div class="genre-card-overlay"><div class="genre-card-label">Series</div><div class="genre-card-title">Street</div><div class="genre-card-count">6 images</div></div><div class="genre-card-arrow">&#8594;</div></a>
+    <a href="concert.html" class="genre-card"><img src="18_concert_stage.jpg" alt="Concert" loading="lazy" /><div class="genre-card-overlay"><div class="genre-card-label">Series</div><div class="genre-card-title">Concert</div><div class="genre-card-count">2 images</div></div><div class="genre-card-arrow">&#8594;</div></a>
   </div>
 </section>
-
-<!-- ABOUT -->
+<section id="gallery">
+  <div class="section-header"><span class="section-eyebrow">Selected Work</span><h2 class="section-title">Featured</h2></div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item" data-index="0"><img src="06_ptv_moody.jpg" alt="PTV Moody" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">PTV 2025 - Portrait</span></div></div>
+    <div class="gallery-item" data-index="1"><img src="15_cleethorpes_pier.jpg" alt="Cleethorpes Pier" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes 2024 - Travel</span></div></div>
+    <div class="gallery-item" data-index="2"><img src="18_concert_stage.jpg" alt="Concert Stage" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Live 2024 - Concert</span></div></div>
+    <div class="gallery-item" data-index="3"><img src="22_cleethorpes_sea.jpg" alt="Sea Figures" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes 2024 - Street</span></div></div>
+    <div class="gallery-item" data-index="4"><img src="01_camel_handler.jpg" alt="Tunisia Camel" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia 2024 - Travel</span></div></div>
+    <div class="gallery-item" data-index="5"><img src="05_ptv_bw_glasses.jpg" alt="PTV BW" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">PTV 2025 - Portrait</span></div></div>
+    <div class="gallery-item" data-index="6"><img src="14_scotland_vinyl.jpg" alt="Edinburgh Vinyl" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Edinburgh 2024 - Street</span></div></div>
+    <div class="gallery-item" data-index="7"><img src="12_florida_planes.jpg" alt="Florida Planes" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Florida 2026 - Travel</span></div></div>
+  </div>
+</section>
 <section id="about">
   <div class="about-inner">
     <div class="about-text">
       <h2>Photography that moves between worlds</h2>
-      <p>Still Sonic Media is a photography project rooted in honest observation — street scenes, portraiture, travel, and the moments that fall between categories.</p>
+      <p>Still Sonic Media is a photography project rooted in honest observation - street scenes, portraiture, travel, and the moments that fall between categories.</p>
       <p>From the dusty roads of Tunisia to the neon quiet of festival venues, the work follows a simple instinct: point the camera at what feels true.</p>
     </div>
     <div class="about-stats">
-      <div class="stat-item">
-        <div class="stat-number">2024–</div>
-        <div class="stat-label">Active since</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">3+</div>
-        <div class="stat-label">Countries documented</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">Canon</div>
-        <div class="stat-label">EOS 2000D</div>
-      </div>
+      <div class="stat-item"><div class="stat-number">2024-</div><div class="stat-label">Active since</div></div>
+      <div class="stat-item"><div class="stat-number">4+</div><div class="stat-label">Countries documented</div></div>
+      <div class="stat-item"><div class="stat-number">Canon</div><div class="stat-label">EOS 2000D</div></div>
     </div>
   </div>
 </section>
-
-<!-- CONTACT -->
 <section id="contact">
   <span class="section-eyebrow">Get in Touch</span>
   <h2 class="section-title">Let's work together</h2>
   <p class="contact-sub">Available for commissions, events, and editorial work.</p>
   <a href="mailto:hello@stillsonicmedia.com" class="contact-email">hello@stillsonicmedia.com</a>
 </section>
-
-<!-- FOOTER -->
-<footer>
-  <span>© 2026 Still Sonic Media</span>
-  <span>All rights reserved</span>
-</footer>
-
-<!-- LIGHTBOX -->
+<footer><span>&#169; 2026 Still Sonic Media</span><span>All rights reserved</span></footer>
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lbClose">✕</button>
-  <button class="lightbox-nav lightbox-prev" id="lbPrev">‹</button>
+  <button class="lightbox-close" id="lbClose">&#x2715;</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev">&#8249;</button>
   <img src="" alt="" id="lbImg" />
-  <button class="lightbox-nav lightbox-next" id="lbNext">›</button>
+  <button class="lightbox-nav lightbox-next" id="lbNext">&#8250;</button>
 </div>
-
 <script>
   const items = Array.from(document.querySelectorAll('.gallery-item'));
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
   let current = 0;
-
-  function openLightbox(index) {
-    current = index;
-    lbImg.src = items[current].querySelector('img').src;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-  function navigate(dir) {
-    current = (current + dir + items.length) % items.length;
-    lbImg.src = items[current].querySelector('img').src;
-  }
-
+  function openLightbox(index) { current = index; lbImg.src = items[current].querySelector('img').src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+  function navigate(dir) { current = (current + dir + items.length) % items.length; lbImg.src = items[current].querySelector('img').src; }
   items.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   document.getElementById('lbPrev').addEventListener('click', () => navigate(-1));
