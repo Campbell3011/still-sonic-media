@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vlogs — Still Sonic Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; letter-spacing: 0.08em; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-instagram { color: var(--muted); text-decoration: none; display: flex; align-items: center; margin-left: 1.5rem; transition: color 0.3s; }
+    .nav-instagram:hover { color: var(--text); }
+    .page-hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.05) 0%, transparent 70%); pointer-events: none; }
+    .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .page-hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.01em; }
+    .page-hero-sub { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.5rem; }
+    .page-hero-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); margin: 2rem auto 0; }
+    #videos { padding: 5rem 2rem 8rem; }
+    .videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto; }
+    .video-card { background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.3s; }
+    .video-card:hover { border-color: rgba(200,169,110,0.3); }
+    .video-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .video-info { padding: 1.5rem; }
+    .video-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .video-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 0.5rem; }
+    .video-meta { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); }
+    #coming-soon { padding: 4rem 2rem 8rem; border-top: 1px solid var(--border); }
+    .coming-soon-inner { max-width: 1400px; margin: 0 auto; }
+    .coming-soon-header { text-align: center; margin-bottom: 3rem; }
+    .coming-soon-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem; }
+    .coming-soon-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 400; }
+    .teasers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .teaser-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem 1.75rem; position: relative; overflow: hidden; }
+    .teaser-card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: var(--accent); opacity: 0.4; }
+    .teaser-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .teaser-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin-bottom: 0.5rem; }
+    .teaser-status { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    .youtube-link { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 3rem; text-align: center; }
+    .youtube-cta { display: block; margin: 3rem auto 0; text-align: center; }
+    .youtube-cta a { display: inline-flex; align-items: center; gap: 0.75rem; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.85rem 2.5rem; transition: background 0.3s, color 0.3s; }
+    .youtube-cta a:hover { background: var(--accent); color: var(--bg); }
+    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .footer-back { color: var(--accent); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; transition: opacity 0.2s; }
+    .footer-back:hover { opacity: 0.7; }
+    @media (max-width: 768px) { nav { padding: 1.2rem 1.5rem; } .nav-links { gap: 1.5rem; } .videos-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
+    @media (max-width: 480px) { .nav-links { display: none; } .teasers-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text></svg></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portrait.html">Portrait</a></li>
+    <li><a href="travel.html">Travel</a></li>
+    <li><a href="street.html">Street</a></li>
+    <li><a href="concert.html">Concert</a></li>
+    <li><a href="vlogs.html" class="active">Vlogs</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+  <a href="https://instagram.com/stillsonicmedia" class="nav-instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <p class="page-hero-eyebrow">Still Sonic Media</p>
+  <h1 class="page-hero-title">Vlogs</h1>
+  <p class="page-hero-sub">Behind the lens &amp; on the road</p>
+  <div class="page-hero-line"></div>
+</div>
+<section id="videos">
+  <div class="videos-grid">
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/47lZUcWyX3c" title="WE WANT BASS | Dizzee Rascal" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <p class="video-label">Concert Vlog</p>
+        <h2 class="video-title">WE WANT BASS | Dizzee Rascal</h2>
+        <p class="video-meta">11:50 &nbsp;&middot;&nbsp; 2025</p>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/xIQ62JBSj3Y" title="JAMES2025" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <p class="video-label">Live Music Vlog</p>
+        <h2 class="video-title">JAMES 2025</h2>
+        <p class="video-meta">47:49 &nbsp;&middot;&nbsp; 2025</p>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/xelgjKldl1Q" title="PTV 2025" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <p class="video-label">Concert Vlog</p>
+        <h2 class="video-title">PTV 2025</h2>
+        <p class="video-meta">45:25 &nbsp;&middot;&nbsp; 2025</p>
+      </div>
+    </div>
+  </div>
+  <div class="youtube-cta">
+    <a href="https://www.youtube.com/@stillsonicmedia" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+      Subscribe on YouTube
+    </a>
+  </div>
+</section>
+<section id="coming-soon">
+  <div class="coming-soon-inner">
+    <div class="coming-soon-header">
+      <span class="coming-soon-eyebrow">In the Edit</span>
+      <h2 class="coming-soon-title">More vlogs on the way</h2>
+    </div>
+    <div class="teasers-grid">
+      <div class="teaser-card">
+        <p class="teaser-label">Travel Vlog</p>
+        <h3 class="teaser-title">Florida</h3>
+        <p class="teaser-status">Coming soon</p>
+      </div>
+      <div class="teaser-card">
+        <p class="teaser-label">Event Vlog</p>
+        <h3 class="teaser-title">NYE</h3>
+        <p class="teaser-status">Coming soon</p>
+      </div>
+      <div class="teaser-card">
+        <p class="teaser-label">Event Vlog</p>
+        <h3 class="teaser-title">Liv's 21st</h3>
+        <p class="teaser-status">Coming soon</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <a href="index.html" class="footer-back">&#8592; Back to Home</a>
+  <span>&#169; 2026 Still Sonic Media</span>
+</footer>
+</body>
+</html>
