@@ -14,13 +14,13 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; letter-spacing: 0.08em; color: var(--text); text-decoration: none; }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-logo { text-decoration: none; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.3s; }
     .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-instagram { color: var(--muted); text-decoration: none; display: flex; align-items: center; margin-left: 1.5rem; transition: color 0.3s; }
-    .nav-instagram:hover { color: var(--text); }
+    .nav-icons { display: flex; align-items: center; gap: 1rem; margin-left: 1.5rem; }
+    .nav-icon { color: var(--muted); text-decoration: none; display: flex; align-items: center; transition: color 0.3s; }
+    .nav-icon:hover { color: var(--text); }
     .page-hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
     .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.05) 0%, transparent 70%); pointer-events: none; }
     .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
@@ -69,10 +69,15 @@
     <li><a href="street.html">Street</a></li>
     <li><a href="concert.html" class="active">Concert</a></li>
     <li><a href="vlogs.html">Vlogs</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/#contact">Contact</a></li>
+    <li><a href="prints.html">Prints</a></li>
+    <li><a href="book.html">Book</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <a href="https://instagram.com/stillsonicmedia" class="nav-instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+  <div class="nav-icons">
+    <a href="https://www.youtube.com/@stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></a>
+    <a href="https://instagram.com/stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+  </div>
 </nav>
 <div class="page-hero">
   <div class="page-hero-bg"></div>
