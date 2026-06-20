@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prints — Still Sonic Media</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQ900SQ106"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GQ900SQ106');
+  </script>
+  <!-- Snipcart styles — replace MjBlODFiYmItNWQ4My00MDBkLWIxNTEtNjg5Yjg4ZjM3YmY1NjM5MTc1NTQ5MjY2Mzc4MDE2 below -->
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.2/default/snipcart.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+    /* ── nav ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-logo { text-decoration: none; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-icons { display: flex; align-items: center; gap: 1rem; }
+    .nav-icon { color: var(--muted); text-decoration: none; display: flex; align-items: center; transition: color 0.3s; }
+    .nav-icon:hover { color: var(--text); }
+    .cart-btn { font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text); background: none; border: 1px solid rgba(255,255,255,0.15); padding: 0.45rem 0.9rem; cursor: pointer; transition: border-color 0.2s, color 0.2s; white-space: nowrap; }
+    .cart-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── hero ── */
+    .page-hero { min-height: 42vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.05) 0%, transparent 70%); pointer-events: none; }
+    .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .page-hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 400; line-height: 1.05; }
+    .page-hero-title em { font-style: italic; color: var(--accent); }
+    .page-hero-sub { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.5rem; }
+    .page-hero-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); margin: 2rem auto 0; }
+
+    /* ── prints section ── */
+    #prints { padding: 3rem 2rem 8rem; }
+    .prints-inner { max-width: 1400px; margin: 0 auto; }
+    .prints-note { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); text-align: center; margin-bottom: 3rem; line-height: 1.8; }
+    .prints-note strong { color: var(--accent); font-weight: 400; }
+
+    /* ── product grid ── */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.25s, transform 0.25s; }
+    .card:hover { border-color: rgba(200,169,110,0.35); transform: translateY(-3px); }
+    .card .frame { aspect-ratio: 4/5; overflow: hidden; background: var(--bg); }
+    .card .frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .card:hover .frame img { transform: scale(1.04); }
+    .card .body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.9rem; flex: 1; }
+    .card-edition { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); opacity: 0.75; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 400; line-height: 1.2; }
+    .card-meta { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── size picker ── */
+    .sizes { display: flex; gap: 0.5rem; margin-top: auto; }
+    .size { flex: 1; font-family: 'Inter', sans-serif; font-size: 0.6rem; letter-spacing: 0.06em; background: none; color: var(--muted); border: 1px solid var(--border); padding: 0.6rem 0.25rem; cursor: pointer; text-align: center; transition: all 0.18s; }
+    .size .dim { display: block; font-size: 0.7rem; color: inherit; margin-bottom: 2px; }
+    .size .price { display: block; font-size: 0.6rem; opacity: 0.8; }
+    .size:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+    .size.sel { border-color: var(--accent); color: var(--text); background: rgba(200,169,110,0.08); }
+
+    /* ── add to cart button ── */
+    .add-btn { font-family: 'Inter', sans-serif; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; background: var(--accent); color: #0a0a0a; border: none; padding: 0.85rem; cursor: pointer; font-weight: 600; transition: background 0.2s; width: 100%; }
+    .add-btn:hover { background: #d9bc80; }
+
+    /* ── cart drawer ── */
+    .scrim { position: fixed; inset: 0; background: rgba(0,0,0,0.65); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 150; }
+    .scrim.open { opacity: 1; visibility: visible; }
+    .drawer { position: fixed; top: 0; right: 0; height: 100%; width: 380px; max-width: 92vw; background: #0f0f0f; border-left: 1px solid rgba(255,255,255,0.08); transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); z-index: 160; display: flex; flex-direction: column; }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .drawer-head h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; }
+    .drawer-close { background: none; border: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; line-height: 1; transition: color 0.2s; }
+    .drawer-close:hover { color: var(--text); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 0 1.5rem; }
+    .ci { display: flex; justify-content: space-between; gap: 0.75rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .ci-left .ci-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; }
+    .ci-left .ci-size { font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-top: 3px; }
+    .ci-left .ci-remove { display: inline-block; font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: none; border: none; cursor: pointer; margin-top: 6px; opacity: 0.7; padding: 0; }
+    .ci-left .ci-remove:hover { opacity: 1; }
+    .ci-price { font-size: 0.85rem; color: var(--text); white-space: nowrap; padding-top: 2px; }
+    .cart-empty { color: var(--muted); font-size: 0.72rem; letter-spacing: 0.06em; text-align: center; padding: 3.5rem 0; }
+    .drawer-foot { padding: 1.5rem; border-top: 1px solid var(--border); }
+    .subtotal-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.1rem; }
+    .subtotal-amount { color: var(--accent); font-size: 1rem; }
+    .checkout-btn { width: 100%; font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; background: var(--accent); color: #0a0a0a; border: none; padding: 1rem; cursor: pointer; transition: background 0.2s; }
+    .checkout-btn:hover { background: #d9bc80; }
+    .checkout-btn:disabled { opacity: 0.35; cursor: not-allowed; background: var(--accent); }
+    .cart-note { font-size: 0.58rem; color: var(--muted); text-align: center; margin-top: 0.85rem; letter-spacing: 0.04em; line-height: 1.6; }
+
+    /* ── footer ── */
+    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .footer-icons { display: flex; align-items: center; gap: 1.25rem; }
+    .footer-icon { color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; font-size: 0.7rem; letter-spacing: 0.12em; }
+    .footer-icon:hover { color: var(--accent); }
+
+    /* ── responsive ── */
+    @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { nav { padding: 1.2rem 1.5rem; } .nav-links { gap: 1.25rem; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text></svg></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portrait.html">Portrait</a></li>
+    <li><a href="travel.html">Travel</a></li>
+    <li><a href="street.html">Street</a></li>
+    <li><a href="concert.html">Concert</a></li>
+    <li><a href="vlogs.html">Vlogs</a></li>
+    <li><a href="prints.html" class="active">Prints</a></li>
+    <li><a href="book.html">Book</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="openCart()">Cart (<span id="cartCount">0</span>)</button>
+    <div class="nav-icons">
+      <a href="https://www.youtube.com/@stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></a>
+      <a href="https://instagram.com/stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <p class="page-hero-eyebrow">Limited Prints</p>
+  <h1 class="page-hero-title">Take a frame <em>home</em></h1>
+  <p class="page-hero-sub">Archival giclée prints, hand-finished &amp; signed</p>
+  <div class="page-hero-line"></div>
+</div>
+
+<section id="prints">
+  <div class="prints-inner">
+    <p class="prints-note">Open and limited runs from the field — <strong>Tunisia to Edinburgh</strong>.<br>Printed on 270gsm archival matte paper. Shipped rolled in protective tubes.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- Cart drawer -->
+<div class="scrim" id="scrim" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Your cart</h3>
+    <button class="drawer-close" onclick="closeCart()" aria-label="Close cart">&#x2715;</button>
+  </div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">Your cart is empty</div></div>
+  <div class="drawer-foot">
+    <div class="subtotal-row">
+      <span>Subtotal</span>
+      <span class="subtotal-amount" id="subtotal">£0</span>
+    </div>
+    <!-- ↓ HOOK: CHECKOUT — replace onclick with Snipcart or Stripe redirect once API key is added -->
+    <button class="checkout-btn" id="checkoutBtn" onclick="goCheckout()" disabled>Proceed to checkout</button>
+    <p class="cart-note">Shipping &amp; tax calculated at checkout · Secure payment via Snipcart</p>
+  </div>
+</aside>
+
+<!-- ↓ HOOK: SNIPCART — replace MjBlODFiYmItNWQ4My00MDBkLWIxNTEtNjg5Yjg4Zjc3YmY1NjM5MTc1NTQ5MjY2Mzc4MDE2 with your key from snipcart.com → Account → API Keys -->
+<div hidden id="snipcart" data-api-key="MjBlODFiYmItNWQ4My00MDBkLWIxNTEtNjg5Yjg4Zjc3YmY1NjM5MTc1NTQ5MjY2Mzc4MDE2" data-currency="gbp"></div>
+
+<footer>
+  <span>&#169; 2026 Still Sonic Media</span>
+  <div class="footer-icons">
+    <a href="https://www.youtube.com/@stillsonicmedia" class="footer-icon" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+      @stillsonicmedia
+    </a>
+    <a href="https://instagram.com/stillsonicmedia" class="footer-icon" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @stillsonicmedia
+    </a>
+  </div>
+</footer>
+
+<script async src="https://cdn.snipcart.com/themes/v3.3.2/default/snipcart.js"></script>
+<script>
+  const BASE = 'https://stillsonicmedia.co.uk/';
+  const PRODUCTS = [
+    { id: 'jimbo-mazza',     img: '24_concert_portrait_purple.jpg', title: 'Jimbo Mazza',   meta: 'Concert · 2024',     ed: 'Limited / 25' },
+    { id: 'camel-handler',   img: '01_camel_handler.jpg',           title: 'Camel Handler', meta: 'Tunisia · 2024',     ed: 'Open edition' },
+    { id: 'moody',           img: '06_ptv_moody.jpg',               title: 'Moody',         meta: 'PTV · 2025',         ed: 'Limited / 25' },
+    { id: 'the-pier',        img: '15_cleethorpes_pier.jpg',        title: 'The Pier',      meta: 'Cleethorpes · 2024', ed: 'Open edition' },
+    { id: 'red-set',         img: '26_concert_guitarist_red.jpg',   title: 'Red Set',       meta: 'Concert · 2024',     ed: 'Limited / 25' },
+    { id: 'vinyl',           img: '14_scotland_vinyl.jpg',          title: 'Vinyl',         meta: 'Edinburgh · 2024',   ed: 'Open edition' },
+  ];
+  const SIZES = [
+    { label: 'A4', dims: '210×297mm', price: 35 },
+    { label: 'A3', dims: '297×420mm', price: 55 },
+    { label: 'A2', dims: '420×594mm', price: 85 },
+  ];
+
+  let cart = [];
+
+  // Build product grid
+  const grid = document.getElementById('grid');
+  PRODUCTS.forEach((p, i) => {
+    const sizeHTML = SIZES.map((s, si) =>
+      `<button class="size${si === 0 ? ' sel' : ''}" data-size="${s.label}" data-dims="${s.dims}" data-price="${s.price}" onclick="pick(${i}, this)">
+        <span class="dim">${s.label}</span><span class="price">£${s.price}</span>
+      </button>`
+    ).join('');
+
+    grid.insertAdjacentHTML('beforeend', `
+      <article class="card" data-index="${i}">
+        <div class="frame"><img src="${BASE + p.img}" alt="${p.title}" loading="lazy"></div>
+        <div class="body">
+          <div>
+            <div class="card-edition">${p.ed}</div>
+            <h3>${p.title}</h3>
+            <div class="card-meta">${p.meta}</div>
+          </div>
+          <div class="sizes">${sizeHTML}</div>
+          <button class="add-btn snipcart-add-item"
+            data-item-id="${p.id}-a4"
+            data-item-name="${p.title} — A4 Print"
+            data-item-price="35"
+            data-item-url="${BASE}prints.html"
+            data-item-description="${p.meta} · ${p.ed} · A4 (210×297mm) archival giclée print"
+            data-item-image="${BASE + p.img}"
+            data-item-quantity="1"
+            onclick="addToCart(${i}, this)">Add to cart</button>
+        </div>
+      </article>`);
+  });
+
+  function pick(i, btn) {
+    const card = btn.closest('.card');
+    card.querySelectorAll('.size').forEach(b => b.classList.remove('sel'));
+    btn.classList.add('sel');
+    const p = PRODUCTS[i];
+    const addBtn = card.querySelector('.add-btn');
+    addBtn.dataset.itemId    = p.id + '-' + btn.dataset.size.toLowerCase();
+    addBtn.dataset.itemName  = p.title + ' — ' + btn.dataset.size + ' Print';
+    addBtn.dataset.itemPrice = btn.dataset.price;
+    addBtn.dataset.itemDescription = p.meta + ' · ' + p.ed + ' · ' + btn.dataset.size + ' (' + btn.dataset.dims + ') archival giclée print';
+  }
+
+  function addToCart(i, btn) {
+    const card  = btn.closest('.card');
+    const selBtn = card.querySelector('.size.sel');
+    cart.push({ title: PRODUCTS[i].title, size: selBtn.dataset.size, price: +selBtn.dataset.price });
+    renderCart();
+    openCart();
+  }
+
+  function removeFromCart(idx) { cart.splice(idx, 1); renderCart(); }
+
+  function renderCart() {
+    document.getElementById('cartCount').textContent = cart.length;
+    const sub = cart.reduce((a, c) => a + c.price, 0);
+    document.getElementById('subtotal').textContent = '£' + sub;
+    document.getElementById('checkoutBtn').disabled = cart.length === 0;
+    const wrap = document.getElementById('cartItems');
+    if (!cart.length) { wrap.innerHTML = '<div class="cart-empty">Your cart is empty</div>'; return; }
+    wrap.innerHTML = cart.map((c, idx) => `
+      <div class="ci">
+        <div class="ci-left">
+          <div class="ci-title">${c.title}</div>
+          <div class="ci-size">${c.size} print</div>
+          <button class="ci-remove" onclick="removeFromCart(${idx})">Remove</button>
+        </div>
+        <div class="ci-price">£${c.price}</div>
+      </div>`).join('');
+  }
+
+  function openCart()  { document.getElementById('drawer').classList.add('open');    document.getElementById('scrim').classList.add('open'); }
+  function closeCart() { document.getElementById('drawer').classList.remove('open'); document.getElementById('scrim').classList.remove('open'); }
+
+  function goCheckout() {
+    // When Snipcart API key is set, items added via snipcart-add-item are already in Snipcart's cart.
+    // This button will open Snipcart's secure checkout.
+    if (window.Snipcart) {
+      Snipcart.api.theme.cart.open();
+    } else {
+      // Fallback until API key is wired up
+      alert('Checkout ready — add your Snipcart public API key to the data-api-key attribute on the #snipcart div in prints.html.');
+    }
+  }
+
+  renderCart();
+</script>
+</body>
+</html>
