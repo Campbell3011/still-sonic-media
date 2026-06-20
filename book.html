@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book — Still Sonic Media</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQ900SQ106"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GQ900SQ106');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+    /* ── nav ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-logo { text-decoration: none; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-icons { display: flex; align-items: center; gap: 1rem; margin-left: 1.5rem; }
+    .nav-icon { color: var(--muted); text-decoration: none; display: flex; align-items: center; transition: color 0.3s; }
+    .nav-icon:hover { color: var(--text); }
+
+    /* ── hero ── */
+    .page-hero { min-height: 42vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.05) 0%, transparent 70%); pointer-events: none; }
+    .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .page-hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 400; line-height: 1.05; }
+    .page-hero-title em { font-style: italic; color: var(--accent); }
+    .page-hero-sub { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.5rem; }
+    .page-hero-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); margin: 2rem auto 0; }
+
+    /* ── tiers ── */
+    #book { padding: 3rem 2rem 8rem; }
+    .book-inner { max-width: 1100px; margin: 0 auto; }
+    .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 5rem; }
+    .tier { border: 1px solid var(--border); padding: 2rem 1.75rem; background: var(--surface); position: relative; }
+    .tier.featured { border-color: rgba(200,169,110,0.4); }
+    .tier.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0.6; }
+    .tier-label { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .tier h3 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .tier-from { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.5rem; }
+    .tier-from strong { color: var(--text); font-weight: 400; font-size: 1.05rem; }
+    .tier ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .tier li { font-size: 0.88rem; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.5; }
+    .tier li::before { content: '—'; position: absolute; left: 0; color: var(--accent); opacity: 0.6; }
+    .tier-cta { display: inline-block; margin-top: 1.75rem; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid rgba(200,169,110,0.35); padding-bottom: 0.2rem; text-decoration: none; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; font-family: 'Inter', sans-serif; transition: border-color 0.2s, color 0.2s; }
+    .tier-cta:hover { color: var(--text); border-color: rgba(232,232,232,0.4); }
+
+    /* ── form section ── */
+    .form-head { text-align: center; margin-bottom: 3rem; }
+    .form-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem; }
+    .form-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 400; }
+    .form-sub { color: var(--muted); font-size: 0.9rem; margin-top: 0.75rem; }
+
+    .enquiry-form { max-width: 680px; margin: 0 auto; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .field { margin-bottom: 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; }
+    .field label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+    .field input,
+    .field select,
+    .field textarea {
+      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.92rem;
+      padding: 0.8rem 0.9rem; width: 100%; transition: border-color 0.2s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: 0.6; }
+    .field select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; }
+    .field select option { background: #111; }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .submit-btn { font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; background: var(--accent); color: #0a0a0a; border: none; padding: 1rem 2.5rem; cursor: pointer; width: 100%; margin-top: 0.5rem; transition: background 0.2s; }
+    .submit-btn:hover { background: #d9bc80; }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── success state ── */
+    .success-msg { display: none; text-align: center; padding: 4rem 2rem; border: 1px solid rgba(200,169,110,0.35); background: var(--surface); max-width: 680px; margin: 0 auto; }
+    .success-msg.show { display: block; }
+    .success-check { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 0.75rem; }
+    .success-msg h4 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .success-msg p { color: var(--muted); font-size: 0.9rem; }
+
+    /* ── footer ── */
+    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .footer-icons { display: flex; align-items: center; gap: 1.25rem; }
+    .footer-icon { color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; font-size: 0.7rem; letter-spacing: 0.12em; }
+    .footer-icon:hover { color: var(--accent); }
+
+    /* ── responsive ── */
+    @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
+    @media (max-width: 768px) { nav { padding: 1.2rem 1.5rem; } .nav-links { gap: 1.25rem; } .row { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
+    @media (max-width: 480px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text></svg></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portrait.html">Portrait</a></li>
+    <li><a href="travel.html">Travel</a></li>
+    <li><a href="street.html">Street</a></li>
+    <li><a href="concert.html">Concert</a></li>
+    <li><a href="vlogs.html">Vlogs</a></li>
+    <li><a href="prints.html">Prints</a></li>
+    <li><a href="book.html" class="active">Book</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+  <div class="nav-icons">
+    <a href="https://www.youtube.com/@stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></a>
+    <a href="https://instagram.com/stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <p class="page-hero-eyebrow">Commissions</p>
+  <h1 class="page-hero-title">Let's make <em>something</em></h1>
+  <p class="page-hero-sub">Based near Doncaster &amp; Sheffield — happy to travel</p>
+  <div class="page-hero-line"></div>
+</div>
+
+<section id="book">
+  <div class="book-inner">
+
+    <!-- Tier cards -->
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-label">Portrait</div>
+        <h3>Sessions</h3>
+        <div class="tier-from">from <strong>£120</strong></div>
+        <ul>
+          <li>1–2 hours, one location</li>
+          <li>15+ edited frames delivered</li>
+          <li>Private online gallery</li>
+        </ul>
+        <button class="tier-cta" onclick="document.getElementById('name').focus()">Enquire &#8594;</button>
+      </div>
+      <div class="tier featured">
+        <div class="tier-label">Most booked</div>
+        <h3>Concert &amp; Event</h3>
+        <div class="tier-from">from <strong>£250</strong></div>
+        <ul>
+          <li>Full set / event coverage</li>
+          <li>Gallery delivered within 5 days</li>
+          <li>Optional behind-the-lens vlog</li>
+        </ul>
+        <button class="tier-cta" onclick="document.getElementById('name').focus()">Enquire &#8594;</button>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Editorial</div>
+        <h3>Day Rate</h3>
+        <div class="tier-from">from <strong>£400</strong></div>
+        <ul>
+          <li>Up to 8 hours on location</li>
+          <li>Travel &amp; street commissions</li>
+          <li>Usage licensing available</li>
+        </ul>
+        <button class="tier-cta" onclick="document.getElementById('name').focus()">Enquire &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Enquiry form -->
+    <div class="form-head">
+      <span class="form-eyebrow">Get in touch</span>
+      <h2 class="form-title">Tell me about your project</h2>
+      <p class="form-sub">I'll reply within two working days.</p>
+    </div>
+
+    <!--
+      ↓ HOOK: FORMSPREE — replace YOUR_FORM_ID with the ID from formspree.io
+        1. Sign up at formspree.io
+        2. Create a new form → copy the endpoint (e.g. https://formspree.io/f/xabcdefg)
+        3. Replace the action URL below
+    -->
+    <form class="enquiry-form" id="enquiryForm" action="https://formspree.io/f/mvznejow" method="POST">
+      <div class="row">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" required placeholder="Your name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="your@email.com">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="type">Type of work</label>
+          <select id="type" name="type" required>
+            <option value="">Select…</option>
+            <option>Portrait session</option>
+            <option>Concert / gig</option>
+            <option>Event coverage</option>
+            <option>Travel / editorial</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Preferred date</label>
+          <input id="date" name="date" type="date">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="location">Location</label>
+          <input id="location" name="location" placeholder="City or venue">
+        </div>
+        <div class="field">
+          <label for="budget">Budget</label>
+          <select id="budget" name="budget">
+            <option value="">Select…</option>
+            <option>Under £150</option>
+            <option>£150–£300</option>
+            <option>£300–£600</option>
+            <option>£600+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="msg">Tell me about it</label>
+        <textarea id="msg" name="message" placeholder="The shoot, the vibe, anything I should know…"></textarea>
+      </div>
+      <button class="submit-btn" type="submit" id="submitBtn">Send enquiry</button>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <div class="success-check">&#10003;</div>
+      <h4>Enquiry sent</h4>
+      <p>Thanks — I'll reply within two working days. Check your inbox for a copy.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span>&#169; 2026 Still Sonic Media</span>
+  <div class="footer-icons">
+    <a href="https://www.youtube.com/@stillsonicmedia" class="footer-icon" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+      @stillsonicmedia
+    </a>
+    <a href="https://instagram.com/stillsonicmedia" class="footer-icon" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @stillsonicmedia
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Intercept form → fetch to Formspree → show success state without page reload
+  const form = document.getElementById('enquiryForm');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const resp = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (resp.ok) {
+        form.style.display = 'none';
+        const success = document.getElementById('successMsg');
+        success.classList.add('show');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send enquiry';
+        alert('Something went wrong — please try again or email hello@stillsonicmedia.co.uk directly.');
+      }
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send enquiry';
+      alert('Network error — please check your connection and try again.');
+    }
+  });
+</script>
+</body>
+</html>
