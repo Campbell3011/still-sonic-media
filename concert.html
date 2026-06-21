@@ -5,14 +5,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Concert — Still Sonic Media</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
+  @font-face {
+    font-family: 'Redaction100';
+    src: url('fonts/Redaction_100-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Redaction100';
+    src: url('fonts/Redaction_100-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Redaction50';
+    src: url('fonts/Redaction_50-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Redaction50';
+    src: url('fonts/Redaction_50-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: 'Redaction50', sans-serif; font-weight: 300; overflow-x: hidden; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
     .nav-logo { text-decoration: none; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; }
@@ -24,7 +50,7 @@
     .page-hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
     .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.05) 0%, transparent 70%); pointer-events: none; }
     .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-    .page-hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.01em; }
+    .page-hero-title { font-family: 'Redaction100', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.01em; }
     .page-hero-sub { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.5rem; }
     .page-hero-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); margin: 2rem auto 0; }
     #gallery { padding: 5rem 2rem 8rem; }
@@ -89,7 +115,7 @@
 </head>
 <body>
 <nav>
-  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text></svg></a>
+  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Redaction100', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Redaction100', Georgia, serif" font-size="50">S</text></svg></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="portrait.html">Portrait</a></li>
