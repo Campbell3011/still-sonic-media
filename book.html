@@ -13,14 +13,11 @@
     gtag('js', new Date());
     gtag('config', 'G-GQ900SQ106');
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-weight: 300; overflow-x: hidden; }
 
     /* ── nav ── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
@@ -36,7 +33,7 @@
     .page-hero { min-height: 42vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
     .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.05) 0%, transparent 70%); pointer-events: none; }
     .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-    .page-hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 400; line-height: 1.05; }
+    .page-hero-title { font-family: 'Redaction35', serif; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 400; line-height: 1.05; }
     .page-hero-title em { font-style: italic; color: var(--accent); }
     .page-hero-sub { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.5rem; }
     .page-hero-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); margin: 2rem auto 0; }
@@ -49,19 +46,19 @@
     .tier.featured { border-color: rgba(200,169,110,0.4); }
     .tier.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0.6; }
     .tier-label { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-    .tier h3 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .tier h3 { font-family: 'Redaction35', serif; font-size: 1.75rem; font-weight: 400; margin-bottom: 0.5rem; }
     .tier-from { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.5rem; }
     .tier-from strong { color: var(--text); font-weight: 400; font-size: 1.05rem; }
     .tier ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
     .tier li { font-size: 0.88rem; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.5; }
     .tier li::before { content: '—'; position: absolute; left: 0; color: var(--accent); opacity: 0.6; }
-    .tier-cta { display: inline-block; margin-top: 1.75rem; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid rgba(200,169,110,0.35); padding-bottom: 0.2rem; text-decoration: none; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; font-family: 'Inter', sans-serif; transition: border-color 0.2s, color 0.2s; }
+    .tier-cta { display: inline-block; margin-top: 1.75rem; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid rgba(200,169,110,0.35); padding-bottom: 0.2rem; text-decoration: none; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; font-family: 'Redaction35', Georgia, serif; transition: border-color 0.2s, color 0.2s; }
     .tier-cta:hover { color: var(--text); border-color: rgba(232,232,232,0.4); }
 
     /* ── form section ── */
     .form-head { text-align: center; margin-bottom: 3rem; }
     .form-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem; }
-    .form-title { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 400; }
+    .form-title { font-family: 'Redaction35', serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 400; }
     .form-sub { color: var(--muted); font-size: 0.9rem; margin-top: 0.75rem; }
 
     .enquiry-form { max-width: 680px; margin: 0 auto; }
@@ -72,7 +69,7 @@
     .field select,
     .field textarea {
       background: var(--surface); border: 1px solid var(--border); color: var(--text);
-      font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.92rem;
+      font-family: 'Redaction35', Georgia, serif; font-weight: 300; font-size: 0.92rem;
       padding: 0.8rem 0.9rem; width: 100%; transition: border-color 0.2s;
     }
     .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
@@ -80,15 +77,15 @@
     .field select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; }
     .field select option { background: #111; }
     .field textarea { resize: vertical; min-height: 120px; }
-    .submit-btn { font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; background: var(--accent); color: #0a0a0a; border: none; padding: 1rem 2.5rem; cursor: pointer; width: 100%; margin-top: 0.5rem; transition: background 0.2s; }
+    .submit-btn { font-family: 'Redaction35', Georgia, serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; background: var(--accent); color: #0a0a0a; border: none; padding: 1rem 2.5rem; cursor: pointer; width: 100%; margin-top: 0.5rem; transition: background 0.2s; }
     .submit-btn:hover { background: #d9bc80; }
     .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* ── success state ── */
     .success-msg { display: none; text-align: center; padding: 4rem 2rem; border: 1px solid rgba(200,169,110,0.35); background: var(--surface); max-width: 680px; margin: 0 auto; }
     .success-msg.show { display: block; }
-    .success-check { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 0.75rem; }
-    .success-msg h4 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .success-check { font-family: 'Redaction35', serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 0.75rem; }
+    .success-msg h4 { font-family: 'Redaction35', serif; font-size: 1.75rem; font-weight: 400; margin-bottom: 0.5rem; }
     .success-msg p { color: var(--muted); font-size: 0.9rem; }
 
     /* ── footer ── */
@@ -130,11 +127,24 @@
       .nav-links a { font-size: 1.1rem; letter-spacing: 0.2em; }
     }
   </style>
-</head>
+    <style>
+      @font-face {
+        font-family: 'Redaction35';
+        src: url('fonts/Redaction_35-Regular.woff2') format('woff2');
+        font-weight: 400; font-style: normal; font-display: swap;
+      }
+      @font-face {
+        font-family: 'Redaction35';
+        src: url('fonts/Redaction_35-Bold.woff2') format('woff2');
+        font-weight: 700; font-style: normal; font-display: swap;
+      }
+    </style>
+    <link rel="stylesheet" href="site.css" />
+  </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text></svg></a>
+  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Redaction35', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Redaction35', Georgia, serif" font-size="50">S</text></svg></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="portrait.html">Portrait</a></li>
@@ -328,11 +338,14 @@
 (function(){
   var t=document.getElementById('navToggle'),nl=document.querySelector('.nav-links');
   var ll=document.createElement('li');ll.className='mobile-menu-logo';
-  ll.innerHTML='<a href="index.html" style="text-decoration:none;display:block;"><svg width="55" height="65" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="Playfair Display,Georgia,serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="Playfair Display,Georgia,serif" font-size="50">S</text></svg></a>';
+  ll.innerHTML='<a href="index.html" style="text-decoration:none;display:block;"><svg width="55" height="65" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="Redaction35,Georgia,serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="Redaction35,Georgia,serif" font-size="50">S</text></svg></a>';
   nl.insertBefore(ll,nl.firstChild);
   t.addEventListener('click',function(){var o=nl.classList.toggle('open');t.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
   nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');t.classList.remove('open');document.body.style.overflow='';});});
 })();
 </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="site.js"></script>
 </body>
 </html>
