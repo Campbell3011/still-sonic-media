@@ -126,6 +126,18 @@
   }
 
   /* ------------------------------------------
+     ACTIVE NAV STATE
+  ------------------------------------------ */
+  var currentPage = location.pathname.split('/').pop() || 'index.html';
+  if (currentPage === '') currentPage = 'index.html';
+  document.querySelectorAll('nav a[href]').forEach(function (a) {
+    var href = a.getAttribute('href').split('?')[0].split('#')[0];
+    if (href === currentPage || (currentPage === 'index.html' && (href === '' || href === '/'))) {
+      a.classList.add('nav-active');
+    }
+  });
+
+  /* ------------------------------------------
      SCROLL ANIMATIONS
   ------------------------------------------ */
   gsap.registerPlugin(ScrollTrigger);
