@@ -1,0 +1,75 @@
+/* ============================================
+   Still Sonic Media — Shared Enhancements
+   Custom cursor · Page transitions · Scroll animations
+   ============================================ */
+
+/* === CUSTOM CURSOR (desktop/mouse only) === */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+
+  .cursor-dot {
+    width: 7px;
+    height: 7px;
+    background: #c8a96e;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+  }
+
+  .cursor-ring {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(200, 169, 110, 0.55);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+  }
+
+  .cursor-label {
+    font-family: 'Redaction35', Georgia, serif;
+    font-size: 6.5px;
+    letter-spacing: 0.14em;
+    color: #c8a96e;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .cursor-ring.is-view .cursor-label { opacity: 1; }
+}
+
+/* === PAGE TRANSITION OVERLAY === */
+.ssm-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  z-index: 99990;
+  pointer-events: none;
+  transform: scaleY(0);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+/* === SCROLL ANIMATION INITIAL STATES ===
+   Set via GSAP immediately on load — these rules
+   are just a safety net so nothing flickers if
+   GSAP hasn't parsed yet. */
+.gsap-fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+}
