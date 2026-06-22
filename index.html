@@ -23,7 +23,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Redaction35', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-weight: 300; overflow-x: hidden; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
     .nav-logo { text-decoration: none; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; }
@@ -252,7 +252,7 @@
 (function(){
   var t=document.getElementById('navToggle'),nl=document.querySelector('.nav-links');
   var ll=document.createElement('li');ll.className='mobile-menu-logo';
-  ll.innerHTML='<a href="index.html" style="text-decoration:none;display:block;"><svg width="55" height="65" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="Playfair Display,Georgia,serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="Playfair Display,Georgia,serif" font-size="50">S</text></svg></a>';
+  ll.innerHTML='<a href="index.html" style="text-decoration:none;display:block;"><svg width="55" height="65" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="Redaction35,Georgia,serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="Redaction35,Georgia,serif" font-size="50">S</text></svg></a>';
   nl.insertBefore(ll,nl.firstChild);
   t.addEventListener('click',function(){var o=nl.classList.toggle('open');t.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
   nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');t.classList.remove('open');document.body.style.overflow='';});});
