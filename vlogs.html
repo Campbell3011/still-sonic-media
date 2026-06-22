@@ -5,14 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vlogs — Still Sonic Media</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-weight: 300; overflow-x: hidden; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
     .nav-logo { text-decoration: none; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; }
@@ -24,7 +21,7 @@
     .page-hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
     .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.05) 0%, transparent 70%); pointer-events: none; }
     .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-    .page-hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.01em; }
+    .page-hero-title { font-family: 'Redaction35', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.01em; }
     .page-hero-sub { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.5rem; }
     .page-hero-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); margin: 2rem auto 0; }
     #videos { padding: 5rem 2rem 8rem; }
@@ -35,18 +32,18 @@
     .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     .video-info { padding: 1.5rem; }
     .video-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
-    .video-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 0.5rem; }
+    .video-title { font-family: 'Redaction35', serif; font-size: 1.3rem; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 0.5rem; }
     .video-meta { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); }
     #coming-soon { padding: 4rem 2rem 8rem; border-top: 1px solid var(--border); }
     .coming-soon-inner { max-width: 1400px; margin: 0 auto; }
     .coming-soon-header { text-align: center; margin-bottom: 3rem; }
     .coming-soon-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem; }
-    .coming-soon-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 400; }
+    .coming-soon-title { font-family: 'Redaction35', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 400; }
     .teasers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
     .teaser-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem 1.75rem; position: relative; overflow: hidden; }
     .teaser-card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: var(--accent); opacity: 0.4; }
     .teaser-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-    .teaser-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin-bottom: 0.5rem; }
+    .teaser-title { font-family: 'Redaction35', serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin-bottom: 0.5rem; }
     .teaser-status { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
     .youtube-link { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 3rem; text-align: center; }
     .youtube-cta { display: block; margin: 3rem auto 0; text-align: center; }
@@ -94,10 +91,23 @@
     gtag('js', new Date());
     gtag('config', 'G-GQ900SQ106');
   </script>
-</head>
+    <style>
+      @font-face {
+        font-family: 'Redaction35';
+        src: url('fonts/Redaction_35-Regular.woff2') format('woff2');
+        font-weight: 400; font-style: normal; font-display: swap;
+      }
+      @font-face {
+        font-family: 'Redaction35';
+        src: url('fonts/Redaction_35-Bold.woff2') format('woff2');
+        font-weight: 700; font-style: normal; font-display: swap;
+      }
+    </style>
+    <link rel="stylesheet" href="site.css" />
+  </head>
 <body>
 <nav>
-  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Playfair Display', Georgia, serif" font-size="50">S</text></svg></a>
+  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Redaction35', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Redaction35', Georgia, serif" font-size="50">S</text></svg></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="portrait.html">Portrait</a></li>
@@ -170,11 +180,14 @@
 (function(){
   var t=document.getElementById('navToggle'),nl=document.querySelector('.nav-links');
   var ll=document.createElement('li');ll.className='mobile-menu-logo';
-  ll.innerHTML='<a href="index.html" style="text-decoration:none;display:block;"><svg width="55" height="65" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="Playfair Display,Georgia,serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="Playfair Display,Georgia,serif" font-size="50">S</text></svg></a>';
+  ll.innerHTML='<a href="index.html" style="text-decoration:none;display:block;"><svg width="55" height="65" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="Redaction35,Georgia,serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="Redaction35,Georgia,serif" font-size="50">S</text></svg></a>';
   nl.insertBefore(ll,nl.firstChild);
   t.addEventListener('click',function(){var o=nl.classList.toggle('open');t.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
   nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');t.classList.remove('open');document.body.style.overflow='';});});
 })();
 </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="site.js"></script>
 </body>
 </html>
