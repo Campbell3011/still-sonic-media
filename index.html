@@ -1,274 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Still Sonic Media" />
+  <meta property="og:title" content="Still Sonic Media â Photography" />
+  <meta property="og:description" content="Photography across borders, venues, and cultures. Campbell Downie â UK." />
+  <meta property="og:image" content="https://stillsonicmedia.co.uk/26_concert_guitarist_red.jpg" />
+  <meta property="og:url" content="https://stillsonicmedia.co.uk/" />
+  <meta name="twitter:card" content="summary_large_image" />
   <title>Still Sonic Media</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="site.css?v=3" />
   <style>
-  @font-face {
-    font-family: 'Redaction35';
-    src: url('fonts/Redaction_35-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Redaction35';
-    src: url('fonts/Redaction_35-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #0a0a0a; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
+    @font-face {
+      font-family: 'Redaction35';
+      src: url('fonts/Redaction_35-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Redaction35';
+      src: url('fonts/Redaction_35-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0e0e0e; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-weight: 300; overflow-x: hidden; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .nav-logo { text-decoration: none; }
-    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.3s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-icons { display: flex; align-items: center; gap: 1rem; margin-left: 1.5rem; }
-    .nav-icon { color: var(--muted); text-decoration: none; display: flex; align-items: center; transition: color 0.3s; }
-    .nav-icon:hover { color: var(--text); }
+    body { background: var(--bg); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-weight: 400; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(14,14,14,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; font-family: 'Redaction35', Georgia, serif; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-instagram { color: var(--muted); text-decoration: none; display: flex; align-items: center; transition: color 0.3s; }
+    .nav-instagram:hover { color: var(--text); }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--muted); transition: transform 0.3s, opacity 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(14,14,14,0.97); backdrop-filter: blur(12px); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.1rem; letter-spacing: 0.22em; }
+    }
+
+    /* HERO */
     #home { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 8rem; position: relative; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,110,0.06) 0%, transparent 70%); pointer-events: none; }
     .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
-    .hero-title { font-family: 'Redaction35', serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 0.25rem; }
+    .hero-title { font-family: 'Redaction35', Georgia, serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 400; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 0.25rem; }
     .hero-title em { font-style: italic; color: var(--accent); }
     .hero-subtitle { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.75rem; margin-bottom: 3rem; }
-    .hero-cta { display: inline-block; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.85rem 2.5rem; transition: background 0.3s, color 0.3s; }
+    .hero-cta { display: inline-block; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.85rem 2.5rem; transition: background 0.3s, color 0.3s; font-family: 'Redaction35', Georgia, serif; }
     .hero-cta:hover { background: var(--accent); color: var(--bg); }
     .hero-scroll { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); opacity: 0.6; animation: bounce 2s infinite; }
     .hero-scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent); }
     @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* SECTION HEADER */
     .section-header { text-align: center; margin-bottom: 4rem; }
     .section-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem; }
-    .section-title { font-family: 'Redaction35', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; }
-    #genres { padding: 8rem 2rem 4rem; }
-    .genres-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1400px; margin: 0 auto; }
-    .genre-card { position: relative; overflow: hidden; aspect-ratio: 3/4; display: block; text-decoration: none; cursor: pointer; }
-    .genre-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.6); }
-    .genre-card:hover img { transform: scale(1.06); filter: brightness(0.75); }
-    .genre-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.75rem; }
-    .genre-card-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
-    .genre-card-title { font-family: 'Redaction35', serif; font-size: 1.8rem; font-weight: 400; color: var(--text); line-height: 1.1; }
-    .genre-card-count { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,232,232,0.45); margin-top: 0.75rem; transition: color 0.3s; }
-    .genre-card:hover .genre-card-count { color: var(--accent); }
-    .genre-card-arrow { position: absolute; top: 1.5rem; right: 1.5rem; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text); font-size: 1.1rem; opacity: 0; transition: opacity 0.3s; }
-    .genre-card:hover .genre-card-arrow { opacity: 1; }
+    .section-title { font-family: 'Redaction35', Georgia, serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; }
+
+    /* PROJECTS GRID */
+    #projects { padding: 8rem 2rem 4rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1400px; margin: 0 auto; }
+    .project-card { position: relative; overflow: hidden; aspect-ratio: 3/4; display: block; text-decoration: none; cursor: pointer; }
+    .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.6); }
+    .project-card:hover img { transform: scale(1.06); filter: brightness(0.75); }
+    .project-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,14,14,0.9) 0%, rgba(14,14,14,0.15) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.75rem; }
+    .project-card-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .project-card-title { font-family: 'Redaction35', Georgia, serif; font-size: 1.8rem; font-weight: 400; color: var(--text); line-height: 1.1; }
+    .project-card-meta { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,232,232,0.45); margin-top: 0.75rem; transition: color 0.3s; }
+    .project-card:hover .project-card-meta { color: var(--accent); }
+    .project-card-arrow { position: absolute; top: 1.5rem; right: 1.5rem; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text); font-size: 1.1rem; opacity: 0; transition: opacity 0.3s; }
+    .project-card:hover .project-card-arrow { opacity: 1; }
+    /* Coming soon card */
+    .project-card-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #111 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; }
+    .project-card-placeholder-inner { text-align: center; opacity: 0.25; }
+    .project-card-placeholder-inner svg { width: 48px; height: 48px; }
+    @media (max-width: 1024px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .projects-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; } .project-card-title { font-size: 1.3rem; } }
+
+    /* FEATURED GALLERY */
     #gallery { padding: 6rem 2rem 8rem; }
     .gallery-grid { columns: 3 320px; column-gap: 1rem; max-width: 1400px; margin: 0 auto; }
     .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; cursor: pointer; }
     .gallery-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .gallery-item:hover img { transform: scale(1.04); }
-    .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
+    .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,14,14,0.8) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
     .gallery-item-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); }
-    .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; }
+    @media (max-width: 768px) { .gallery-grid { columns: 2 160px; } }
+    @media (max-width: 480px) { .gallery-grid { columns: 1; } }
+
+    /* LIGHTBOX */
+    .lightbox { position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; }
     .lightbox.active { display: flex; }
     .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
-    .lightbox-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 1.5rem; color: var(--muted); cursor: pointer; background: none; border: none; font-family: inherit; transition: color 0.2s; }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 1.5rem; color: var(--muted); cursor: pointer; background: none; border: none; font-family: inherit; transition: color 0.2s; z-index: 9001; }
     .lightbox-close:hover { color: var(--text); }
-    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); font-size: 2rem; cursor: pointer; padding: 1rem; transition: color 0.2s; }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); font-size: 2rem; cursor: pointer; padding: 1rem; transition: color 0.2s; z-index: 9001; }
     .lightbox-nav:hover { color: var(--text); }
     .lightbox-prev { left: 1rem; } .lightbox-next { right: 1rem; }
+
+    /* ABOUT */
     #about { padding: 8rem 2rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .about-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    .about-text h2 { font-family: 'Redaction35', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; margin-bottom: 1.5rem; line-height: 1.2; }
+    .about-text h2 { font-family: 'Redaction35', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; margin-bottom: 1.5rem; line-height: 1.2; }
     .about-text p { font-size: 0.95rem; line-height: 1.85; color: #aaa; margin-bottom: 1.2rem; }
     .about-stats { display: flex; flex-direction: column; gap: 2.5rem; }
     .stat-item { border-left: 1px solid var(--accent); padding-left: 1.5rem; }
-    .stat-number { font-family: 'Redaction35', serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
+    .stat-number { font-family: 'Redaction35', Georgia, serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
     .stat-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+    @media (max-width: 768px) { .about-inner { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* CONTACT */
     #contact { padding: 8rem 2rem; text-align: center; }
     #contact .section-title { margin-bottom: 1rem; }
     .contact-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 3rem; max-width: 400px; margin-left: auto; margin-right: auto; }
-    .contact-email { display: inline-block; font-family: 'Redaction35', serif; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 0.25rem; transition: color 0.3s; }
+    .contact-email { display: inline-block; font-family: 'Redaction35', Georgia, serif; font-size: 1.2rem; letter-spacing: 0.05em; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 0.25rem; transition: color 0.3s; }
     .contact-email:hover { color: var(--accent); }
-    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-    .footer-icons { display: flex; align-items: center; gap: 1.25rem; }
-    .footer-icon { color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; font-size: 0.7rem; letter-spacing: 0.12em; }
-    .footer-icon:hover { color: var(--accent); }
-    @media (max-width: 1024px) { .genres-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 768px) { nav { padding: 1.2rem 1.5rem; } .nav-links { gap: 1.5rem; } .gallery-grid { columns: 2 160px; } .about-inner { grid-template-columns: 1fr; gap: 3rem; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
-    @media (max-width: 540px) { .genres-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; } .genre-card-title { font-size: 1.3rem; } }
-    @media (max-width: 480px) { .gallery-grid { columns: 1; } .nav-links { display: none; } }
-  
-    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 201; position: relative; }
-.mobile-menu-logo { display: none; }
-    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s; }
-    .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav-toggle.open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-    @media (max-width: 480px) {
-      .nav-toggle { display: flex; }
-      nav { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-      .nav-links { position: fixed; inset: 0; background: rgba(10,10,10,0.88); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.4rem; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding-top: 8rem; }
-      .nav-links.open { opacity: 1; pointer-events: auto; }
-      .nav-links > li { opacity: 0; transform: translateY(18px); transition: opacity 0.4s ease, transform 0.4s ease; }
-      .nav-links .mobile-menu-logo { display: block; position: absolute; top: 1.5rem; left: 0; right: 0; text-align: center; transform: none; opacity: 0; transition: opacity 0.4s ease 0.03s; list-style: none; }
-      .nav-links.open > li { opacity: 1; transform: translateY(0); }
-      .nav-links.open > li:nth-child(2) { transition-delay: 0.08s; }
-      .nav-links.open > li:nth-child(3) { transition-delay: 0.14s; }
-      .nav-links.open > li:nth-child(4) { transition-delay: 0.2s; }
-      .nav-links.open > li:nth-child(5) { transition-delay: 0.26s; }
-      .nav-links.open > li:nth-child(6) { transition-delay: 0.32s; }
-      .nav-links.open > li:nth-child(7) { transition-delay: 0.38s; }
-      .nav-links.open > li:nth-child(8) { transition-delay: 0.44s; }
-      .nav-links.open > li:nth-child(9) { transition-delay: 0.5s; }
-      .nav-links.open > li:nth-child(10) { transition-delay: 0.56s; }
-      .nav-links.open > li:nth-child(11) { transition-delay: 0.62s; }
-      .nav-links.open .mobile-menu-logo { opacity: 1; }
-      .nav-links a { font-size: 1.1rem; letter-spacing: 0.2em; }
-    }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQ900SQ106"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GQ900SQ106');
-  </script>
 
-  <link rel="stylesheet" href="site.css?v=3" />  <meta name="description" content="Still Sonic Media — UK-based photography by Campbell Downie. Concert, portrait, street and travel photography." />
-  <meta property="og:title" content="Still Sonic Media | Photography" />
-  <meta property="og:description" content="UK-based photography by Campbell Downie. Concert, portrait, street and travel." />
-  <meta property="og:image" content="https://stillsonicmedia.co.uk/26_concert_guitarist_red.jpg" />
-  <meta property="og:url" content="https://stillsonicmedia.co.uk/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Still Sonic Media" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://stillsonicmedia.co.uk/26_concert_guitarist_red.jpg" />
+    /* FOOTER */
+    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .footer-instagram { color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; font-size: 0.7rem; letter-spacing: 0.12em; }
+    .footer-instagram:hover { color: var(--accent); }
+    @media (max-width: 768px) { footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
+  </style>
 </head>
 <body>
+
 <nav>
-  <a href="index.html" class="nav-logo"><svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="'Redaction35', Georgia, serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="'Redaction35', Georgia, serif" font-size="50">S</text></svg></a>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="portrait.html">Portrait</a></li>
-    <li><a href="travel.html">Travel</a></li>
-    <li><a href="street.html">Street</a></li>
-    <li><a href="concert.html">Concert</a></li>
-    <li><a href="vlogs.html">Vlogs</a></li>
-        <li><a href="book.html">Book</a></li>
+  <a href="index.html" class="nav-logo">
+    <svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="54" fill="#e8e8e8" font-family="'Redaction35', Georgia, serif" font-size="50">S</text>
+      <text x="32" y="54" fill="#c8a96e" font-family="'Redaction35', Georgia, serif" font-size="50">S</text>
+    </svg>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#projects">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-icons">
-    <a href="https://www.youtube.com/@stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></a>
-    <a href="https://instagram.com/stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+  <div class="nav-right">
+    <a href="https://instagram.com/stillsonicmedia" class="nav-instagram" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <button class="nav-hamburger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+
 <section id="home">
   <div class="hero-bg"></div>
   <p class="hero-eyebrow">Photography &amp; Visual Media</p>
   <h1 class="hero-title">Still<br><em>Sonic</em><br>Media</h1>
   <p class="hero-subtitle">Capturing moments across borders &amp; cultures</p>
-  <a href="#genres" class="hero-cta">Browse Work</a>
+  <a href="#projects" class="hero-cta">Browse Work</a>
   <div class="hero-scroll">Scroll</div>
 </section>
-<section id="genres">
+
+<section id="projects">
   <div class="section-header">
-    <span class="section-eyebrow">Explore</span>
-    <h2 class="section-title">Browse by Genre</h2>
+    <span class="section-eyebrow">The Work</span>
+    <h2 class="section-title">Projects</h2>
   </div>
-  <div class="genres-grid">
-    <a href="portrait.html" class="genre-card"><img src="04_ptv_brickwall.jpg" alt="Portrait" loading="lazy" /><div class="genre-card-overlay"><div class="genre-card-label">Series</div><div class="genre-card-title">Portrait</div><div class="genre-card-count">6 images</div></div><div class="genre-card-arrow">&#8594;</div></a>
-    <a href="travel.html" class="genre-card"><img loading="lazy" src="01_camel_handler.jpg" alt="Travel" loading="lazy" /><div class="genre-card-overlay"><div class="genre-card-label">Series</div><div class="genre-card-title">Travel</div><div class="genre-card-count">6 images</div></div><div class="genre-card-arrow">&#8594;</div></a>
-    <a href="street.html" class="genre-card"><img loading="lazy" src="22_cleethorpes_sea.jpg" alt="Street" loading="lazy" /><div class="genre-card-overlay"><div class="genre-card-label">Series</div><div class="genre-card-title">Street</div><div class="genre-card-count">6 images</div></div><div class="genre-card-arrow">&#8594;</div></a>
-    <a href="concert.html" class="genre-card"><img loading="lazy" src="24_concert_portrait_purple.jpg" alt="Concert" loading="lazy" /><div class="genre-card-overlay"><div class="genre-card-label">Series</div><div class="genre-card-title">Concert</div><div class="genre-card-count">6 images</div></div><div class="genre-card-arrow">&#8594;</div></a>
-  </div>
-</section>
-<section id="gallery">
-  <div class="section-header"><span class="section-eyebrow">Selected Work</span><h2 class="section-title">Featured</h2></div>
-  <div class="gallery-grid" id="galleryGrid">
-          <div class="gallery-item" data-index="0"><img loading="lazy" src="24_concert_portrait_purple.jpg" alt="Concert Portrait" loading="lazy" /></div>
-          <div class="gallery-item" data-index="1"><img loading="lazy" src="04_ptv_brickwall.jpg" alt="PTV Portrait" loading="lazy" /></div>
-          <div class="gallery-item" data-index="2"><img loading="lazy" src="22_cleethorpes_sea.jpg" alt="Sea Figure" loading="lazy" /></div>
-          <div class="gallery-item" data-index="3"><img loading="lazy" src="01_camel_handler.jpg" alt="Camel Handler" loading="lazy" /></div>
-          <div class="gallery-item" data-index="4"><img loading="lazy" src="41_jimbo_mazza_bw_small.jpg" alt="James Marriott B&W" loading="lazy" /></div>
-          <div class="gallery-item" data-index="5"><img loading="lazy" src="05_ptv_bw_glasses.jpg" alt="PTV Glasses" loading="lazy" /></div>
-          <div class="gallery-item" data-index="6"><img loading="lazy" src="35_tunisia_desert_a.jpg" alt="Tunisia Desert" loading="lazy" /></div>
-          <div class="gallery-item" data-index="7"><img loading="lazy" src="20_scotland_cobbles.jpg" alt="Scotland Cobbles" loading="lazy" /></div>
+  <div class="projects-grid">
+
+    <a href="jimbo.html" class="project-card">
+      <img src="42_jimbo_portrait_purple.jpg" alt="Jimbo Mazza" />
+      <div class="project-card-overlay">
+        <div class="project-card-label">Portrait &amp; Live â 2024</div>
+        <div class="project-card-title">Jimbo Mazza</div>
+        <div class="project-card-meta">Studio + Stage</div>
+      </div>
+      <div class="project-card-arrow">&#8594;</div>
+    </a>
+
+    <a href="concert.html" class="project-card">
+      <img src="26_concert_guitarist_red.jpg" alt="Live Music" loading="lazy" />
+      <div class="project-card-overlay">
+        <div class="project-card-label">Concert Photography â Ongoing</div>
+        <div class="project-card-title">Live Music</div>
+        <div class="project-card-meta">Gigs &amp; Festivals</div>
+      </div>
+      <div class="project-card-arrow">&#8594;</div>
+    </a>
+
+    <a href="scotland.html" class="project-card">
+      <img src="17_scotland_binoculars.jpg" alt="Scotland" loading="lazy" />
+      <div class="project-card-overlay">
+        <div class="project-card-label">Travel &amp; Street â 2023â24</div>
+        <div class="project-card-title">Scotland</div>
+        <div class="project-card-meta">Edinburgh &amp; Beyond</div>
+      </div>
+      <div class="project-card-arrow">&#8594;</div>
+    </a>
+
+    <a href="tunisia.html" class="project-card">
+      <img src="01_camel_handler.jpg" alt="Tunisia" loading="lazy" />
+      <div class="project-card-overlay">
+        <div class="project-card-label">Travel â 2024</div>
+        <div class="project-card-title">Tunisia</div>
+        <div class="project-card-meta">Desert &amp; Culture</div>
+      </div>
+      <div class="project-card-arrow">&#8594;</div>
+    </a>
+
+    <a href="cleethorpes.html" class="project-card">
+      <img src="39_cleethorpes_dusk.jpg" alt="Cleethorpes" loading="lazy" />
+      <div class="project-card-overlay">
+        <div class="project-card-label">Coastal Street â 2024</div>
+        <div class="project-card-title">Cleethorpes</div>
+        <div class="project-card-meta">Seafront &amp; Streets</div>
+      </div>
+      <div class="project-card-arrow">&#8594;</div>
+    </a>
+
+    <a href="florida.html" class="project-card">
+      <img src="12_florida_planes.jpg" alt="Florida" loading="lazy" />
+      <div class="project-card-overlay">
+        <div class="project-card-label">Travel â 2023</div>
+        <div class="project-card-title">Florida</div>
+        <div class="project-card-meta">Road Trip</div>
+      </div>
+      <div class="project-card-arrow">&#8594;</div>
+    </a>
+
+    <a href="skate.html" class="project-card">
+      <div class="project-card-placeholder">
+        <div class="project-card-placeholder-inner">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 40L24 8L40 40" stroke="#e8e8e8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 32H36" stroke="#e8e8e8" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
-      
+      </div>
+      <div class="project-card-overlay">
+        <div class="project-card-label">Action â 2024</div>
+        <div class="project-card-title">AVANT Sk8</div>
+        <div class="project-card-meta">Coming Soon</div>
+      </div>
+      <div class="project-card-arrow">&#8594;</div>
+    </a>
+
+    <a href="skull-rose.html" class="project-card">
+      <div class="project-card-placeholder">
+        <div class="project-card-placeholder-inner">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="20" r="10" stroke="#e8e8e8" stroke-width="1.5"/><path d="M18 30V36M30 30V36" stroke="#e8e8e8" stroke-width="1.5" stroke-linecap="round"/><path d="M20 36H28" stroke="#e8e8e8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div class="project-card-overlay">
+        <div class="project-card-label">Editorial â 2023</div>
+        <div class="project-card-title">Skull &amp; Rose</div>
+        <div class="project-card-meta">Coming Soon</div>
+      </div>
+      <div class="project-card-arrow">&#8594;</div>
+    </a>
+
+  </div>
 </section>
+
+<section id="gallery">
+  <div class="section-header">
+    <span class="section-eyebrow">Selected Work</span>
+    <h2 class="section-title">Featured</h2>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item" data-index="0">
+      <img src="42_jimbo_portrait_purple.jpg" alt="Jimbo Mazza Portrait" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Jimbo Mazza â Portrait</span></div>
+    </div>
+    <div class="gallery-item" data-index="1">
+      <img src="01_camel_handler.jpg" alt="Tunisia Camel Handler" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia â Travel</span></div>
+    </div>
+    <div class="gallery-item" data-index="2">
+      <img src="26_concert_guitarist_red.jpg" alt="Concert Guitarist" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Live Music â Concert</span></div>
+    </div>
+    <div class="gallery-item" data-index="3">
+      <img src="39_cleethorpes_dusk.jpg" alt="Cleethorpes Dusk" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes â Coastal</span></div>
+    </div>
+    <div class="gallery-item" data-index="4">
+      <img src="17_scotland_binoculars.jpg" alt="Scotland" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Scotland â Travel</span></div>
+    </div>
+    <div class="gallery-item" data-index="5">
+      <img src="41_jimbo_mazza_bw_small.jpg" alt="Jimbo Mazza BW" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Jimbo Mezza â Portrait</span></div>
+    </div>
+    <div class="gallery-item" data-index="6">
+      <img src="35_tunisia_desert_a.jpg" alt="Tunisia Desert" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia â Desert</span></div>
+    </div>
+    <div class="gallery-item" data-index="7">
+      <img src="24_concert_portrait_purple.jpg" alt="Concert Portrait" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Live Music â Portrait</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="about">
   <div class="about-inner">
     <div class="about-text">
       <h2>Photography that moves between worlds</h2>
-      <p>Still Sonic Media is a photography project rooted in honest observation - street scenes, portraiture, travel, and the moments that fall between categories.</p>
+      <p>Still Sonic Media is a photography project rooted in honest observation â street scenes, portraiture, travel, and the moments that fall between categories.</p>
       <p>From the dusty roads of Tunisia to the neon quiet of festival venues, the work follows a simple instinct: point the camera at what feels true.</p>
     </div>
     <div class="about-stats">
-      <div class="stat-item"><div class="stat-number">2024-</div><div class="stat-label">Active since</div></div>
-      <div class="stat-item"><div class="stat-number">4+</div><div class="stat-label">Countries documented</div></div>
+      <div class="stat-item"><div class="stat-number">2023â</div><div class="stat-label">Active since</div></div>
+      <div class="stat-item"><div class="stat-number">5+</div><div class="stat-label">Countries documented</div></div>
       <div class="stat-item"><div class="stat-number">Canon</div><div class="stat-label">EOS 2000D</div></div>
     </div>
   </div>
 </section>
+
 <section id="contact">
   <span class="section-eyebrow">Get in Touch</span>
   <h2 class="section-title">Let's work together</h2>
   <p class="contact-sub">Available for commissions, events, and editorial work.</p>
   <a href="mailto:hello@stillsonicmedia.co.uk" class="contact-email">hello@stillsonicmedia.co.uk</a>
 </section>
+
 <footer>
   <span>&#169; 2026 Still Sonic Media</span>
-  <div class="footer-icons">
-    <a href="https://www.youtube.com/@stillsonicmedia" class="footer-icon" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
-      @stillsonicmedia
-    </a>
-    <a href="https://instagram.com/stillsonicmedia" class="footer-icon" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      @stillsonicmedia
-    </a>
-  </div>
+  <a href="https://instagram.com/stillsonicmedia" class="footer-instagram" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    @stillsonicmedia
+  </a>
 </footer>
+
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lbClose">&#x2715;</button>
   <button class="lightbox-nav lightbox-prev" id="lbPrev">&#8249;</button>
-  <img loading="lazy" src="" alt="" id="lbImg" />
+  <img src="" alt="" id="lbImg" />
   <button class="lightbox-nav lightbox-next" id="lbNext">&#8250;</button>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="site.js?v=2"></script>
 <script>
-  const items = Array.from(document.querySelectorAll('.gallery-item'));
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lbImg');
-  let current = 0;
+  // Hamburger
+  var burger = document.getElementById('navBurger');
+  var navLinks = document.getElementById('navLinks');
+  if (burger && navLinks) {
+    burger.addEventListener('click', function() {
+      burger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        burger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
+
+  // Lightbox (featured section)
+  var items = Array.from(document.querySelectorAll('.gallery-item'));
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var current = 0;
   function openLightbox(index) { current = index; lbImg.src = items[current].querySelector('img').src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
   function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
   function navigate(dir) { current = (current + dir + items.length) % items.length; lbImg.src = items[current].querySelector('img').src; }
-  items.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
+  items.forEach(function(item, i) { item.addEventListener('click', function() { openLightbox(i); }); });
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
-  document.getElementById('lbPrev').addEventListener('click', () => navigate(-1));
-  document.getElementById('lbNext').addEventListener('click', () => navigate(1));
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', e => {
+  document.getElementById('lbPrev').addEventListener('click', function() { navigate(-1); });
+  document.getElementById('lbNext').addEventListener('click', function() { navigate(1); });
+  lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e) {
     if (!lightbox.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') navigate(-1);
     if (e.key === 'ArrowRight') navigate(1);
   });
 </script>
-<script>
-(function(){
-  var t=document.getElementById('navToggle'),nl=document.querySelector('.nav-links');
-  var ll=document.createElement('li');ll.className='mobile-menu-logo';
-  ll.innerHTML='<a href="index.html" style="text-decoration:none;display:block;"><svg width="55" height="65" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg"><text x="0" y="54" fill="#ffffff" font-family="Redaction35,Georgia,serif" font-size="50">S</text><text x="32" y="54" fill="#c8a96e" font-family="Redaction35,Georgia,serif" font-size="50">S</text></svg></a>';
-  nl.insertBefore(ll,nl.firstChild);
-  t.addEventListener('click',function(){var o=nl.classList.toggle('open');t.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
-  nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');t.classList.remove('open');document.body.style.overflow='';});});
-})();
-</script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="site.js?v=2"></script></body>
+</body>
 </html>
