@@ -131,8 +131,11 @@
   var currentPage = location.pathname.split('/').pop() || 'index.html';
   if (currentPage === '') currentPage = 'index.html';
   document.querySelectorAll('nav a[href]').forEach(function (a) {
-    var href = a.getAttribute('href').split('?')[0].split('#')[0];
-    if (href === currentPage || (currentPage === 'index.html' && (href === '' || href === '/'))) {
+    var raw = a.getAttribute('href');
+    // Skip pure anchor links and section links (About, Contact on same page)
+    if (!raw || raw.charAt(0) === '#' || raw.indexOf('#') !== -1) return;
+    var page = raw.split('?')[0];
+    if (page === currentPage || (currentPage === 'index.html' && (page === '' || page === '/'))) {
       a.classList.add('nav-active');
     }
   });
