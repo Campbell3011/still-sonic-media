@@ -32,25 +32,8 @@
     pointer-events: none;
     z-index: 99998;
     transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     will-change: transform;
   }
-
-  .cursor-label {
-    font-family: 'Redaction35', Georgia, serif;
-    font-size: 6.5px;
-    letter-spacing: 0.14em;
-    color: #c8a96e;
-    text-transform: uppercase;
-    opacity: 0;
-    transition: opacity 0.18s ease;
-    white-space: nowrap;
-    pointer-events: none;
-  }
-
-  .cursor-ring.is-view .cursor-label { opacity: 1; }
 }
 
 /* === PAGE TRANSITION OVERLAY === */

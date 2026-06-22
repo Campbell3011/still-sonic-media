@@ -60,11 +60,6 @@
     var ring = document.createElement('div');
     ring.className = 'cursor-ring';
 
-    var label = document.createElement('span');
-    label.className = 'cursor-label';
-    label.textContent = 'VIEW';
-    ring.appendChild(label);
-
     document.body.appendChild(dot);
     document.body.appendChild(ring);
 
@@ -88,11 +83,9 @@
     qsa('.gallery-item, .genre-card').forEach(function (el) {
       el.addEventListener('mouseenter', function () {
         gsap.to(ring, { scale: 2.6, duration: 0.38, ease: 'power2.out' });
-        ring.classList.add('is-view');
-      });
+        });
       el.addEventListener('mouseleave', function () {
         gsap.to(ring, { scale: 1, duration: 0.38, ease: 'power2.out' });
-        ring.classList.remove('is-view');
       });
     });
 
