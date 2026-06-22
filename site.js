@@ -18,10 +18,17 @@
   ------------------------------------------ */
   var overlay = document.createElement('div');
   overlay.className = 'ssm-overlay';
+
+  var ssLogo = document.createElement('div');
+  ssLogo.className = 'ssm-logo';
+  ssLogo.textContent = 'SS';
+  overlay.appendChild(ssLogo);
+
   document.body.appendChild(overlay);
 
-  // Curtain reveal on load: set to full height, animate away
+  // Curtain reveal on load: overlay slides away, SS logo fades out
   gsap.set(overlay, { scaleY: 1, transformOrigin: 'top center' });
+  gsap.set(ssLogo, { opacity: 1 });
   gsap.to(overlay, {
     scaleY: 0,
     duration: 0.72,
@@ -29,8 +36,13 @@
     delay: 0.05,
     clearProps: 'transform'
   });
+  gsap.to(ssLogo, {
+    opacity: 0,
+    duration: 0.28,
+    delay: 0.05
+  });
 
-  // Exit curtain: covers page, then navigates
+  // Exit curtain: SS flashes in as overlay covers, then navigates
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a[href]');
     if (!link) return;
@@ -47,6 +59,11 @@
       onComplete: function () {
         window.location.href = href;
       }
+    });
+    gsap.to(ssLogo, {
+      opacity: 1,
+      duration: 0.28,
+      delay: 0.18
     });
   }, true);
 

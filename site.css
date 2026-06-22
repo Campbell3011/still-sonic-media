@@ -46,6 +46,21 @@
   transform: scaleY(0);
   transform-origin: top center;
   will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ssm-logo {
+  font-family: 'Redaction35', Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #c8a96e;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  will-change: opacity;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* === SCROLL ANIMATION INITIAL STATES ===
