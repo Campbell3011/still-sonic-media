@@ -1,6 +1,15 @@
 /* ============================================
-   Still Sonic Media — Shared Enhancements
-   Custom cursor · Page transitions · Scroll animations
+   Still Sonic Media — Shared stylesheet
+   Loaded on every page via <link rel="stylesheet" href="site.css">
+
+   What this file controls:
+   · Custom gold cursor (desktop only — hidden on touch screens)
+   · Black curtain animation between page loads
+   · Active nav link highlight (gold colour on current page)
+   · Faint film-grain texture over the whole site
+   · Scroll-triggered fade-in animations (powered by GSAP)
+
+   To change the gold accent colour, search for #c8a96e and replace it.
    ============================================ */
 
 /* === CUSTOM CURSOR (desktop/mouse only) === */
