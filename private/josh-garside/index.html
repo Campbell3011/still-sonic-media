@@ -267,6 +267,16 @@
   }
   .cta-btn:hover{ background: #d9bc95; }
 
+  /* BOOKING FORM */
+  .book-form{ display:none; max-width: 440px; margin: 44px auto 0; text-align:left; }
+  .book-form.open{ display:grid; gap: 14px; }
+  .book-form label{
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--amber-dim); display:block; margin-bottom: 6px;
+  }
+  .book-form .pass-field{ text-align:left; letter-spacing: 0.05em; }
+  .book-send{ border:none; cursor:pointer; width:100%; margin-top: 6px; }
+
   footer{
     text-align:center; padding: 30px 6vw 50px;
     font-size: 10px; letter-spacing: 0.1em; color: #55503f;
@@ -355,10 +365,18 @@
     <cite>— Still Sonic Media</cite>
   </section>
 
-  <section class="cta">
+  <section class="cta" id="book">
     <h2>Let's get a date in the diary</h2>
     <p>Tell me the venue and date and I'll check availability.</p>
-    <a class="cta-btn" href="#" id="ctaLink">Book Still Sonic Media</a>
+    <a class="cta-btn" href="#book" id="ctaLink">Book Still Sonic Media</a>
+    <form class="book-form" id="bookForm" autocomplete="off">
+      <div><label for="bkName">Your name / band</label><input class="pass-field" id="bkName" type="text" required></div>
+      <div><label for="bkVenue">Venue</label><input class="pass-field" id="bkVenue" type="text" required></div>
+      <div><label for="bkDate">Date</label><input class="pass-field" id="bkDate" type="date" required></div>
+      <div><label for="bkTime">Start time (optional)</label><input class="pass-field" id="bkTime" type="time"></div>
+      <div><label for="bkNotes">Anything else (optional)</label><input class="pass-field" id="bkNotes" type="text"></div>
+      <button class="cta-btn book-send" type="submit">Send booking enquiry</button>
+    </form>
   </section>
 
   <footer>Still Sonic Media — this page is private and not indexed for search</footer>
@@ -369,13 +387,57 @@
   // ====== CONFIG — edit these three lines per client ======
   const CLIENT_NAME = "Josh";
   const ACCESS_CODE  = "garside-2026";
-  const BOOKING_URL  = "https://stillsonicmedia.co.uk/#book";
+  const BOOKING_EMAIL = "hello@stillsonicmedia.co.uk";
   // =========================================================
 
   document.getElementById('gateName').textContent = CLIENT_NAME;
   document.getElementById('heroName').textContent = CLIENT_NAME;
   document.getElementById('noteName').textContent = CLIENT_NAME;
-  document.getElementById('ctaLink').href = BOOKING_URL;
+
+  // CTA opens the on-page booking form
+  const bookForm = document.getElementById('bookForm');
+  document.getElementById('ctaLink').addEventListener('click', function(e){
+    e.preventDefault();
+    bookForm.classList.add('open');
+    bookForm.scrollIntoView({ behavior:'smooth', block:'center' });
+    document.getElementById('bkName').focus({ preventScroll:true });
+  });
+
+  // Submitting composes an email with details + add-to-calendar link
+  bookForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name  = document.getElementById('bkName').value.trim();
+    const venue = document.getElementById('bkVenue').value.trim();
+    const date  = document.getElementById('bkDate').value;
+    const time  = document.getElementById('bkTime').value;
+    const notes = document.getElementById('bkNotes').value.trim();
+
+    const calUrl = new URL('calendar.html', window.location.href);
+    calUrl.search = new URLSearchParams({
+      title: 'Shoot — ' + name + ' @ ' + venue,
+      location: venue, date: date, time: time
+    }).toString();
+
+    const subject = 'Booking enquiry — ' + name + ' — ' + date;
+    const body = [
+      'Hi,',
+      '',
+      'I\'d like to book a shoot.',
+      '',
+      'Name / band: ' + name,
+      'Venue: ' + venue,
+      'Date: ' + date,
+      'Start time: ' + (time || 'TBC'),
+      notes ? 'Notes: ' + notes : '',
+      '',
+      'Add this to your calendar:',
+      calUrl.toString()
+    ].filter(function(l){ return l !== ''; }).join('\n');
+
+    window.location.href = 'mailto:' + BOOKING_EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+  });
 
   const gate = document.getElementById('gate');
   const site = document.getElementById('site');

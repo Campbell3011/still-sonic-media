@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Add to calendar — Still Sonic Media</title>
+<style>
+  :root{
+    --bg: #0f0d0b; --amber: #c8a97e; --amber-dim: #8a7355;
+    --cream: #ece6da; --line: rgba(200,169,126,0.18);
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{
+    background: radial-gradient(ellipse at 50% 20%, #1a1611 0%, #0f0d0b 65%);
+    color: var(--cream); font-family: 'Space Mono', monospace;
+    min-height: 100vh; display:flex; align-items:center; justify-content:center;
+    padding: 24px;
+  }
+  .card{
+    width: min(420px, 92vw); border: 1px solid var(--line);
+    background: linear-gradient(160deg, #1c1712 0%, #100d0a 100%);
+    padding: 40px 32px 36px; text-align:center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+  .eyebrow{
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--amber-dim); margin-bottom: 18px;
+  }
+  h1{
+    font-family: Georgia, 'Times New Roman', serif; font-weight: 400;
+    font-size: 24px; margin-bottom: 10px;
+  }
+  .when{ font-size: 13px; color: var(--amber); margin-bottom: 30px; letter-spacing: 0.04em; }
+  .btn{
+    display:inline-block; background: var(--amber); color: #16120d;
+    padding: 15px 32px; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration:none; cursor:pointer;
+  }
+  .btn:hover{ background: #d9bc95; }
+  .hint{ font-size: 11px; color: #55503f; margin-top: 20px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">Still Sonic Media</div>
+  <h1 id="evTitle">Booking</h1>
+  <div class="when" id="evWhen"></div>
+  <a class="btn" href="#" id="dl">Add to Calendar</a>
+  <p class="hint">Downloads an .ics file — open it and it lands straight in Apple Calendar (works with Outlook &amp; Google too).</p>
+</div>
+<script>
+  var p = new URLSearchParams(location.search);
+  var title = p.get('title') || 'Still Sonic Media — Shoot';
+  var loc   = p.get('location') || '';
+  var date  = p.get('date') || '';   // YYYY-MM-DD
+  var time  = p.get('time') || '';   // HH:MM (optional)
+  var DUR_HOURS = 3;
+
+  function pad(n){ return String(n).padStart(2, '0'); }
+  function esc(s){ return s.replace(/\\/g, '\\\\').replace(/([,;])/g, '\\$1').replace(/\n/g, '\\n'); }
+  function stamp(d){
+    return d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) +
+           'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00';
+  }
+
+  document.getElementById('evTitle').textContent = title;
+
+  var dtLines, whenText;
+  if (date && time) {
+    var start = new Date(date + 'T' + time + ':00');
+    var end = new Date(start.getTime() + DUR_HOURS * 3600 * 1000);
+    dtLines = ['DTSTART:' + stamp(start), 'DTEND:' + stamp(end)];
+    whenText = start.toLocaleDateString(undefined, { weekday:'long', day:'numeric', month:'long', year:'numeric' }) +
+               ' — ' + time;
+  } else if (date) {
+    var d0 = new Date(date + 'T00:00:00');
+    var d1 = new Date(d0.getTime() + 24 * 3600 * 1000);
+    function dstamp(d){ return d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()); }
+    dtLines = ['DTSTART;VALUE=DATE:' + dstamp(d0), 'DTEND;VALUE=DATE:' + dstamp(d1)];
+    whenText = d0.toLocaleDateString(undefined, { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  } else {
+    dtLines = null;
+    whenText = 'No date supplied';
+  }
+  document.getElementById('evWhen').textContent = whenText;
+
+  document.getElementById('dl').addEventListener('click', function(e){
+    e.preventDefault();
+    if (!dtLines) { alert('This link is missing a date.'); return; }
+    var now = new Date();
+    var ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Still Sonic Media//Booking//EN',
+      'BEGIN:VEVENT',
+      'UID:' + Date.now() + '@stillsonicmedia.co.uk',
+      'DTSTAMP:' + stamp(now) + 'Z',
+      dtLines[0],
+      dtLines[1],
+      'SUMMARY:' + esc(title),
+      loc ? 'LOCATION:' + esc(loc) : '',
+      'DESCRIPTION:' + esc('Booking made via Still Sonic Media private viewing page.'),
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].filter(function(l){ return l !== ''; }).join('\r\n');
+
+    var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'still-sonic-media-booking.ics';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+</script>
+</body>
+</html>
