@@ -16,6 +16,14 @@
   <meta name="description" content="Still Sonic Media &#8212; UK photography covering live music, portrait, travel and street. Based in England, shooting across Europe and beyond." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="site.css?v=3" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQ900SQ106"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GQ900SQ106');
+  </script>
   <style>
     @font-face {
       font-family: 'Redaction35';
@@ -106,6 +114,27 @@
     @media (max-width: 768px) { .gallery-grid { columns: 2 160px; } }
     @media (max-width: 480px) { .gallery-grid { columns: 1; } }
 
+    /* VLOGS CAROUSEL */
+    #vlogs { padding: 6rem 2rem 8rem; background: var(--surface); border-top: 1px solid var(--border); }
+    .vlog-carousel-wrap { position: relative; max-width: 1400px; margin: 0 auto; }
+    .vlog-carousel { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; }
+    .vlog-carousel::-webkit-scrollbar { display: none; }
+    .vlog-card { flex: 0 0 min(560px, 82vw); scroll-snap-align: center; background: var(--bg); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.3s; }
+    .vlog-card:hover { border-color: rgba(200,169,110,0.3); }
+    .vlog-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    .vlog-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .vlog-info { padding: 1.5rem; }
+    .vlog-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .vlog-title { font-family: 'Redaction35', Georgia, serif; font-size: 1.3rem; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 0.5rem; }
+    .vlog-meta { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); }
+    .vlog-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; background: rgba(14,14,14,0.85); border: 1px solid var(--border); color: var(--muted); font-size: 1.5rem; width: 44px; height: 44px; cursor: pointer; transition: color 0.2s, border-color 0.2s; display: flex; align-items: center; justify-content: center; }
+    .vlog-arrow:hover { color: var(--accent); border-color: rgba(200,169,110,0.4); }
+    .vlog-prev { left: -0.5rem; } .vlog-next { right: -0.5rem; }
+    .vlog-cta { text-align: center; margin-top: 3rem; }
+    .vlog-cta a { display: inline-flex; align-items: center; gap: 0.75rem; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.85rem 2.5rem; transition: background 0.3s, color 0.3s; font-family: 'Redaction35', Georgia, serif; }
+    .vlog-cta a:hover { background: var(--accent); color: var(--bg); }
+    @media (max-width: 768px) { .vlog-arrow { display: none; } .vlog-card { flex-basis: 88vw; } }
+
     /* LIGHTBOX */
     .lightbox { position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; }
     .lightbox.active { display: flex; }
@@ -154,6 +183,8 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="#projects">Work</a></li>
+    <li><a href="#vlogs">Vlogs</a></li>
+    <li><a href="book.html">Book</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -315,6 +346,55 @@
   </div>
 </section>
 
+<section id="vlogs">
+  <div class="section-header">
+    <span class="section-eyebrow">On YouTube</span>
+    <h2 class="section-title">Vlogs</h2>
+  </div>
+  <div class="vlog-carousel-wrap">
+    <button class="vlog-arrow vlog-prev" id="vlogPrev" aria-label="Previous video">&#8249;</button>
+    <div class="vlog-carousel" id="vlogCarousel">
+      <div class="vlog-card">
+        <div class="vlog-embed">
+          <iframe src="https://www.youtube.com/embed/47lZUcWyX3c" title="WE WANT BASS | Dizzee Rascal" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="vlog-info">
+          <p class="vlog-label">Concert Vlog</p>
+          <h3 class="vlog-title">WE WANT BASS | Dizzee Rascal</h3>
+          <p class="vlog-meta">11:50 &nbsp;&middot;&nbsp; 2025</p>
+        </div>
+      </div>
+      <div class="vlog-card">
+        <div class="vlog-embed">
+          <iframe src="https://www.youtube.com/embed/xIQ62JBSj3Y" title="JAMES 2025" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="vlog-info">
+          <p class="vlog-label">Concert Vlog</p>
+          <h3 class="vlog-title">JAMES 2025</h3>
+          <p class="vlog-meta">47:49 &nbsp;&middot;&nbsp; 2025</p>
+        </div>
+      </div>
+      <div class="vlog-card">
+        <div class="vlog-embed">
+          <iframe src="https://www.youtube.com/embed/xelgjKldl1Q" title="PTV 2025" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="vlog-info">
+          <p class="vlog-label">Concert Vlog</p>
+          <h3 class="vlog-title">PTV 2025</h3>
+          <p class="vlog-meta">45:25 &nbsp;&middot;&nbsp; 2025</p>
+        </div>
+      </div>
+    </div>
+    <button class="vlog-arrow vlog-next" id="vlogNext" aria-label="Next video">&#8250;</button>
+  </div>
+  <div class="vlog-cta">
+    <a href="https://www.youtube.com/@stillsonicmedia" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+      Subscribe on YouTube
+    </a>
+  </div>
+</section>
+
 <section id="about">
   <div class="about-inner">
     <div class="about-text">
@@ -391,6 +471,14 @@
     if (e.key === 'ArrowLeft') navigate(-1);
     if (e.key === 'ArrowRight') navigate(1);
   });
+
+  // Vlogs carousel arrows
+  var vlogCarousel = document.getElementById('vlogCarousel');
+  if (vlogCarousel) {
+    var cardWidth = function() { var c = vlogCarousel.querySelector('.vlog-card'); return c ? c.getBoundingClientRect().width + 24 : 400; };
+    document.getElementById('vlogPrev').addEventListener('click', function() { vlogCarousel.scrollBy({ left: -cardWidth(), behavior: 'smooth' }); });
+    document.getElementById('vlogNext').addEventListener('click', function() { vlogCarousel.scrollBy({ left: cardWidth(), behavior: 'smooth' }); });
+  }
 </script>
 </body>
 </html>
