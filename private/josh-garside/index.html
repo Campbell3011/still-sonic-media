@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Sonic Media — Private Viewing</title>
+<meta name="robots" content="noindex, nofollow">
+
+<!--
+  ============================================================
+  STILL SONIC MEDIA — PRIVATE CLIENT VIEWING PAGE (TEMPLATE)
+  ============================================================
+  HOW TO REUSE THIS FOR A NEW CLIENT:
+  1. Edit the three values in the CONFIG block below:
+       CLIENT_NAME   -> shown on the access screen + intro
+       ACCESS_CODE   -> the password you give this client
+       BOOKING_URL   -> where the CTA button should send them
+  2. Save this file with a new name, e.g. private-jordan.html
+  3. Upload it somewhere on your site that ISN'T linked from
+     your nav or sitemap — e.g. /private/jordan.html
+  4. Send that unique URL + code to the client.
+
+  NOTE ON SECURITY: this is a client-side password check, not
+  a real login system. It's enough to stop casual visitors and
+  search engines finding it, but anyone who views the page
+  source could find the code. Fine for "just for you", not for
+  anything truly sensitive.
+
+  Replace the placeholder testimonial text near the bottom with
+  a real quote before sending this out — don't ship it with the
+  placeholder in.
+
+  Fonts: this uses Space Mono (loaded from Google Fonts) for
+  labels, and a serif fallback stack standing in for Redaction —
+  swap the --font-display @font-face below for your real
+  Redaction font files when you plug this into the live site.
+  ============================================================
+-->
+
+<style>
+  @font-face {
+    /* Swap this src for your real Redaction .woff2 files */
+    font-family: 'RedactionStandIn';
+    src: local('Georgia');
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --bg: #0f0d0b;
+    --bg-raised: #171310;
+    --amber: #c8a97e;
+    --amber-dim: #8a7355;
+    --cream: #ece6da;
+    --line: rgba(200,169,126,0.18);
+    --font-display: 'RedactionStandIn', Georgia, 'Times New Roman', serif;
+    --font-label: 'Space Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html,body{
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--font-label);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* film grain, sits over everything */
+  .grain{
+    position: fixed; inset:0; z-index: 999; pointer-events:none;
+    opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: var(--amber); }
+
+  /* ============ GATE ============ */
+  #gate{
+    position: fixed; inset:0; z-index: 500;
+    display:flex; align-items:center; justify-content:center;
+    background: radial-gradient(ellipse at 50% 20%, #1a1611 0%, #0f0d0b 65%);
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #gate.unlocked{ opacity:0; visibility:hidden; pointer-events:none; }
+
+  .pass{
+    width: min(360px, 86vw);
+    border: 1px solid var(--line);
+    background: linear-gradient(160deg, #1c1712 0%, #100d0a 100%);
+    padding: 40px 32px 34px;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+  .pass::before{
+    content:"";
+    position:absolute; top:14px; left:14px; right:14px; bottom:14px;
+    border: 1px dashed var(--line);
+    pointer-events:none;
+  }
+  .pass-eyebrow{
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--amber-dim); text-align:center; margin-bottom: 18px;
+  }
+  .pass-title{
+    font-family: var(--font-display);
+    font-size: 26px; text-align:center; color: var(--cream);
+    letter-spacing: 0.01em; margin-bottom: 6px;
+  }
+  .pass-name{
+    text-align:center; font-size: 13px; color: var(--amber);
+    margin-bottom: 28px; letter-spacing: 0.04em;
+  }
+  .pass-field{
+    width:100%; background: #0b0906; border: 1px solid var(--line);
+    color: var(--cream); font-family: var(--font-label);
+    font-size: 14px; padding: 13px 14px; letter-spacing: 0.15em;
+    text-align:center; outline:none;
+  }
+  .pass-field:focus{ border-color: var(--amber-dim); }
+  .pass-field::placeholder{ color: #5a5347; letter-spacing: 0.1em; }
+  .pass-submit{
+    width:100%; margin-top: 14px; background: var(--amber);
+    color: #16120d; border:none; padding: 13px 14px;
+    font-family: var(--font-label); font-size: 12px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    cursor:pointer; transition: background 0.2s ease;
+  }
+  .pass-submit:hover{ background: #d9bc95; }
+  .pass-error{
+    color: #b6664f; font-size: 11px; text-align:center;
+    margin-top: 12px; letter-spacing: 0.05em; min-height: 14px;
+  }
+
+  /* ============ SITE (revealed after unlock) ============ */
+  #site{ opacity:0; transition: opacity 0.8s ease 0.1s; }
+  #site.show{ opacity:1; }
+
+  header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 28px 6vw; position: relative; z-index: 2;
+  }
+  .wordmark{
+    font-family: var(--font-display); font-size: 17px; letter-spacing: 0.03em;
+    color: var(--cream);
+  }
+  .wordmark span{ color: var(--amber); }
+  .tag{
+    font-size: 10px; letter-spacing: 0.2em; color: var(--amber-dim);
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero{
+    position: relative; height: 86vh; min-height: 480px;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit: cover; filter: saturate(0.9) contrast(1.05);
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(15,13,11,0.05) 0%, rgba(15,13,11,0.95) 92%);
+  }
+  .hero-inner{ position:relative; z-index:2; padding: 0 6vw 56px; max-width: 780px; }
+  .hero-eyebrow{
+    font-size: 11px; letter-spacing: 0.2em; text-transform:uppercase;
+    color: var(--amber); margin-bottom: 18px; display:block;
+  }
+  .hero h1{
+    font-family: var(--font-display); font-size: clamp(34px, 6vw, 62px);
+    line-height: 1.05; color: var(--cream); font-weight: 400;
+  }
+  .hero h1 em{ color: var(--amber); font-style: normal; }
+
+  /* INTRO NOTE */
+  .note{
+    max-width: 640px; margin: 0 auto; padding: 90px 6vw 40px;
+    text-align:center;
+  }
+  .note p{ font-size: 16px; line-height: 1.85; color: #cfc7b8; }
+  .note p + p{ margin-top: 18px; }
+  .note strong{ color: var(--amber); font-weight: 400; }
+
+  /* GALLERY */
+  .gallery{ padding: 60px 6vw 20px; }
+  .gallery-label{
+    font-size: 11px; letter-spacing: 0.2em; text-transform:uppercase;
+    color: var(--amber-dim); text-align:center; margin-bottom: 40px;
+  }
+  .grid{
+    display:grid; gap: 14px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 16vw;
+  }
+  .grid figure{ overflow:hidden; position:relative; margin:0; background:#000; }
+  .grid img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter: saturate(0.92) contrast(1.04);
+    transition: transform 1.2s ease;
+  }
+  .grid figure:hover img{ transform: scale(1.04); }
+  .g1{ grid-column: 1 / 4; grid-row: 1 / 3; }
+  .g2{ grid-column: 4 / 7; grid-row: 1 / 2; }
+  .g3{ grid-column: 4 / 6; grid-row: 2 / 3; }
+  .g4{ grid-column: 6 / 7; grid-row: 2 / 3; }
+  .g5{ grid-column: 1 / 3; grid-row: 3 / 4; }
+  .g6{ grid-column: 3 / 7; grid-row: 3 / 5; }
+  .g7{ grid-column: 1 / 3; grid-row: 4 / 5; }
+
+  @media (max-width: 760px){
+    .grid{ grid-template-columns: 1fr 1fr; grid-auto-rows: 42vw; }
+    .g1,.g2,.g3,.g4,.g5,.g6,.g7{ grid-column: auto; grid-row: auto; }
+    .g6{ grid-column: 1 / 3; }
+  }
+
+  /* PROCESS */
+  .process{ padding: 110px 6vw 60px; max-width: 900px; margin: 0 auto; }
+  .process-label{
+    font-size: 11px; letter-spacing: 0.2em; text-transform:uppercase;
+    color: var(--amber-dim); margin-bottom: 46px;
+  }
+  .steps{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  @media (max-width: 700px){ .steps{ grid-template-columns: 1fr; } }
+  .step{ border-top: 1px solid var(--line); padding-top: 18px; }
+  .step-n{ font-size: 12px; color: var(--amber); letter-spacing: 0.1em; margin-bottom: 10px; }
+  .step h3{
+    font-family: var(--font-display); font-size: 19px; color: var(--cream);
+    font-weight: 400; margin-bottom: 10px;
+  }
+  .step p{ font-size: 13.5px; line-height: 1.7; color: #b9b0a0; }
+
+  /* TESTIMONIAL */
+  .testimonial{
+    padding: 90px 6vw; text-align:center; max-width: 700px; margin: 0 auto;
+  }
+  .testimonial blockquote{
+    font-family: var(--font-display); font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.5; color: var(--cream); font-weight: 400;
+  }
+  .testimonial cite{
+    display:block; margin-top: 20px; font-size: 11px; letter-spacing: 0.1em;
+    color: var(--amber-dim); font-style: normal; text-transform: uppercase;
+  }
+
+  /* CTA */
+  .cta{
+    text-align:center; padding: 60px 6vw 140px;
+  }
+  .cta h2{
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(26px, 4vw, 38px); color: var(--cream); margin-bottom: 18px;
+  }
+  .cta p{ color: #b9b0a0; font-size: 14px; margin-bottom: 34px; }
+  .cta-btn{
+    display:inline-block; background: var(--amber); color: #16120d;
+    padding: 16px 40px; font-family: var(--font-label); font-size: 12px;
+    letter-spacing: 0.15em; text-transform: uppercase; text-decoration:none;
+    transition: background 0.2s ease;
+  }
+  .cta-btn:hover{ background: #d9bc95; }
+
+  footer{
+    text-align:center; padding: 30px 6vw 50px;
+    font-size: 10px; letter-spacing: 0.1em; color: #55503f;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- ============ ACCESS GATE ============ -->
+<div id="gate">
+  <form class="pass" id="passForm" autocomplete="off">
+    <div class="pass-eyebrow">Still Sonic Media</div>
+    <div class="pass-title">Private Viewing</div>
+    <div class="pass-name">Access for <span id="gateName">[CLIENT_NAME]</span></div>
+    <input class="pass-field" id="passInput" type="password" placeholder="ACCESS CODE" />
+    <button class="pass-submit" type="submit">Enter</button>
+    <div class="pass-error" id="passError"></div>
+  </form>
+</div>
+
+<!-- ============ MAIN SITE ============ -->
+<div id="site">
+
+  <header>
+    <div class="wordmark">STILL <span>SONIC</span> MEDIA</div>
+    <div class="tag">Private Viewing</div>
+  </header>
+
+  <section class="hero">
+    <img src="images/action-04.jpg" alt="Guitarist mid-performance, low angle against open sky">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Prepared for <span id="heroName">[Client Name]</span></span>
+      <h1>Concerts, kept <em>exactly</em><br>as they felt.</h1>
+    </div>
+  </section>
+
+  <section class="note">
+    <p>Hi <strong id="noteName">[Client Name]</strong> — thanks for taking a look. This is a small, unlisted set of recent work, put together specifically for you ahead of booking.</p>
+    <p>Every shot below is untouched from a real set, shot on the same gear and edited with the same hand you'd get on your night. Scroll through, and if it feels right, there's a quick way to lock in a date at the bottom.</p>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery-label">Recent work</div>
+    <div class="grid">
+      <figure class="g1"><img src="images/action-08.jpg" alt="Full band performing on an outdoor stage"></figure>
+      <figure class="g2"><img src="images/action-03.jpg" alt="Vocalist singing into microphone, close crop"></figure>
+      <figure class="g3"><img src="images/action-06.jpg" alt="Bassist performing, low angle"></figure>
+      <figure class="g4"><img src="images/detail-01.jpg" alt="Guitar body detail with stickers"></figure>
+      <figure class="g5"><img src="images/action-10.jpg" alt="Bassist close detail on stage"></figure>
+      <figure class="g6"><img src="images/action-02.jpg" alt="Full band wide shot on outdoor stage"></figure>
+      <figure class="g7"><img src="images/action-09.jpg" alt="Guitar detail shot from below, singer at mic"></figure>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="process-label">How a shoot with me runs</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01 — On the night</div>
+        <h3>I shoot to move</h3>
+        <p>No flash, no disruption. I work the pit and the room to catch the real moments — the crowd surges, the eye contact, the sweat — while staying out of your way.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02 — After the show</div>
+        <h3>A proper edit</h3>
+        <p>Every set gets a full pass: colour, contrast, culling the misses. What you get back looks like the gig felt, not just what the sensor recorded.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03 — Delivery</div>
+        <h3>Fast turnaround</h3>
+        <p>You'll have a private gallery to view, download, and share — plus print options if you want anything on the wall.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial">
+    <blockquote>"[Add a short quote from a past client or venue here before sending this page out.]"</blockquote>
+    <cite>— Placeholder / replace before sending</cite>
+  </section>
+
+  <section class="cta">
+    <h2>Let's get a date in the diary</h2>
+    <p>Tell me the venue and date and I'll check availability.</p>
+    <a class="cta-btn" href="#" id="ctaLink">Book Still Sonic Media</a>
+  </section>
+
+  <footer>Still Sonic Media — this page is private and not indexed for search</footer>
+
+</div>
+
+<script>
+  // ====== CONFIG — edit these three lines per client ======
+  const CLIENT_NAME = "Josh Garside";
+  const ACCESS_CODE  = "garside-2026";
+  const BOOKING_URL  = "https://stillsonicmedia.co.uk/#book";
+  // =========================================================
+
+  document.getElementById('gateName').textContent = CLIENT_NAME;
+  document.getElementById('heroName').textContent = CLIENT_NAME;
+  document.getElementById('noteName').textContent = CLIENT_NAME;
+  document.getElementById('ctaLink').href = BOOKING_URL;
+
+  const gate = document.getElementById('gate');
+  const site = document.getElementById('site');
+  const form = document.getElementById('passForm');
+  const input = document.getElementById('passInput');
+  const error = document.getElementById('passError');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(input.value.trim() === ACCESS_CODE){
+      gate.classList.add('unlocked');
+      site.classList.add('show');
+      try{ sessionStorage.setItem('ssm_unlocked', '1'); }catch(err){}
+    } else {
+      error.textContent = "That code doesn't match — check and try again.";
+      input.value = '';
+    }
+  });
+
+  // stay unlocked on refresh within the same tab session
+  try{
+    if(sessionStorage.getItem('ssm_unlocked') === '1'){
+      gate.classList.add('unlocked');
+      site.classList.add('show');
+    }
+  }catch(err){}
+</script>
+
+</body>
+</html>
