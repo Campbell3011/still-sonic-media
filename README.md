@@ -1,5 +1,7 @@
 # Still Sonic Media — stillsonicmedia.co.uk
 
+_Last maintenance pass: 5 July 2026._
+
 Photography portfolio site for Campbell Downie. Hosted free on **GitHub Pages**:
 every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 (custom domain set by the `CNAME` file) within a minute or two.
