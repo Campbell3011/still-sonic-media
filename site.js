@@ -14,6 +14,24 @@
   function qsa(sel) { return gsap.utils.toArray(sel); }
 
   /* ------------------------------------------
+     GOOGLE ANALYTICS (all pages)
+     Injected here so every page that loads site.js
+     is tracked without editing each file. Pages that
+     already have the gtag snippet in their <head>
+     (index.html, book.html) are skipped by the guard.
+  ------------------------------------------ */
+  if (!window.gtag) {
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-GQ900SQ106';
+    document.head.appendChild(gaScript);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'G-GQ900SQ106');
+  }
+
+  /* ------------------------------------------
      PAGE TRANSITION
   ------------------------------------------ */
   var overlay = document.createElement('div');
@@ -167,7 +185,7 @@
     );
   }
 
-  // --- Gallery page hero (concert/portrait/street/travel) ---
+  // --- Gallery page hero (project pages) ---
   var galleryHero = qs('.gallery-hero-title') || qs('.gallery-hero-eyebrow');
   if (galleryHero) {
     gsap.fromTo(
