@@ -8,6 +8,7 @@
    · Active nav link highlight (gold colour on current page)
    · Faint film-grain texture over the whole site
    · Scroll-triggered fade-in animations (powered by GSAP)
+   · Mobile menu fix (see bottom of file)
 
    To change the gold accent colour, search for #c8a96e and replace it.
    ============================================ */
@@ -108,4 +109,26 @@ body::after {
 .gsap-fade-up {
   opacity: 0;
   transform: translateY(28px);
+}
+
+/* === MOBILE MENU FIX (all pages) ===
+   backdrop-filter on the <nav> turns it into a "containing
+   block", which traps the fixed-position mobile menu overlay
+   inside the nav bar — so the menu opens invisibly. Disabling
+   the blur on small screens frees the overlay to cover the
+   full viewport. Same fix book.html always carried, now
+   applied site-wide. The z-index rules keep the hamburger
+   button tappable above the open overlay so it can close it. */
+@media (max-width: 768px) {
+  nav {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .nav-hamburger {
+    position: relative;
+    z-index: 2001;
+  }
+  .nav-links.open {
+    z-index: 2000 !important;
+  }
 }
