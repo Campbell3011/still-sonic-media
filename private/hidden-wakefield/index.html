@@ -195,7 +195,8 @@
   @media (max-width: 760px){
     .grid{ grid-template-columns: 1fr 1fr; grid-auto-rows: 42vw; }
     .g1,.g2,.g3,.g4,.g5,.g6,.g7{ grid-column: auto; grid-row: auto; }
-    .g6{ grid-column: 1 / 3; }
+    /* 7 images: three full rows of pairs, then a wide finale — no empty cells */
+    .g7{ grid-column: 1 / 3; }
   }
 
   /* PROCESS */
