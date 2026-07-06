@@ -224,7 +224,8 @@
   @media (max-width: 760px){
     .grid{ grid-template-columns: 1fr 1fr; grid-auto-rows: 42vw; }
     .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8,.g9,.g10,.g11,.g12{ grid-column: auto; grid-row: auto; }
-    .g6,.g11{ grid-column: 1 / 3; }
+    /* 12 images: wides placed after even counts so no empty cells */
+    .g5,.g10{ grid-column: 1 / 3; }
   }
 
   /* PROCESS */
