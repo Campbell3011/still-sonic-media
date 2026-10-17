@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Post Builder &#8212; SSM</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preload" href="../fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../blog.css?v=1" />
+  <link rel="stylesheet" href="../brand.css?v=1" />
+  <style>
+    /* ============================================
+       SSM Post Builder — private tool, not linked anywhere.
+       Fill in the form, check the preview, copy the code,
+       paste it into blog-posts.js on GitHub.
+       Nothing here saves to the site by itself.
+       ============================================ */
+    body { min-height: 100vh; }
+    .pb-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 2rem; border-bottom: 1px solid var(--border); }
+    .pb-top a { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); }
+    .pb-top svg { height: 30px; width: auto; }
+    .pb-name { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+    .pb-top-links { display: flex; gap: 1.5rem; }
+    .pb-top-links a { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .pb-top-links a:hover { color: var(--accent); }
+    @media (max-width: 600px) { .pb-name, .pb-top-links a + a { display: none; } }
+
+    .pb { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 3rem; max-width: 1400px; margin: 0 auto; padding: 2.5rem 2rem 6rem; align-items: start; }
+    @media (max-width: 960px) { .pb { grid-template-columns: 1fr; gap: 2.5rem; padding: 1.75rem 1rem 5rem; } .pb-top { padding: 1rem; } .pb-top-links { gap: 1rem; } }
+
+    .pb h1 { font-size: 2.4rem; font-weight: 400; line-height: 1.05; }
+    .pb-intro { color: var(--soft); font-size: 0.95rem; line-height: 1.7; margin: 0.75rem 0 2rem; }
+    .pb-section-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.9rem; }
+
+    /* Form */
+    .pb-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .field { display: flex; flex-direction: column; gap: 0.45rem; }
+    .field[hidden] { display: none; }
+    .field label, .pb-type legend { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .field .hint { font-size: 0.8rem; line-height: 1.5; color: var(--muted); }
+    .field .hint code { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--soft); }
+    .field input, .field textarea, .field select { width: 100%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-size: 1rem; padding: 0.8rem 0.9rem; border-radius: 0; outline: none; transition: border-color 0.2s; }
+    .field textarea { min-height: 220px; line-height: 1.65; resize: vertical; }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: rgba(200,169,126,0.6); }
+    .field.has-error input, .field.has-error textarea { border-color: #b4553f; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
+    .slug-line { display: flex; align-items: center; gap: 0.5rem; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+    .slug-line input { font-family: 'Space Mono', monospace; font-size: 0.8rem; padding: 0.55rem 0.7rem; }
+
+    .pb-type { border: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .pb-type-options { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .pb-type-options input { position: absolute; opacity: 0; pointer-events: none; }
+    .pb-type-options label { display: flex; flex-direction: column; gap: 0.35rem; border: 1px solid var(--border); padding: 0.9rem 0.8rem; cursor: pointer; transition: border-color 0.2s, background 0.2s; text-transform: none; letter-spacing: 0; min-height: 44px; }
+    .pb-type-options label strong { font-family: 'Redaction35', Georgia, serif; font-weight: 400; font-size: 1.1rem; color: var(--text); }
+    .pb-type-options label span { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--muted); line-height: 1.4; }
+    .pb-type-options input:checked + label { border-color: var(--accent); background: rgba(200,169,126,0.08); }
+    .pb-type-options input:focus-visible + label { outline: 1px solid var(--accent); outline-offset: 2px; }
+
+    .photo-pick { display: grid; grid-template-columns: 72px 1fr; gap: 0.75rem; align-items: center; }
+    .photo-thumb { width: 72px; height: 72px; background: var(--surface) center / cover no-repeat; border: 1px solid var(--border); }
+    .toggle { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-size: 0.95rem; color: var(--soft); }
+    .toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+    .pb-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 1.4rem; min-height: 44px; border: 1px solid var(--accent); background: none; color: var(--accent); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; transition: background 0.2s, color 0.2s; }
+    .btn:hover, .btn.primary { background: var(--accent); color: var(--bg); }
+    .btn.primary:hover { background: var(--text); border-color: var(--text); }
+    .btn.quiet { border-color: var(--border); color: var(--muted); }
+    .btn.quiet:hover { background: none; color: var(--text); border-color: #444; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Checks */
+    .pb-checks { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem; line-height: 1.5; }
+    .pb-checks li { padding-left: 1.4rem; position: relative; color: var(--soft); }
+    .pb-checks li::before { position: absolute; left: 0; top: 0; font-family: 'Space Mono', monospace; }
+    .pb-checks li.ok::before { content: '\2713'; color: #8fae7c; }
+    .pb-checks li.warn::before { content: '!'; color: var(--accent); left: 0.3rem; }
+    .pb-checks li.err::before { content: '\2715'; color: #c9715c; }
+
+    /* Preview */
+    .pb-right { display: flex; flex-direction: column; gap: 2.5rem; min-width: 0; }
+    .pb-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .pb-tab { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; background: none; border: 1px solid var(--border); color: var(--muted); padding: 0.6rem 1rem; min-height: 40px; cursor: pointer; }
+    .pb-tab[aria-selected="true"] { border-color: var(--accent); color: var(--accent); }
+    .pb-stage { border: 1px solid var(--border); background: var(--bg); padding: 2rem; min-height: 320px; overflow: hidden; }
+    .pb-stage .post-card { max-width: 440px; margin: 0 auto; }
+    .pb-stage .post { padding: 1rem 0 0; }
+    .pb-stage .post-title { font-size: clamp(2rem, 4vw, 3.2rem); }
+    .pb-stage .post-figure img, .pb-stage .post-figure img[width] { width: auto; max-width: 100%; max-height: 60vh; aspect-ratio: auto; height: auto; }
+    .pb-empty { color: var(--muted); text-align: center; padding: 4rem 1rem; font-size: 0.9rem; }
+
+    .pb-code { position: relative; }
+    .pb-code pre { background: var(--surface); border: 1px solid var(--border); padding: 1.25rem; overflow-x: auto; font-family: 'Space Mono', monospace; font-size: 0.75rem; line-height: 1.7; color: var(--soft); white-space: pre; max-height: 340px; }
+    .pb-steps { counter-reset: s; list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0 1.25rem; }
+    .pb-steps li { counter-increment: s; padding-left: 2rem; position: relative; font-size: 0.92rem; line-height: 1.6; color: var(--soft); }
+    .pb-steps li::before { content: counter(s); position: absolute; left: 0; top: 0.1rem; width: 1.4rem; height: 1.4rem; border: 1px solid var(--accent); color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; }
+    .pb-steps code { font-family: 'Space Mono', monospace; font-size: 0.78rem; color: var(--text); }
+    .pb-toast { position: fixed; left: 50%; bottom: 2rem; transform: translateX(-50%) translateY(20px); background: var(--accent); color: var(--bg); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.8rem 1.4rem; opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 50; }
+    .pb-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<header class="pb-top">
+  <a href="../blog.html" aria-label="Back to the blog">
+    <svg width="80" height="34" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <text x="0" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
+      <text x="31" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
+      <text x="62" y="46" fill="#c8a97e" font-family="'Redaction35', Georgia, serif" font-size="52">M</text>
+    </svg>
+    <span class="pb-name">Post Builder</span>
+  </a>
+  <div class="pb-top-links">
+    <a href="../blog.html" target="_blank" rel="noopener">View blog</a>
+    <a href="https://github.com/Campbell3011/still-sonic-media/edit/main/blog-posts.js" target="_blank" rel="noopener">Open blog-posts.js</a>
+  </div>
+</header>
+
+<main class="pb">
+
+  <!-- ============ LEFT: the form ============ -->
+  <div>
+    <h1>New post</h1>
+    <p class="pb-intro">Fill this in and watch the preview. When it looks right, copy the code and paste it into <code>blog-posts.js</code>. Your work is kept in this browser, so you can close the tab and come back.</p>
+
+    <form class="pb-form" id="pbForm" autocomplete="off" novalidate>
+
+      <div class="field">
+        <label for="loadPost">Start from</label>
+        <select id="loadPost"><option value="">A blank post</option></select>
+        <span class="hint">Pick an existing post to edit it. The code it makes replaces that post.</span>
+      </div>
+
+      <fieldset class="pb-type">
+        <legend>Post type</legend>
+        <div class="pb-type-options">
+          <input type="radio" name="type" id="tImage" value="image" />
+          <label for="tImage"><strong>Photo</strong><span>One photo, short caption</span></label>
+          <input type="radio" name="type" id="tText" value="text" />
+          <label for="tText"><strong>Words</strong><span>Text only, no photo</span></label>
+          <input type="radio" name="type" id="tStory" value="image-text" checked />
+          <label for="tStory"><strong>Story</strong><span>Photo, then paragraphs</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field" data-f="title">
+        <label for="title">Title</label>
+        <input id="title" placeholder="e.g. Foo Fighters at Hillsborough" maxlength="120" />
+        <div class="slug-line"><span>Web address: post.html?p=</span><input id="slug" aria-label="Web address slug" spellcheck="false" /></div>
+      </div>
+
+      <div class="field-row">
+        <div class="field" data-f="date">
+          <label for="date">Date</label>
+          <input id="date" type="date" />
+        </div>
+        <div class="field" data-f="tag">
+          <label for="tag">Tag</label>
+          <input id="tag" list="tagList" placeholder="Live, Travel, News…" maxlength="24" />
+          <datalist id="tagList"></datalist>
+        </div>
+      </div>
+
+      <div class="field" data-f="image" data-for="image image-text">
+        <label for="image">Photo</label>
+        <div class="photo-pick">
+          <div class="photo-thumb" id="thumb" aria-hidden="true"></div>
+          <div>
+            <input id="image" list="imageList" placeholder="e.g. 26_concert_guitarist_red.jpg" spellcheck="false" />
+            <datalist id="imageList"></datalist>
+          </div>
+        </div>
+        <span class="hint">Start typing to pick a photo already on the site. New photo? Upload it to the repo first, then run the image script.</span>
+      </div>
+
+      <div class="field" data-f="imageAlt" data-for="image image-text">
+        <label for="imageAlt">Describe the photo</label>
+        <input id="imageAlt" placeholder="e.g. Guitarist under red stage light" maxlength="160" />
+        <span class="hint">Read out by screen readers and used by Google. Plain description, no "photo of".</span>
+      </div>
+
+      <div class="field" data-f="caption" data-for="image image-text">
+        <label for="caption">Caption <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+        <input id="caption" placeholder="e.g. Sheffield, October 2026" maxlength="200" />
+      </div>
+
+      <div class="field" data-f="body" data-for="text image-text">
+        <label for="body">Writing</label>
+        <textarea id="body" placeholder="Write your post here.&#10;&#10;Leave a blank line between paragraphs."></textarea>
+        <span class="hint">Blank line = new paragraph. Link: <code>[booking page](book.html)</code>. Italic: <code>*like this*</code>.</span>
+      </div>
+
+      <div class="field" data-f="excerpt" data-for="text image-text">
+        <label for="excerpt">Card summary <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+        <input id="excerpt" placeholder="Leave blank to use the first paragraph" maxlength="220" />
+      </div>
+
+      <label class="toggle"><input type="checkbox" id="draft" /> Save as draft (hidden from the site until you untick it)</label>
+
+      <div>
+        <p class="pb-section-label">Checks</p>
+        <ul class="pb-checks" id="checks"></ul>
+      </div>
+
+      <div class="pb-actions">
+        <button type="button" class="btn quiet" id="clearBtn">Clear form</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ============ RIGHT: preview + code ============ -->
+  <div class="pb-right">
+    <section>
+      <p class="pb-section-label">Preview</p>
+      <div class="pb-tabs" role="tablist">
+        <button class="pb-tab" role="tab" aria-selected="true" data-view="card">On the blog page</button>
+        <button class="pb-tab" role="tab" aria-selected="false" data-view="post">The full post</button>
+      </div>
+      <div class="pb-stage" id="stage"></div>
+    </section>
+
+    <section class="pb-code">
+      <p class="pb-section-label">Your post code</p>
+      <ol class="pb-steps" id="steps"></ol>
+      <div class="pb-actions" style="margin-bottom:1rem">
+        <button type="button" class="btn primary" id="copyBtn">Copy post code</button>
+        <a class="btn" href="https://github.com/Campbell3011/still-sonic-media/edit/main/blog-posts.js" target="_blank" rel="noopener">Open blog-posts.js on GitHub</a>
+      </div>
+      <pre id="code" aria-label="Generated post code"></pre>
+    </section>
+  </div>
+</main>
+
+<div class="pb-toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../img/manifest.js"></script>
+<script src="../blog-posts.js"></script>
+<script>
+(function () {
+  var IMAGES = window.SSM_IMAGES || {};
+  var POSTS = (window.SSM_POSTS || []).slice();
+  var STORE = 'ssm-post-builder-v1';
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $('pbForm');
+  var fields = ['title', 'slug', 'date', 'tag', 'image', 'imageAlt', 'caption', 'body', 'excerpt'];
+  var slugTouched = false;
+  var editing = '';           // slug of the post being edited, if any
+  var view = 'card';
+
+  /* ---------- helpers ---------- */
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function slugify(s) { return String(s).toLowerCase().replace(/['\u2019]/g, '').normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60); }
+  function today() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function fmtDate(d) { var dt = new Date(d + 'T12:00:00'); return isNaN(dt) ? d : dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function type() { var c = form.querySelector('input[name="type"]:checked'); return c ? c.value : 'image-text'; }
+  function setType(t) { var r = form.querySelector('input[name="type"][value="' + t + '"]'); if (r) r.checked = true; }
+  function val(id) { return $(id).value.trim(); }
+
+  /* Plain writing -> the small bit of HTML the blog understands */
+  function inline(text) {
+    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, t, u) { return '<a href="' + u.replace(/"/g, '%22') + '">' + t + '</a>'; })
+      .replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br>');
+  }
+  /* ...and back again, when loading an existing post */
+  function toPlain(html) {
+    return String(html || '')
+      .replace(/<a [^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '[$2]($1)')
+      .replace(/<em>(.*?)<\/em>/gi, '*$1*')
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+  }
+  function paragraphs() { return $('body').value.split(/\n\s*\n/).map(function (p) { return p.trim(); }).filter(Boolean); }
+
+  /* ---------- build the post object ---------- */
+  function buildPost() {
+    var t = type(), p = { slug: val('slug'), type: t, title: val('title'), date: val('date'), tag: val('tag') };
+    if (t !== 'text') {
+      p.image = val('image');
+      p.imageAlt = val('imageAlt');
+      if (val('caption')) p.caption = inline(val('caption'));
+    }
+    if (t !== 'image') {
+      if (val('excerpt')) p.excerpt = val('excerpt');
+      p.body = paragraphs().map(inline);
+    }
+    if ($('draft').checked) p.draft = true;
+    return p;
+  }
+
+  /* Code in the same style as blog-posts.js (single quotes, two-space indent) */
+  function q(s) { return "'" + String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n') + "'"; }
+  function toCode(p) {
+    var lines = ['  {'];
+    var keys = ['slug', 'type', 'title', 'date', 'tag', 'image', 'imageAlt', 'caption', 'excerpt'];
+    keys.forEach(function (k) { if (p[k] !== undefined && p[k] !== '') lines.push('    ' + k + ': ' + q(p[k]) + ','); });
+    if (p.body && p.body.length) {
+      lines.push('    body: [');
+      p.body.forEach(function (b, i) { lines.push('      ' + q(b) + (i < p.body.length - 1 ? ',' : '')); });
+      lines.push('    ],');
+    }
+    if (p.draft) lines.push('    draft: true,');
+    lines[lines.length - 1] = lines[lines.length - 1].replace(/,$/, '');
+    lines.push('  },');
+    return lines.join('\n');
+  }
+
+  /* ---------- checks ---------- */
+  function check(p) {
+    var out = [], bad = {};
+    function err(f, msg) { out.push(['err', msg]); bad[f] = true; }
+    if (!p.title) err('title', 'Add a title.'); else out.push(['ok', 'Title set.']);
+    if (!p.slug) err('title', 'The web address is empty.');
+    else if (POSTS.some(function (o) { return o.slug === p.slug && o.slug !== editing; })) err('title', 'Another post already uses the address "' + p.slug + '". Change it slightly.');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(p.date)) err('date', 'Pick a date.');
+    if (!p.tag) out.push(['warn', 'No tag. The card will just say "' + ({ 'image': 'Photo', 'text': 'Words', 'image-text': 'Story' }[p.type]) + '".']);
+    if (p.type !== 'text') {
+      if (!p.image) err('image', 'Choose a photo.');
+      else if (!/\.(jpe?g|png|webp)$/i.test(p.image)) err('image', 'The photo name should end in .jpg, .png or .webp.');
+      else if (!IMAGES[p.image]) out.push(['warn', '"' + p.image + '" isn\'t on the site yet. Upload it to the repo root and run the image script, or it won\'t show.']);
+      else out.push(['ok', 'Photo found, with fast phone sizes.']);
+      if (p.image && !p.imageAlt) err('imageAlt', 'Describe the photo for screen readers and Google.');
+    }
+    if (p.type !== 'image') {
+      if (!p.body.length) err('body', 'Write at least one paragraph.');
+      else out.push(['ok', p.body.length + ' paragraph' + (p.body.length > 1 ? 's' : '') + ', about ' + Math.max(1, Math.round(paragraphs().join(' ').split(/\s+/).length / 200)) + ' min read.']);
+    }
+    if (p.draft) out.push(['warn', 'Marked as draft. It won\'t appear on the site until you remove the draft line.']);
+    return { items: out, bad: bad, ok: !out.some(function (i) { return i[0] === 'err'; }) };
+  }
+
+  /* ---------- preview (same markup as blog.html / post.html) ---------- */
+  function imgAttrs(file, sizes) { var m = IMAGES[file]; return m ? ' srcset="' + esc(m.srcset) + '" sizes="' + sizes + '" width="' + m.w + '" height="' + m.h + '"' : ''; }
+  function meta(p) { return '<div class="post-meta"><span class="tag">' + esc(p.tag || ({ 'image': 'Photo', 'text': 'Words', 'image-text': 'Story' }[p.type])) + '</span><span class="dot"></span><time>' + esc(fmtDate(p.date)) + '</time></div>'; }
+  function excerptOf(p) { if (p.excerpt) return p.excerpt; var d = document.createElement('div'); d.innerHTML = (p.body || [])[0] || p.caption || ''; var t = d.textContent || ''; return t.length > 180 ? t.slice(0, 177).replace(/\s+\S*$/, '') + '…' : t; }
+  function src(file) { return file ? '../' + file : ''; }
+  function fixSrcset(html) { return html.replace(/srcset="([^"]*)"/g, function (m, s) { return 'srcset="' + s.split(', ').map(function (x) { return '../' + x; }).join(', ') + '"'; }); }
+
+  function cardHTML(p) {
+    var img = p.image ? '<div class="post-card-img"><img src="' + esc(src(p.image)) + '"' + imgAttrs(p.image, '440px') + ' alt="' + esc(p.imageAlt) + '" /></div>' : '';
+    if (p.type === 'image') return '<div class="post-card post-card--image">' + img + '<div class="post-card-overlay">' + meta(p) + '<h2 class="post-card-title">' + esc(p.title || 'Your title') + '</h2></div></div>';
+    var isText = p.type === 'text';
+    return '<div class="post-card ' + (isText ? 'post-card--text' : 'post-card--story') + '">' + (isText ? '' : img) + '<div class="post-card-body">' + meta(p) + '<h2 class="post-card-title">' + esc(p.title || 'Your title') + '</h2><p class="post-card-excerpt">' + esc(excerptOf(p)) + '</p><span class="read-more">Read &#8594;</span></div></div>';
+  }
+  function postHTML(p) {
+    var header = '<header class="post-header">' + meta(p) + '<h1 class="post-title">' + esc(p.title || 'Your title') + '</h1></header>';
+    var figure = p.image ? '<figure class="post-figure"><img src="' + esc(src(p.image)) + '"' + imgAttrs(p.image, '900px') + ' alt="' + esc(p.imageAlt) + '" />' + (p.caption ? '<figcaption>' + p.caption + '</figcaption>' : '') + '</figure>' : '';
+    var body = p.body && p.body.length ? '<div class="post-body">' + p.body.map(function (b) { return '<p>' + b + '</p>'; }).join('') + '</div>' : '';
+    var inner = p.type === 'image' ? figure + header + body : p.type === 'text' ? header + body : header + figure + body;
+    return '<article class="post post--' + p.type + '">' + inner + '</article>';
+  }
+
+  /* ---------- render everything ---------- */
+  function render() {
+    var t = type();
+    form.querySelectorAll('[data-for]').forEach(function (el) { el.hidden = el.getAttribute('data-for').split(' ').indexOf(t) < 0; });
+    var p = buildPost(), c = check(p);
+    form.querySelectorAll('.field[data-f]').forEach(function (el) { el.classList.toggle('has-error', !!c.bad[el.getAttribute('data-f')] && touched); });
+    $('checks').innerHTML = c.items.map(function (i) { return '<li class="' + i[0] + '">' + esc(i[1]) + '</li>'; }).join('');
+
+    var empty = !p.title && !(p.body && p.body.length) && !p.image;
+    $('stage').innerHTML = empty ? '<p class="pb-empty">Start filling in the form and your post appears here.</p>' : fixSrcset(view === 'card' ? cardHTML(p) : postHTML(p));
+    var thumb = IMAGES[p.image] ? src(p.image) : '';
+    $('thumb').style.backgroundImage = thumb ? 'url("' + thumb + '")' : '';
+
+    $('code').textContent = toCode(p);
+    $('copyBtn').disabled = !c.ok;
+    $('copyBtn').textContent = c.ok ? 'Copy post code' : 'Fix the checks to copy';
+    $('steps').innerHTML = editing
+      ? '<li>Copy the code below.</li><li>Open <code>blog-posts.js</code> on GitHub and press the pencil icon.</li><li>Find the post with <code>slug: \'' + esc(editing) + '\'</code> and replace everything from its <code>{</code> to its <code>},</code> with your copy.</li><li>Press <strong>Commit changes</strong>. It\'s live in a minute or two.</li>'
+      : '<li>Copy the code below.</li><li>Open <code>blog-posts.js</code> on GitHub and press the pencil icon.</li><li>Paste it on the empty line straight after <code>window.SSM_POSTS = [</code>.</li><li>Press <strong>Commit changes</strong>. It\'s live in a minute or two.</li>';
+    save();
+  }
+  var touched = false;
+
+  /* ---------- keep work between visits (this browser only) ---------- */
+  function save() {
+    try { var s = { type: type(), draft: $('draft').checked, editing: editing, slugTouched: slugTouched }; fields.forEach(function (f) { s[f] = $(f).value; }); localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {}
+  }
+  function restore() {
+    try {
+      var s = JSON.parse(localStorage.getItem(STORE) || 'null'); if (!s) return false;
+      fields.forEach(function (f) { if (s[f] != null) $(f).value = s[f]; });
+      setType(s.type || 'image-text'); $('draft').checked = !!s.draft; editing = s.editing || ''; slugTouched = !!s.slugTouched;
+      $('loadPost').value = editing; return true;
+    } catch (e) { return false; }
+  }
+  function clearForm() {
+    fields.forEach(function (f) { $(f).value = ''; });
+    $('date').value = today(); setType('image-text'); $('draft').checked = false;
+    editing = ''; slugTouched = false; touched = false; $('loadPost').value = '';
+    render();
+  }
+  function loadPost(slug) {
+    var p = POSTS.filter(function (o) { return o.slug === slug; })[0];
+    if (!p) { clearForm(); return; }
+    editing = p.slug; slugTouched = true;
+    setType(p.type || 'image-text');
+    $('title').value = p.title || ''; $('slug').value = p.slug; $('date').value = p.date || today(); $('tag').value = p.tag || '';
+    $('image').value = p.image || ''; $('imageAlt').value = p.imageAlt || ''; $('caption').value = toPlain(p.caption);
+    $('excerpt').value = p.excerpt || ''; $('body').value = (p.body || []).map(toPlain).join('\n\n'); $('draft').checked = !!p.draft;
+    render();
+  }
+
+  /* ---------- fill the pickers ---------- */
+  POSTS.slice().sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); }).forEach(function (p) {
+    var o = document.createElement('option'); o.value = p.slug; o.textContent = 'Edit: ' + p.title + (p.draft ? ' (draft)' : ''); $('loadPost').appendChild(o);
+  });
+  var tags = {}; POSTS.forEach(function (p) { if (p.tag) tags[p.tag] = 1; }); ['Live', 'Portrait', 'Travel', 'Street', 'Food', 'Wildlife', 'News'].forEach(function (t) { tags[t] = 1; });
+  $('tagList').innerHTML = Object.keys(tags).map(function (t) { return '<option value="' + esc(t) + '">'; }).join('');
+  $('imageList').innerHTML = Object.keys(IMAGES).sort().map(function (f) { return '<option value="' + esc(f) + '">'; }).join('');
+
+  /* ---------- events ---------- */
+  form.addEventListener('input', function (e) {
+    touched = true;
+    if (e.target.id === 'slug') { slugTouched = true; e.target.value = slugify(e.target.value) || e.target.value.toLowerCase(); }
+    if (e.target.id === 'title' && !slugTouched) $('slug').value = slugify(e.target.value);
+    render();
+  });
+  form.addEventListener('change', render);
+  $('loadPost').addEventListener('change', function () { loadPost(this.value); });
+  $('clearBtn').addEventListener('click', function () { clearForm(); toast('Form cleared'); });
+  document.querySelectorAll('.pb-tab').forEach(function (b) {
+    b.addEventListener('click', function () {
+      view = b.getAttribute('data-view');
+      document.querySelectorAll('.pb-tab').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      render();
+    });
+  });
+  $('copyBtn').addEventListener('click', function () {
+    var text = $('code').textContent;
+    function done() { toast('Copied. Now paste it into blog-posts.js'); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) { toast('Select the code and copy it by hand'); } document.body.removeChild(ta);
+    }
+  });
+  var toastTimer;
+  function toast(msg) { var t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2600); }
+
+  /* ---------- start ---------- */
+  if (!restore()) { $('date').value = today(); }
+  if (!$('date').value) $('date').value = today();
+  render();
+})();
+</script>
+</body>
+</html>

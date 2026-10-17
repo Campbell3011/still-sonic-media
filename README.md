@@ -47,7 +47,12 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 
 ## Common jobs
 
-**Write a blog post** — open `blog-posts.js`, copy an existing post to the top of
+**Write a blog post (easy way)** — go to `stillsonicmedia.co.uk/private/post-builder.html`
+(bookmark it; it's not linked anywhere). Fill in the form, check the preview, press
+**Copy post code**, then paste it into `blog-posts.js` on GitHub right after
+`window.SSM_POSTS = [` and commit. To edit a post, pick it under "Start from".
+
+**Write a blog post (by hand)** — open `blog-posts.js`, copy an existing post to the top of
 the list and edit it. Pick a `type`: `'image'` (photo + caption), `'text'` (words
 only) or `'image-text'` (photo + paragraphs). Set `draft: true` to hide it until
 it's ready. Instructions are at the top of the file.
