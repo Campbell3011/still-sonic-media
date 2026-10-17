@@ -180,7 +180,7 @@
       <div class="field" data-f="imageAlt" data-for="image image-text">
         <label for="imageAlt">Describe the photo</label>
         <input id="imageAlt" placeholder="e.g. Guitarist under red stage light" maxlength="160" />
-        <span class="hint">Read out by screen readers and used by Google. Plain description, no "photo of".</span>
+        <span class="hint" id="altHint">Read out by screen readers and used by Google. Plain description, no "photo of".</span>
       </div>
 
       <div class="field" data-f="caption" data-for="image image-text">
@@ -244,6 +244,17 @@
 <script>
 (function () {
   var IMAGES = window.SSM_IMAGES || {};
+  /* Photo descriptions from photos/alt-text.json, used to fill "Describe the photo" */
+  var ALTS = {}, altAuto = false;
+  var ALT_HINT = 'Read out by screen readers and used by Google. Plain description, no "photo of".';
+  function maybeFillAlt() {
+    var a = ALTS[($('image').value || '').trim()];
+    if (a && (!$('imageAlt').value.trim() || altAuto)) { $('imageAlt').value = a; altAuto = true; }
+    else if (!a && altAuto) { $('imageAlt').value = ''; altAuto = false; }
+    $('altHint').textContent = altAuto ? 'Filled in from your photo descriptions. Edit it if you like.' : ALT_HINT;
+  }
+  fetch('../photos/alt-text.json?t=' + Date.now()).then(function (r) { return r.json(); })
+    .then(function (j) { ALTS = j; maybeFillAlt(); if (typeof render === 'function') render(); }).catch(function () {});
   var POSTS = (window.SSM_POSTS || []).slice();
   var STORE = 'ssm-post-builder-v1';
   var $ = function (id) { return document.getElementById(id); };
@@ -396,12 +407,14 @@
     } catch (e) { return false; }
   }
   function clearForm() {
+    altAuto = false;
     fields.forEach(function (f) { $(f).value = ''; });
     $('date').value = today(); setType('image-text'); $('lead').checked = false; $('draft').checked = false;
     editing = ''; slugTouched = false; touched = false; $('loadPost').value = '';
     render();
   }
   function loadPost(slug) {
+    altAuto = false;
     var p = POSTS.filter(function (o) { return o.slug === slug; })[0];
     if (!p) { clearForm(); return; }
     editing = p.slug; slugTouched = true;
@@ -425,9 +438,11 @@
     touched = true;
     if (e.target.id === 'slug') { slugTouched = true; e.target.value = slugify(e.target.value) || e.target.value.toLowerCase(); }
     if (e.target.id === 'title' && !slugTouched) $('slug').value = slugify(e.target.value);
+    if (e.target.id === 'image') maybeFillAlt();
+    if (e.target.id === 'imageAlt') { altAuto = false; $('altHint').textContent = ALT_HINT; }
     render();
   });
-  form.addEventListener('change', render);
+  form.addEventListener('change', function (e) { if (e.target.id === 'image') maybeFillAlt(); render(); });
   $('loadPost').addEventListener('change', function () { loadPost(this.value); });
   $('clearBtn').addEventListener('click', function () { clearForm(); toast('Form cleared'); });
   document.querySelectorAll('.pb-tab').forEach(function (b) {
