@@ -93,7 +93,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
 .post-figure figcaption a, .post-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,169,126,0.35); }
 .post-body { max-width: 680px; margin: 0 auto; }
 .post-body p { font-size: 1.08rem; line-height: 1.9; color: #c4c4c4; margin-bottom: 1.5rem; }
-.post-body p:first-child { font-size: 1.3rem; line-height: 1.7; color: var(--text); }
+/* Optional intro paragraph: only when a post has  lead: true  */
+.post-body.has-lead p:first-child { font-size: 1.3rem; line-height: 1.7; color: var(--text); }
 
 /* Photo-only post: image first and big, title underneath */
 .post--image .post-figure { margin-bottom: 2rem; }

@@ -101,7 +101,7 @@
     var header = '<header class="post-header">' + metaHTML(p) + '<h1 class="post-title">' + esc(p.title) + '</h1></header>';
     var figure = p.image ? '<figure class="post-figure"><img id="postImg" fetchpriority="high" src="' + esc(p.image) + '"' + imgAttrs(p.image, '(max-width: 1240px) 100vw, 1200px') + ((window.SSM_IMAGES || {})[p.image] ? ' style="--ar: ' + window.SSM_IMAGES[p.image].w + ' / ' + window.SSM_IMAGES[p.image].h + '"' : '') + ' alt="' + esc(p.imageAlt || p.title) + '" />' +
       (p.caption ? '<figcaption>' + p.caption + '</figcaption>' : '') + '</figure>' : '';
-    var body = (p.body && p.body.length) ? '<div class="post-body">' + p.body.map(function (para) { return '<p>' + String(para).replace(/\n/g, '<br>') + '</p>'; }).join('') + '</div>' : '';
+    var body = (p.body && p.body.length) ? '<div class="post-body' + (p.lead ? ' has-lead' : '') + '">' + p.body.map(function (para) { return '<p>' + String(para).replace(/\n/g, '<br>') + '</p>'; }).join('') + '</div>' : '';
 
     /* Newer / older links (list is newest first) */
     var newer = POSTS[idx - 1], older = POSTS[idx + 1];

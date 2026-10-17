@@ -61,6 +61,7 @@
 
     .photo-pick { display: grid; grid-template-columns: 72px 1fr; gap: 0.75rem; align-items: center; }
     .photo-thumb { width: 72px; height: 72px; background: var(--surface) center / cover no-repeat; border: 1px solid var(--border); }
+    .toggle[hidden] { display: none; }
     .toggle { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-size: 0.95rem; color: var(--soft); }
     .toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
 
@@ -198,6 +199,8 @@
         <input id="excerpt" placeholder="Leave blank to use the first paragraph" maxlength="220" />
       </div>
 
+      <label class="toggle" data-for="text image-text"><input type="checkbox" id="lead" /> Intro paragraph (makes the first paragraph larger)</label>
+
       <label class="toggle"><input type="checkbox" id="draft" /> Save as draft (hidden from the site until you untick it)</label>
 
       <div>
@@ -289,6 +292,7 @@
       if (val('excerpt')) p.excerpt = val('excerpt');
       p.body = paragraphs().map(inline);
     }
+    if (t !== 'image' && $('lead').checked) p.lead = true;
     if ($('draft').checked) p.draft = true;
     return p;
   }
@@ -304,6 +308,7 @@
       p.body.forEach(function (b, i) { lines.push('      ' + q(b) + (i < p.body.length - 1 ? ',' : '')); });
       lines.push('    ],');
     }
+    if (p.lead) lines.push('    lead: true,');
     if (p.draft) lines.push('    draft: true,');
     lines[lines.length - 1] = lines[lines.length - 1].replace(/,$/, '');
     lines.push('  },');
@@ -350,7 +355,7 @@
   function postHTML(p) {
     var header = '<header class="post-header">' + meta(p) + '<h1 class="post-title">' + esc(p.title || 'Your title') + '</h1></header>';
     var figure = p.image ? '<figure class="post-figure"><img src="' + esc(src(p.image)) + '"' + imgAttrs(p.image, '900px') + ' alt="' + esc(p.imageAlt) + '" />' + (p.caption ? '<figcaption>' + p.caption + '</figcaption>' : '') + '</figure>' : '';
-    var body = p.body && p.body.length ? '<div class="post-body">' + p.body.map(function (b) { return '<p>' + b + '</p>'; }).join('') + '</div>' : '';
+    var body = p.body && p.body.length ? '<div class="post-body' + (p.lead ? ' has-lead' : '') + '">' + p.body.map(function (b) { return '<p>' + b + '</p>'; }).join('') + '</div>' : '';
     var inner = p.type === 'image' ? figure + header + body : p.type === 'text' ? header + body : header + figure + body;
     return '<article class="post post--' + p.type + '">' + inner + '</article>';
   }
@@ -380,19 +385,19 @@
 
   /* ---------- keep work between visits (this browser only) ---------- */
   function save() {
-    try { var s = { type: type(), draft: $('draft').checked, editing: editing, slugTouched: slugTouched }; fields.forEach(function (f) { s[f] = $(f).value; }); localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {}
+    try { var s = { type: type(), lead: $('lead').checked, draft: $('draft').checked, editing: editing, slugTouched: slugTouched }; fields.forEach(function (f) { s[f] = $(f).value; }); localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {}
   }
   function restore() {
     try {
       var s = JSON.parse(localStorage.getItem(STORE) || 'null'); if (!s) return false;
       fields.forEach(function (f) { if (s[f] != null) $(f).value = s[f]; });
-      setType(s.type || 'image-text'); $('draft').checked = !!s.draft; editing = s.editing || ''; slugTouched = !!s.slugTouched;
+      setType(s.type || 'image-text'); $('lead').checked = !!s.lead; $('draft').checked = !!s.draft; editing = s.editing || ''; slugTouched = !!s.slugTouched;
       $('loadPost').value = editing; return true;
     } catch (e) { return false; }
   }
   function clearForm() {
     fields.forEach(function (f) { $(f).value = ''; });
-    $('date').value = today(); setType('image-text'); $('draft').checked = false;
+    $('date').value = today(); setType('image-text'); $('lead').checked = false; $('draft').checked = false;
     editing = ''; slugTouched = false; touched = false; $('loadPost').value = '';
     render();
   }
@@ -403,7 +408,7 @@
     setType(p.type || 'image-text');
     $('title').value = p.title || ''; $('slug').value = p.slug; $('date').value = p.date || today(); $('tag').value = p.tag || '';
     $('image').value = p.image || ''; $('imageAlt').value = p.imageAlt || ''; $('caption').value = toPlain(p.caption);
-    $('excerpt').value = p.excerpt || ''; $('body').value = (p.body || []).map(toPlain).join('\n\n'); $('draft').checked = !!p.draft;
+    $('excerpt').value = p.excerpt || ''; $('body').value = (p.body || []).map(toPlain).join('\n\n'); $('lead').checked = !!p.lead; $('draft').checked = !!p.draft;
     render();
   }
 

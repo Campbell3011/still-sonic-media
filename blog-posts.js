@@ -32,6 +32,7 @@
    body      List of paragraphs, each in quotes, separated by commas.
              Use \n inside quotes for a line break. Basic HTML like
              <a href="...">link</a> and <em>italic</em> works.
+   lead      true makes the first paragraph larger, as an intro (optional)
    draft     true hides the post from the site until you're ready (optional)
 
    Watch the punctuation: every post is wrapped in { }, followed by a comma,
