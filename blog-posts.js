@@ -39,7 +39,7 @@
    ============================================ */
 
 window.SSM_POSTS = [
-  {
+   {
     slug: 'tiger-under-the-spotlight',
     type: 'image-text',
     title: 'Tiger Under The Spotlight',
@@ -51,8 +51,8 @@ window.SSM_POSTS = [
     excerpt: 'There are sometimes certain photos I obsess over...',
     body: [
       'There are sometimes certain photos I obsess over...sometimes its the memory of it and sometimes its just the way it came out after some post production on it...this image, is one of them, outside of recent news that somehow changed from local to global news so fast. Thank you social media.',
-      'This image is on a surface level a tiger feeding at dinner time, the part that shocks and captivates me about it is the light on his face, the small highlight brings your attention to the cheep and then your eyes are free to explore locally at the lovely pattern down to the teeth clinging to the food its feeding on.',
-      'This shoot came out with many amazing shots both fresh off the sensor and some, like this one, that where refined after the fact. Most from this shoot will be on the website before long I just wanted to give this image its spotlight it deserves.'
+      'This image is on a surface level a tiger feeding at dinner time, the part that shocks and captivates me about it is the light on his face, the small highlight brings your attention to the cheek and then your eyes are free to explore locally at the lovely pattern down to the teeth clinging to the food its feeding on.',
+      'This shoot came out with many amazing shots both fresh off the sensor and some, like this one, that were refined after the fact. Most from this shoot will be on the website before long I just wanted to give this image its spotlight it deserves.'
     ]
   },
   {
