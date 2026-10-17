@@ -61,6 +61,29 @@
 
     .photo-pick { display: grid; grid-template-columns: 72px 1fr; gap: 0.75rem; align-items: center; }
     .photo-thumb { width: 72px; height: 72px; background: var(--surface) center / cover no-repeat; border: 1px solid var(--border); }
+    /* Photo picker: SSM-styled list of names */
+    .pp { position: relative; min-width: 0; }
+    .pp-trigger { width: 100%; min-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.6rem 0.9rem; cursor: pointer; text-align: left; transition: border-color 0.2s; }
+    .pp-trigger:hover, .pp-trigger[aria-expanded="true"] { border-color: rgba(200,169,126,0.6); }
+    .pp-trigger:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .pp-current { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+    .pp-name { font-family: 'Redaction35', Georgia, serif; font-size: 1.02rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pp-sub { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .pp-chev { color: var(--accent); flex-shrink: 0; transition: transform 0.2s; }
+    .pp-trigger[aria-expanded="true"] .pp-chev { transform: rotate(180deg); }
+    .pp-panel { position: absolute; z-index: 30; top: calc(100% + 6px); left: 0; right: 0; background: #15120f; border: 1px solid #2e2821; box-shadow: 0 22px 50px rgba(0,0,0,0.55); }
+    .field .pp-search { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.9rem 1rem; outline: none; }
+    .field .pp-search::placeholder { color: var(--muted); }
+    .pp-list { max-height: 320px; overflow-y: auto; padding: 0.35rem 0 0.6rem; scrollbar-width: thin; scrollbar-color: #3a332b transparent; }
+    .pp-group { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); padding: 0.9rem 1rem 0.35rem; }
+    .pp-opt { display: flex; width: 100%; align-items: baseline; justify-content: space-between; gap: 1rem; background: none; border: none; border-left: 2px solid transparent; color: #cfc6b8; font-family: 'Redaction35', Georgia, serif; font-size: 0.98rem; text-align: left; padding: 0.55rem 1rem 0.55rem calc(1rem - 2px); min-height: 40px; cursor: pointer; }
+    .pp-opt:hover, .pp-opt:focus { background: rgba(200,169,126,0.08); color: var(--text); outline: none; }
+    .pp-opt[aria-selected="true"] { border-left-color: var(--accent); color: var(--text); }
+    .pp-opt .pp-file { font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.06em; color: var(--muted); white-space: nowrap; }
+    .pp-empty { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); padding: 1rem; }
+    .pp-foot { border-top: 1px solid var(--border); padding: 0.7rem 1rem 0.9rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .pp-foot label { font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .field .pp-foot input { font-family: 'Space Mono', monospace; font-size: 0.72rem; padding: 0.55rem 0.7rem; background: var(--bg); }
     .toggle[hidden] { display: none; }
     .toggle { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-size: 0.95rem; color: var(--soft); }
     .toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
@@ -169,12 +192,22 @@
         <label for="image">Photo</label>
         <div class="photo-pick">
           <div class="photo-thumb" id="thumb" aria-hidden="true"></div>
-          <div>
-            <input id="image" list="imageList" placeholder="e.g. photos/concert/26_concert_guitarist_red.jpg" spellcheck="false" />
-            <datalist id="imageList"></datalist>
+          <div class="pp">
+            <button type="button" class="pp-trigger" id="ppTrigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="ppPanel">
+              <span class="pp-current"><span class="pp-name" id="ppName">Choose a photo</span><span class="pp-sub" id="ppSub">From any gallery</span></span>
+              <svg class="pp-chev" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+            </button>
+            <div class="pp-panel" id="ppPanel" hidden>
+              <input type="search" class="pp-search" id="ppSearch" placeholder="Search photos" aria-label="Search photos" autocomplete="off" />
+              <div class="pp-list" id="ppList" role="listbox" aria-label="Photos"></div>
+              <div class="pp-foot">
+                <label for="image">Or paste a path</label>
+                <input id="image" placeholder="photos/food/59_brunch.jpg" spellcheck="false" />
+              </div>
+            </div>
           </div>
         </div>
-        <span class="hint">Start typing to pick a photo already on the site. New photo? Upload it into its folder in <code>photos/</code> on GitHub and wait for the green tick in Actions.</span>
+        <span class="hint">Pick from the list. New photo? Upload it into its folder in <code>photos/</code> on GitHub and wait for the green tick in Actions.</span>
       </div>
 
       <div class="field" data-f="imageAlt" data-for="image image-text">
@@ -244,6 +277,9 @@
 <script>
 (function () {
   var IMAGES = window.SSM_IMAGES || {};
+  var POSTS = (window.SSM_POSTS || []).slice();
+  var STORE = 'ssm-post-builder-v1';
+  var $ = function (id) { return document.getElementById(id); };
   /* Photo descriptions from photos/alt-text.json, used to fill "Describe the photo" */
   var ALTS = {}, altAuto = false;
   var ALT_HINT = 'Read out by screen readers and used by Google. Plain description, no "photo of".';
@@ -253,11 +289,67 @@
     else if (!a && altAuto) { $('imageAlt').value = ''; altAuto = false; }
     $('altHint').textContent = altAuto ? 'Filled in from your photo descriptions. Edit it if you like.' : ALT_HINT;
   }
+  /* ---------- photo picker ---------- */
+  var GROUP = { concert: 'Live Music', jimbo: 'James Marriott', scotland: 'Scotland', tunisia: 'Tunisia', cleethorpes: 'Cleethorpes', florida: 'Florida', food: 'Food & Drink', wildlife: 'Animals & Wildlife', unused: 'Not on a page yet' };
+  function prettyName(path) {
+    var f = path.split('/').pop().replace(/\.[^.]+$/, '').replace(/^\d+_|^fl_/i, '');
+    var folder = path.split('/')[1] || '';
+    f = f.replace(new RegExp('^' + folder + '_', 'i'), '').replace(/^(food|concert|jimbo|scotland|tunisia|cleethorpes)_/i, '').replace(/_/g, ' ').replace(/-/g, ' ');
+    if (/^\d+$/.test(f)) f = (GROUP[folder] || folder) + ' ' + f;
+    var WORDS = { ptv: 'PTV', bw: 'B&W', emofest: 'EmoFest', redblu: 'red & blue', jimbo: 'James' };
+    f = f.split(' ').map(function (w) { var k = w.toLowerCase(); return WORDS[k] || (/^[abc]$/.test(k) ? k.toUpperCase() : w); }).join(' ');
+    return f.charAt(0).toUpperCase() + f.slice(1);
+  }
+  var ppTrigger = $('ppTrigger'), ppPanel = $('ppPanel'), ppList = $('ppList'), ppSearch = $('ppSearch');
+  function photoList() {
+    return Object.keys(IMAGES).filter(function (k) { return k.indexOf('photos/') === 0; }).sort();
+  }
+  function buildList() {
+    var q = ppSearch.value.trim().toLowerCase(), cur = $('image').value.trim(), html = '', last = '', n = 0;
+    photoList().forEach(function (path) {
+      var name = prettyName(path), folder = path.split('/')[1], desc = (ALTS[path] || '');
+      if (q && (name + ' ' + path + ' ' + desc + ' ' + (GROUP[folder] || '')).toLowerCase().indexOf(q) < 0) return;
+      if (folder !== last) { html += '<div class="pp-group">' + esc(GROUP[folder] || folder) + '</div>'; last = folder; }
+      html += '<button type="button" class="pp-opt" role="option" data-path="' + esc(path) + '" aria-selected="' + (path === cur) + '"' + (desc ? ' title="' + esc(desc) + '"' : '') + '><span>' + esc(name) + '</span><span class="pp-file">' + esc(path.split('/').pop()) + '</span></button>';
+      n++;
+    });
+    ppList.innerHTML = n ? html : '<div class="pp-empty">No photos match \u201c' + esc(q) + '\u201d</div>';
+  }
+  function syncTrigger() {
+    var path = $('image').value.trim();
+    $('ppName').textContent = path ? (IMAGES[path] ? prettyName(path) : path.split('/').pop()) : 'Choose a photo';
+    $('ppSub').textContent = path ? (GROUP[path.split('/')[1]] || 'Custom path') : 'From any gallery';
+  }
+  function openPicker() {
+    ppPanel.hidden = false; ppTrigger.setAttribute('aria-expanded', 'true');
+    ppSearch.value = ''; buildList(); ppSearch.focus();
+    var sel = ppList.querySelector('[aria-selected="true"]'); if (sel) sel.scrollIntoView({ block: 'center' });
+  }
+  function closePicker(focusBack) {
+    if (ppPanel.hidden) return;
+    ppPanel.hidden = true; ppTrigger.setAttribute('aria-expanded', 'false');
+    if (focusBack) ppTrigger.focus();
+  }
+  function choose(path) {
+    $('image').value = path;
+    $('image').dispatchEvent(new Event('input', { bubbles: true }));
+    syncTrigger(); closePicker(true);
+  }
+  ppTrigger.addEventListener('click', function () { ppPanel.hidden ? openPicker() : closePicker(true); });
+  ppSearch.addEventListener('input', buildList);
+  ppList.addEventListener('click', function (e) { var b = e.target.closest('.pp-opt'); if (b) choose(b.getAttribute('data-path')); });
+  ppPanel.addEventListener('keydown', function (e) {
+    var opts = Array.prototype.slice.call(ppList.querySelectorAll('.pp-opt')), i = opts.indexOf(document.activeElement);
+    if (e.key === 'Escape') { e.preventDefault(); closePicker(true); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); (opts[i + 1] || opts[0] || ppSearch).focus(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); (i > 0 ? opts[i - 1] : ppSearch).focus(); }
+    else if (e.key === 'Enter' && document.activeElement === ppSearch && opts.length) { e.preventDefault(); choose(opts[0].getAttribute('data-path')); }
+  });
+  $('image').addEventListener('input', syncTrigger);
+  document.addEventListener('click', function (e) { if (!e.target.closest('.pp')) closePicker(false); });
+
   fetch('../photos/alt-text.json?t=' + Date.now()).then(function (r) { return r.json(); })
     .then(function (j) { ALTS = j; maybeFillAlt(); if (typeof render === 'function') render(); }).catch(function () {});
-  var POSTS = (window.SSM_POSTS || []).slice();
-  var STORE = 'ssm-post-builder-v1';
-  var $ = function (id) { return document.getElementById(id); };
   var form = $('pbForm');
   var fields = ['title', 'slug', 'date', 'tag', 'image', 'imageAlt', 'caption', 'body', 'excerpt'];
   var slugTouched = false;
@@ -373,6 +465,7 @@
 
   /* ---------- render everything ---------- */
   function render() {
+    if (typeof syncTrigger === 'function') syncTrigger();
     var t = type();
     form.querySelectorAll('[data-for]').forEach(function (el) { el.hidden = el.getAttribute('data-for').split(' ').indexOf(t) < 0; });
     var p = buildPost(), c = check(p);
@@ -431,7 +524,6 @@
   });
   var tags = {}; POSTS.forEach(function (p) { if (p.tag) tags[p.tag] = 1; }); ['Live', 'Portrait', 'Travel', 'Street', 'Food', 'Wildlife', 'News'].forEach(function (t) { tags[t] = 1; });
   $('tagList').innerHTML = Object.keys(tags).map(function (t) { return '<option value="' + esc(t) + '">'; }).join('');
-  $('imageList').innerHTML = Object.keys(IMAGES).sort().map(function (f) { return '<option value="' + esc(f) + '">'; }).join('');
 
   /* ---------- events ---------- */
   form.addEventListener('input', function (e) {
