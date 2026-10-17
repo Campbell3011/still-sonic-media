@@ -27,6 +27,9 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 │                       submissions arrive by email). Linked from the home nav.
 ├── prints.html         Print sales page (not linked from anywhere yet)
 ├── site.css            Small shared stylesheet (loaded by every page)
+├── gallery-page.css    Shared layout for the 7 gallery pages (nav, hero, grid, lightbox)
+├── ui.js               Shared mobile menu + lightbox for the gallery pages
+├── consent.js          Cookie banner; loads Google Analytics only after Accept
 ├── brand.css           SSM brand layer — colours, Space Mono labels (loaded last)
 ├── site.js             Shared JavaScript — GSAP scroll animations
 ├── favicon.svg         The "SSM" browser-tab icon

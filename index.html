@@ -78,6 +78,22 @@
     #projects { padding: 8rem 2rem 4rem; }
     .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1400px; margin: 0 auto; }
     .project-card { position: relative; overflow: hidden; aspect-ratio: 3/4; display: block; text-decoration: none; cursor: pointer; }
+    /* Credits strip under the hero */
+    .credits { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem 2.5rem; padding: 2.25rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .credits-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+    .credits-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.5rem 2.25rem; margin: 0; padding: 0; }
+    .credits-list li { display: flex; align-items: baseline; }
+    .credits-list li + li::before { content: '·'; color: #4a443d; margin-right: 2.25rem; }
+    .credits-list a { font-family: 'Redaction35', Georgia, serif; font-size: 1.35rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .credits-list a span { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-left: 0.35rem; }
+    .credits-list a:hover { color: var(--accent); }
+    @media (max-width: 600px) { .credits { flex-direction: column; gap: 0.9rem; } .credits-list { flex-direction: column; gap: 0.4rem; align-items: center; } .credits-list li + li::before { display: none; } }
+    /* Project cards: a second photo fades in on hover (mouse devices only) */
+    .project-card-alt { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; display: none; }
+    @media (hover: hover) and (pointer: fine) {
+      .project-card-alt { display: block; }
+      .project-card:hover .project-card-alt, .project-card:focus-visible .project-card-alt { opacity: 1; }
+    }
     .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.6); }
     .project-card:hover img { transform: scale(1.06); filter: brightness(0.75); }
     .project-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,13,11,0.9) 0%, rgba(15,13,11,0.15) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.75rem; }
@@ -267,6 +283,15 @@
   <div class="hero-scroll">Scroll</div>
 </section>
 
+<section class="credits" aria-label="Artists and events photographed">
+  <span class="credits-label">Photographed</span>
+  <ul class="credits-list">
+    <li><a href="jimbo.html">James Marriott</a></li>
+    <li><a href="concert.html">Pierce The Veil</a></li>
+    <li><a href="concert.html">All Out Emo <span>at EmoFest</span></a></li>
+  </ul>
+</section>
+
 <section id="projects">
   <div class="section-header">
     <span class="section-eyebrow">The Work</span>
@@ -276,6 +301,7 @@
 
     <a href="jimbo.html" class="project-card">
       <img decoding="async" height="935" width="1400" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/jimbo/42_jimbo_portrait_purple-640.webp 640w, img/jimbo/42_jimbo_portrait_purple-1280.webp 1280w, photos/jimbo/42_jimbo_portrait_purple.jpg 1400w" src="photos/jimbo/42_jimbo_portrait_purple.jpg" alt="James Marriott" />
+      <img decoding="async" height="933" width="1400" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/45_jimbo_guitarist_purple-640.webp 640w, img/jimbo/45_jimbo_guitarist_purple-1280.webp 1280w, photos/jimbo/45_jimbo_guitarist_purple.jpg 1400w" class="project-card-alt" src="photos/jimbo/45_jimbo_guitarist_purple.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Portrait &amp; Live &#8212; 2024</div>
         <div class="project-card-title">James Marriott</div>
@@ -286,6 +312,7 @@
 
     <a href="concert.html" class="project-card">
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/concert/26_concert_guitarist_red-640.webp 640w, img/concert/26_concert_guitarist_red-1280.webp 1280w, photos/concert/26_concert_guitarist_red.jpg 2000w" src="photos/concert/26_concert_guitarist_red.jpg" alt="Live Music" loading="lazy" />
+      <img decoding="async" height="1125" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/concert/18_concert_stage-640.webp 640w, img/concert/18_concert_stage-1280.webp 1280w, photos/concert/18_concert_stage.jpg 2000w" class="project-card-alt" src="photos/concert/18_concert_stage.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Concert Photography &#8212; Ongoing</div>
         <div class="project-card-title">Live Music</div>
@@ -296,6 +323,7 @@
 
     <a href="scotland.html" class="project-card">
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/scotland/17_scotland_binoculars-640.webp 640w, img/scotland/17_scotland_binoculars-1280.webp 1280w, photos/scotland/17_scotland_binoculars.jpg 2000w" src="photos/scotland/17_scotland_binoculars.jpg" alt="Scotland" loading="lazy" />
+      <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/scotland/20_scotland_cobbles-640.webp 640w, img/scotland/20_scotland_cobbles-1280.webp 1280w, photos/scotland/20_scotland_cobbles.jpg 1333w" class="project-card-alt" src="photos/scotland/20_scotland_cobbles.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Travel &amp; Street &#8212; 2023&#8211;24</div>
         <div class="project-card-title">Scotland</div>
@@ -306,6 +334,7 @@
 
     <a href="tunisia.html" class="project-card">
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/tunisia/01_camel_handler-640.webp 640w, img/tunisia/01_camel_handler-1280.webp 1280w, photos/tunisia/01_camel_handler.jpg 2000w" src="photos/tunisia/01_camel_handler.jpg" alt="Tunisia" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/35_tunisia_desert_a-640.webp 640w, img/tunisia/35_tunisia_desert_a-1280.webp 1280w, photos/tunisia/35_tunisia_desert_a.jpg 2000w" class="project-card-alt" src="photos/tunisia/35_tunisia_desert_a.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Travel &#8212; 2024</div>
         <div class="project-card-title">Tunisia</div>
@@ -316,6 +345,7 @@
 
     <a href="cleethorpes.html" class="project-card">
       <img decoding="async" height="2000" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/cleethorpes/39_cleethorpes_dusk-640.webp 640w, img/cleethorpes/39_cleethorpes_dusk-1280.webp 1280w, photos/cleethorpes/39_cleethorpes_dusk.jpg 2000w" src="photos/cleethorpes/39_cleethorpes_dusk.jpg" alt="Cleethorpes" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/cleethorpes/22_cleethorpes_sea-640.webp 640w, img/cleethorpes/22_cleethorpes_sea-1280.webp 1280w, photos/cleethorpes/22_cleethorpes_sea.jpg 2000w" class="project-card-alt" src="photos/cleethorpes/22_cleethorpes_sea.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Coastal Street &#8212; 2024</div>
         <div class="project-card-title">Cleethorpes</div>
@@ -326,6 +356,7 @@
 
     <a href="florida.html" class="project-card">
       <img decoding="async" height="1356" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/florida/12_florida_planes-640.webp 640w, img/florida/12_florida_planes-1280.webp 1280w, photos/florida/12_florida_planes.jpg 2000w" src="photos/florida/12_florida_planes.jpg" alt="Florida" loading="lazy" />
+      <img decoding="async" height="1123" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/florida/fl_03-640.webp 640w, img/florida/fl_03-1280.webp 1280w, photos/florida/fl_03.jpg 2000w" class="project-card-alt" src="photos/florida/fl_03.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Travel &#8212; 2023</div>
         <div class="project-card-title">Florida</div>
@@ -336,6 +367,7 @@
 
     <a href="food.html" class="project-card">
       <img decoding="async" height="2000" width="1334" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/food/48_food_french_toast-640.webp 640w, img/food/48_food_french_toast-1280.webp 1280w, photos/food/48_food_french_toast.jpg 1334w" src="photos/food/48_food_french_toast.jpg" alt="Food and Product" loading="lazy" />
+      <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/52_food_martini_pour-640.webp 640w, img/food/52_food_martini_pour-1280.webp 1280w, photos/food/52_food_martini_pour.jpg 1333w" class="project-card-alt" src="photos/food/52_food_martini_pour.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Food &amp; Product &#8212; Ongoing</div>
         <div class="project-card-title">Food &amp; Drink</div>
