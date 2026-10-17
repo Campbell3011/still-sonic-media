@@ -36,8 +36,10 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 ├── fonts/              Redaction (display) + Space Mono (labels) webfonts
 ├── img/                Auto-made WebP sizes of every photo + manifest.js (don't edit)
 ├── tools/              optimise_images.py — runs automatically via .github/workflows
-├── *.jpg               All photos, kept loose at the repo root. Numbered by project
-│                       (01–03 camels = Tunisia, 04–08 = PTV/portrait, fl_* = florida, etc.)
+├── photos/             All photos, one folder per gallery page:
+│   ├── concert/  jimbo/  scotland/  tunisia/  cleethorpes/  florida/  food/
+│   ├── wildlife/       Animals & Wildlife (page coming soon)
+│   └── unused/         Shots not on any page yet
 └── private/            Unlisted client pages — NOT linked from any menu or the sitemap,
     └── josh-garside/   and marked noindex so search engines skip them.
         ├── index.html      Client viewing page (access code inside the file's CONFIG block)
@@ -57,11 +59,13 @@ the list and edit it. Pick a `type`: `'image'` (photo + caption), `'text'` (word
 only) or `'image-text'` (photo + paragraphs). Set `draft: true` to hide it until
 it's ready. Instructions are at the top of the file.
 
-**Add a photo to a gallery page** — upload the .jpg to the repo root, then add a
+**Add a photo to a gallery page** — open that page's folder in `photos/` on GitHub
+(e.g. `photos/food/`), upload the photo there, then add a
 `<div class="gallery-item">…</div>` block to that page's `#galleryGrid`, copying
 an existing one and changing the filename, alt text, and label.
-Upload photos on GitHub with **Add file → Upload files** (drag the photo in, then
-Commit). Within about a minute, GitHub automatically makes small WebP copies in
+Upload with **Add file → Upload files** while inside the folder (drag the photo in,
+wait for the bar to finish, then Commit). The `src` is the full path, e.g.
+`photos/food/59_food_brunch.jpg`. Within about a minute, GitHub automatically makes small WebP copies in
 `img/`, shrinks the original if it's over 2000 px, and updates every page (see the
 **Actions** tab). Nothing to run yourself. Tip: name photos in lowercase with
 no spaces, e.g. `tiger_spotlight.jpg`.

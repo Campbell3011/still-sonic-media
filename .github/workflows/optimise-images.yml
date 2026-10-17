@@ -1,5 +1,5 @@
 # Still Sonic Media - automatic photo optimiser
-# Whenever a photo is uploaded to the repo root, this runs
+# Whenever a photo is uploaded to photos/<page>/ (or the repo root), this runs
 # tools/optimise_images.py on GitHub's servers and commits the result
 # (phone-sized WebP copies in img/, updated srcset on pages, img/manifest.js).
 # Nothing to run yourself. Check progress under the repo's "Actions" tab.
@@ -9,6 +9,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'photos/**'
       - '*.jpg'
       - '*.jpeg'
       - '*.JPG'

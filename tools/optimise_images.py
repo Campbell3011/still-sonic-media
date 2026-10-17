@@ -9,8 +9,9 @@ Runs automatically on GitHub whenever you upload a photo (see
 What it does (safe to run as often as you like - it only does what's missing):
  0. Shrinks any original over 2000 px on its long edge down to 2000 px
     (phone photos are often 4000 px and 4-6 MB - far bigger than needed).
- 1. For every .jpg in the repo root, makes smaller WebP copies in img/
-    (640 px and 1280 px wide). Phones download these instead of the
+ 1. For every photo in photos/ (one folder per gallery page, e.g.
+    photos/concert/), makes smaller WebP copies in img/ using the same
+    folders (640 px and 1280 px wide). Phones download these instead of the
     2000 px original, which is roughly 5-10x smaller.
  2. Adds srcset / sizes / width / height to every <img> on the public
     pages, so the browser picks the right size and the page doesn't jump
@@ -38,9 +39,12 @@ SIZES = {
 MAX_EDGE = 2000
 PHOTO_EXT = ('.jpg', '.jpeg', '.png')
 
+PHOTO_DIR = os.path.join(ROOT, 'photos')
+
 def find_photos():
-    return sorted(p for p in glob.glob(os.path.join(ROOT, '*'))
-                  if os.path.isfile(p) and p.lower().endswith(PHOTO_EXT))
+    # photos/<page>/<file>; anything left loose in the repo root is picked up too
+    found = glob.glob(os.path.join(PHOTO_DIR, '**', '*'), recursive=True) + glob.glob(os.path.join(ROOT, '*'))
+    return sorted(p for p in found if os.path.isfile(p) and p.lower().endswith(PHOTO_EXT))
 
 def shrink_original(path, im):
     """Cap originals at MAX_EDGE px so the lightbox doesn't pull a 6 MB file."""
@@ -58,8 +62,11 @@ def build_variants():
     manifest = {}
     os.makedirs(OUT, exist_ok=True)
     for path in find_photos():
-        name = os.path.basename(path)
-        stem = os.path.splitext(name)[0]
+        name = os.path.relpath(path, ROOT).replace(os.sep, '/')   # e.g. photos/concert/18_concert_stage.jpg
+        sub = os.path.dirname(os.path.relpath(path, PHOTO_DIR)) if path.startswith(PHOTO_DIR) else ''
+        stem = os.path.splitext(os.path.basename(path))[0]
+        out_dir = os.path.join(OUT, sub)
+        os.makedirs(out_dir, exist_ok=True)
         try:
             im = ImageOps.exif_transpose(Image.open(path))
             im.load()
@@ -72,11 +79,11 @@ def build_variants():
         for target in WIDTHS:
             if target >= w:
                 continue
-            out = os.path.join(OUT, f'{stem}-{target}.webp')
+            out = os.path.join(out_dir, f'{stem}-{target}.webp')
             if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(path):
                 im.convert('RGB').resize((target, round(h * target / w)), Image.LANCZOS).save(out, 'WEBP', quality=QUALITY, method=6)
                 print('made', os.path.relpath(out, ROOT))
-            entries.append(f'img/{stem}-{target}.webp {target}w')
+            entries.append(os.path.relpath(out, ROOT).replace(os.sep, '/') + f' {target}w')
         entries.append(f'{name} {w}w')
         manifest[name] = {'w': w, 'h': h, 'srcset': ', '.join(entries)}
     with open(os.path.join(OUT, 'manifest.js'), 'w') as f:

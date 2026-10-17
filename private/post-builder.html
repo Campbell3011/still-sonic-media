@@ -169,11 +169,11 @@
         <div class="photo-pick">
           <div class="photo-thumb" id="thumb" aria-hidden="true"></div>
           <div>
-            <input id="image" list="imageList" placeholder="e.g. 26_concert_guitarist_red.jpg" spellcheck="false" />
+            <input id="image" list="imageList" placeholder="e.g. photos/concert/26_concert_guitarist_red.jpg" spellcheck="false" />
             <datalist id="imageList"></datalist>
           </div>
         </div>
-        <span class="hint">Start typing to pick a photo already on the site. New photo? Upload it to the repo first, then run the image script.</span>
+        <span class="hint">Start typing to pick a photo already on the site. New photo? Upload it into its folder in <code>photos/</code> on GitHub and wait for the green tick in Actions.</span>
       </div>
 
       <div class="field" data-f="imageAlt" data-for="image image-text">
@@ -322,7 +322,7 @@
     if (p.type !== 'text') {
       if (!p.image) err('image', 'Choose a photo.');
       else if (!/\.(jpe?g|png|webp)$/i.test(p.image)) err('image', 'The photo name should end in .jpg, .png or .webp.');
-      else if (!IMAGES[p.image]) out.push(['warn', '"' + p.image + '" isn\'t on the site yet. Upload it to the repo root and run the image script, or it won\'t show.']);
+      else if (!IMAGES[p.image]) out.push(['warn', '"' + p.image + '" isn\'t on the site yet. Upload it into photos/ and wait a minute for GitHub to process it.']);
       else out.push(['ok', 'Photo found, with fast phone sizes.']);
       if (p.image && !p.imageAlt) err('imageAlt', 'Describe the photo for screen readers and Google.');
     }
