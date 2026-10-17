@@ -2,9 +2,13 @@
 """
 Still Sonic Media - image optimiser
 ===================================
-Run this after adding new photos:   python3 tools/optimise_images.py
+Runs automatically on GitHub whenever you upload a photo (see
+.github/workflows/optimise-images.yml). You can also run it yourself:
+    python3 tools/optimise_images.py
 
 What it does (safe to run as often as you like - it only does what's missing):
+ 0. Shrinks any original over 2000 px on its long edge down to 2000 px
+    (phone photos are often 4000 px and 4-6 MB - far bigger than needed).
  1. For every .jpg in the repo root, makes smaller WebP copies in img/
     (640 px and 1280 px wide). Phones download these instead of the
     2000 px original, which is roughly 5-10x smaller.
@@ -31,13 +35,38 @@ SIZES = {
     'default': '(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px',
 }
 
+MAX_EDGE = 2000
+PHOTO_EXT = ('.jpg', '.jpeg', '.png')
+
+def find_photos():
+    return sorted(p for p in glob.glob(os.path.join(ROOT, '*'))
+                  if os.path.isfile(p) and p.lower().endswith(PHOTO_EXT))
+
+def shrink_original(path, im):
+    """Cap originals at MAX_EDGE px so the lightbox doesn't pull a 6 MB file."""
+    if max(im.size) <= MAX_EDGE:
+        return im
+    im.thumbnail((MAX_EDGE, MAX_EDGE), Image.LANCZOS)
+    if path.lower().endswith('.png'):
+        im.save(path, 'PNG', optimize=True)
+    else:
+        im.convert('RGB').save(path, 'JPEG', quality=86, optimize=True, progressive=True)
+    print('shrank', os.path.basename(path), 'to', im.size)
+    return im
+
 def build_variants():
     manifest = {}
     os.makedirs(OUT, exist_ok=True)
-    for path in sorted(glob.glob(os.path.join(ROOT, '*.jpg'))):
+    for path in find_photos():
         name = os.path.basename(path)
-        stem = name[:-4]
-        im = ImageOps.exif_transpose(Image.open(path))
+        stem = os.path.splitext(name)[0]
+        try:
+            im = ImageOps.exif_transpose(Image.open(path))
+            im.load()
+        except Exception as e:
+            print(f'SKIPPED {name}: not a readable image ({e.__class__.__name__}). Re-upload it.')
+            continue
+        im = shrink_original(path, im)
         w, h = im.size
         entries = []
         for target in WIDTHS:
