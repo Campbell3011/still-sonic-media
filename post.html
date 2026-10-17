@@ -21,9 +21,8 @@
     gtag('js', new Date());
     gtag('config', 'G-GQ900SQ106');
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="brand.css?v=1" />
 </head>
 <body>
@@ -53,16 +52,12 @@
 
 <main id="postRoot"></main>
 
-<footer>
-  <a href="blog.html" class="footer-back">&#8592; All Posts</a>
-  <span>&#169; 2026 Still Sonic Media</span>
-</footer>
-
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lbClose" aria-label="Close">&#x2715;</button>
   <img src="" alt="" id="lbImg" />
 </div>
 
+<script src="img/manifest.js"></script>
 <script src="blog-posts.js?v=1"></script>
 <script>
   /* Shared helpers for the blog pages */
@@ -81,6 +76,12 @@
     var first = plain((p.body || [])[0] || p.caption || '');
     return first.length > 180 ? first.slice(0, 177).replace(/\s+\S*$/, '') + '\u2026' : first;
   }
+  /* Smaller WebP sizes + real dimensions, when tools/optimise_images.py has made them */
+  function imgAttrs(file, sizes) {
+    var m = (window.SSM_IMAGES || {})[file];
+    if (!m) return '';
+    return ' srcset="' + esc(m.srcset) + '" sizes="' + sizes + '" width="' + m.w + '" height="' + m.h + '" decoding="async"';
+  }
   function metaHTML(p) {
     return '<div class="post-meta"><span class="tag">' + esc(p.tag || TYPE_NAMES[p.type] || 'Post') + '</span><span class="dot"></span><time datetime="' + esc(p.date) + '">' + esc(fmtDate(p.date)) + '</time></div>';
   }
@@ -98,7 +99,7 @@
     var p = POSTS[idx];
     var type = p.type === 'image' || p.type === 'text' ? p.type : 'image-text';
     var header = '<header class="post-header">' + metaHTML(p) + '<h1 class="post-title">' + esc(p.title) + '</h1></header>';
-    var figure = p.image ? '<figure class="post-figure"><img id="postImg" src="' + esc(p.image) + '" alt="' + esc(p.imageAlt || p.title) + '" />' +
+    var figure = p.image ? '<figure class="post-figure"><img id="postImg" fetchpriority="high" src="' + esc(p.image) + '"' + imgAttrs(p.image, '(max-width: 1240px) 100vw, 1200px') + ((window.SSM_IMAGES || {})[p.image] ? ' style="--ar: ' + window.SSM_IMAGES[p.image].w + ' / ' + window.SSM_IMAGES[p.image].h + '"' : '') + ' alt="' + esc(p.imageAlt || p.title) + '" />' +
       (p.caption ? '<figcaption>' + p.caption + '</figcaption>' : '') + '</figure>' : '';
     var body = (p.body && p.body.length) ? '<div class="post-body">' + p.body.map(function (para) { return '<p>' + String(para).replace(/\n/g, '<br>') + '</p>'; }).join('') + '</div>' : '';
 
@@ -130,9 +131,14 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
   }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="site.js?v=2"></script>
+<footer>
+  <a href="blog.html" class="footer-back">&#8592; All Posts</a>
+  <span>&#169; 2026 Still Sonic Media</span>
+</footer>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="site.js?v=2"></script>
 <script>
   var burger=document.getElementById('navBurger'),navLinks=document.getElementById('navLinks');
   if(burger&&navLinks){burger.addEventListener('click',function(){burger.classList.toggle('open');navLinks.classList.toggle('open');});navLinks.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){burger.classList.remove('open');navLinks.classList.remove('open');});});}

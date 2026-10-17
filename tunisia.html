@@ -60,9 +60,8 @@
     .footer-back:hover { opacity: 0.7; }
     @media (max-width: 768px) { .gallery-grid { columns: 1; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="brand.css?v=1" />
 </head>
 <body>
@@ -97,12 +96,12 @@
 </div>
 <section id="gallery">
   <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item" data-index="0"><img src="01_camel_handler.jpg" alt="Camel Handler" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Camel Handler</span></div></div>
-    <div class="gallery-item" data-index="1"><img src="02_camels_chained.jpg" alt="Camels Chained" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert Camels</span></div></div>
-    <div class="gallery-item" data-index="2"><img src="03_camel_face.jpg" alt="Camel Face" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Portrait</span></div></div>
-    <div class="gallery-item" data-index="3"><img src="35_tunisia_desert_a.jpg" alt="Tunisia Desert A" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert A</span></div></div>
-    <div class="gallery-item" data-index="4"><img src="36_tunisia_desert_b.jpg" alt="Tunisia Desert B" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert B</span></div></div>
-    <div class="gallery-item" data-index="5"><img src="37_tunisia_desert_c.jpg" alt="Tunisia Desert C" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert C</span></div></div>
+    <div class="gallery-item" data-index="0"><img fetchpriority="high" decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/01_camel_handler-640.webp 640w, img/01_camel_handler-1280.webp 1280w, 01_camel_handler.jpg 2000w" src="01_camel_handler.jpg" alt="Camel Handler" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Camel Handler</span></div></div>
+    <div class="gallery-item" data-index="1"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/02_camels_chained-640.webp 640w, img/02_camels_chained-1280.webp 1280w, 02_camels_chained.jpg 1333w" src="02_camels_chained.jpg" alt="Camels Chained" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert Camels</span></div></div>
+    <div class="gallery-item" data-index="2"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/03_camel_face-640.webp 640w, img/03_camel_face-1280.webp 1280w, 03_camel_face.jpg 1333w" src="03_camel_face.jpg" alt="Camel Face" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Portrait</span></div></div>
+    <div class="gallery-item" data-index="3"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/35_tunisia_desert_a-640.webp 640w, img/35_tunisia_desert_a-1280.webp 1280w, 35_tunisia_desert_a.jpg 2000w" src="35_tunisia_desert_a.jpg" alt="Tunisia Desert A" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert A</span></div></div>
+    <div class="gallery-item" data-index="4"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/36_tunisia_desert_b-640.webp 640w, img/36_tunisia_desert_b-1280.webp 1280w, 36_tunisia_desert_b.jpg 1333w" src="36_tunisia_desert_b.jpg" alt="Tunisia Desert B" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert B</span></div></div>
+    <div class="gallery-item" data-index="5"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/37_tunisia_desert_c-640.webp 640w, img/37_tunisia_desert_c-1280.webp 1280w, 37_tunisia_desert_c.jpg 1333w" src="37_tunisia_desert_c.jpg" alt="Tunisia Desert C" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert C</span></div></div>
   </div>
 </section>
 <footer>
@@ -115,9 +114,9 @@
   <img src="" alt="" id="lbImg" />
   <button class="lightbox-nav lightbox-next" id="lbNext">&#8250;</button>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="site.js?v=2"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="site.js?v=2"></script>
 <script>
   var burger=document.getElementById('navBurger'),navLinks=document.getElementById('navLinks');
   if(burger&&navLinks){burger.addEventListener('click',function(){burger.classList.toggle('open');navLinks.classList.toggle('open');});navLinks.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){burger.classList.remove('open');navLinks.classList.remove('open');});});}

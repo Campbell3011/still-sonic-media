@@ -9,6 +9,14 @@
    · Redaction for display type, Space Mono for small labels
    ============================================ */
 
+/* Space Mono, served from our own fonts/ folder (faster than Google Fonts) */
+@font-face { font-family: 'Space Mono'; src: url('fonts/SpaceMono-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Space Mono'; src: url('fonts/SpaceMono-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+
+/* Photos carry width/height so the page doesn't jump while they load;
+   this keeps their real shape when CSS sets the width. */
+:where(img[width][height]) { height: auto; }
+
 /* Small uppercase labels → Space Mono.
    Mono runs wider than Redaction, so tracking is pulled in a little. */
 .nav-links a,

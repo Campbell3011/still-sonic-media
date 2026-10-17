@@ -60,9 +60,8 @@
     .footer-back:hover { opacity: 0.7; }
     @media (max-width: 768px) { .gallery-grid { columns: 1; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="brand.css?v=1" />
 </head>
 <body>
@@ -97,17 +96,17 @@
 </div>
 <section id="gallery">
   <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item" data-index="0"><img src="48_food_french_toast.jpg" alt="Strawberry french toast served at a brunch table" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
-    <div class="gallery-item" data-index="1"><img src="52_food_martini_pour.jpg" alt="Espresso martini being poured" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Cocktails</span></div></div>
-    <div class="gallery-item" data-index="2"><img src="50_food_patatas.jpg" alt="Sweet potato dish on dark slate plate" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Small Plates</span></div></div>
-    <div class="gallery-item" data-index="3"><img src="55_food_lilac_cafe.jpg" alt="Lilac eatery and coffee house shopfront" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">London &#8212; Caf&#233; Brand</span></div></div>
-    <div class="gallery-item" data-index="4"><img src="53_food_steak_dinner.jpg" alt="Steak dinner being carved at the table" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Dinner Service</span></div></div>
-    <div class="gallery-item" data-index="5"><img src="49_food_berry_toast.jpg" alt="Berry-topped french toast close up" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
-    <div class="gallery-item" data-index="6"><img src="57_food_tunisia_cola.jpg" alt="Arabic cola bottle in the sun" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Product</span></div></div>
-    <div class="gallery-item" data-index="7"><img src="56_food_cafe_window.jpg" alt="Cafe window seat with fresh flowers" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">London &#8212; Interiors</span></div></div>
-    <div class="gallery-item" data-index="8"><img src="51_food_salmon_brioche.jpg" alt="Salmon brioche sandwich" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
-    <div class="gallery-item" data-index="9"><img src="58_food_flatbread.jpg" alt="Traditional flatbread being made in a clay oven" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Food Culture</span></div></div>
-    <div class="gallery-item" data-index="10"><img src="54_food_dessert_wine.jpg" alt="Dessert with candle beside a glass of red wine" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Dessert</span></div></div>
+    <div class="gallery-item" data-index="0"><img fetchpriority="high" decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/48_food_french_toast-640.webp 640w, img/48_food_french_toast-1280.webp 1280w, 48_food_french_toast.jpg 1334w" src="48_food_french_toast.jpg" alt="Strawberry french toast served at a brunch table" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
+    <div class="gallery-item" data-index="1"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/52_food_martini_pour-640.webp 640w, img/52_food_martini_pour-1280.webp 1280w, 52_food_martini_pour.jpg 1333w" src="52_food_martini_pour.jpg" alt="Espresso martini being poured" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Cocktails</span></div></div>
+    <div class="gallery-item" data-index="2"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/50_food_patatas-640.webp 640w, img/50_food_patatas-1280.webp 1280w, 50_food_patatas.jpg 1334w" src="50_food_patatas.jpg" alt="Sweet potato dish on dark slate plate" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Small Plates</span></div></div>
+    <div class="gallery-item" data-index="3"><img decoding="async" height="1125" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/55_food_lilac_cafe-640.webp 640w, img/55_food_lilac_cafe-1280.webp 1280w, 55_food_lilac_cafe.jpg 2000w" src="55_food_lilac_cafe.jpg" alt="Lilac eatery and coffee house shopfront" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">London &#8212; Caf&#233; Brand</span></div></div>
+    <div class="gallery-item" data-index="4"><img decoding="async" height="2000" width="1600" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/53_food_steak_dinner-640.webp 640w, img/53_food_steak_dinner-1280.webp 1280w, 53_food_steak_dinner.jpg 1600w" src="53_food_steak_dinner.jpg" alt="Steak dinner being carved at the table" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Dinner Service</span></div></div>
+    <div class="gallery-item" data-index="5"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/49_food_berry_toast-640.webp 640w, img/49_food_berry_toast-1280.webp 1280w, 49_food_berry_toast.jpg 1334w" src="49_food_berry_toast.jpg" alt="Berry-topped french toast close up" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
+    <div class="gallery-item" data-index="6"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/57_food_tunisia_cola-640.webp 640w, img/57_food_tunisia_cola-1280.webp 1280w, 57_food_tunisia_cola.jpg 1333w" src="57_food_tunisia_cola.jpg" alt="Arabic cola bottle in the sun" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Product</span></div></div>
+    <div class="gallery-item" data-index="7"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/56_food_cafe_window-640.webp 640w, img/56_food_cafe_window-1280.webp 1280w, 56_food_cafe_window.jpg 2000w" src="56_food_cafe_window.jpg" alt="Cafe window seat with fresh flowers" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">London &#8212; Interiors</span></div></div>
+    <div class="gallery-item" data-index="8"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/51_food_salmon_brioche-640.webp 640w, img/51_food_salmon_brioche-1280.webp 1280w, 51_food_salmon_brioche.jpg 1334w" src="51_food_salmon_brioche.jpg" alt="Salmon brioche sandwich" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
+    <div class="gallery-item" data-index="9"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/58_food_flatbread-640.webp 640w, img/58_food_flatbread-1280.webp 1280w, 58_food_flatbread.jpg 2000w" src="58_food_flatbread.jpg" alt="Traditional flatbread being made in a clay oven" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Food Culture</span></div></div>
+    <div class="gallery-item" data-index="10"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/54_food_dessert_wine-640.webp 640w, img/54_food_dessert_wine-1280.webp 1280w, 54_food_dessert_wine.jpg 1333w" src="54_food_dessert_wine.jpg" alt="Dessert with candle beside a glass of red wine" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Dessert</span></div></div>
   </div>
 </section>
 <footer>
@@ -120,9 +119,9 @@
   <img src="" alt="" id="lbImg" />
   <button class="lightbox-nav lightbox-next" id="lbNext">&#8250;</button>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="site.js?v=2"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="site.js?v=2"></script>
 <script>
   var burger=document.getElementById('navBurger'),navLinks=document.getElementById('navLinks');
   if(burger&&navLinks){burger.addEventListener('click',function(){burger.classList.toggle('open');navLinks.classList.toggle('open');});navLinks.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){burger.classList.remove('open');navLinks.classList.remove('open');});});}

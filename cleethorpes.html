@@ -60,9 +60,8 @@
     .footer-back:hover { opacity: 0.7; }
     @media (max-width: 768px) { .gallery-grid { columns: 1; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="brand.css?v=1" />
 </head>
 <body>
@@ -97,10 +96,10 @@
 </div>
 <section id="gallery">
   <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item" data-index="0"><img src="22_cleethorpes_sea.jpg" alt="Cleethorpes Sea" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Sea Figures</span></div></div>
-    <div class="gallery-item" data-index="1"><img src="39_cleethorpes_dusk.jpg" alt="Cleethorpes Dusk" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Dusk</span></div></div>
-    <div class="gallery-item" data-index="2"><img src="15_cleethorpes_pier.jpg" alt="Cleethorpes Pier" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Pier</span></div></div>
-    <div class="gallery-item" data-index="3"><img src="23_cleethorpes_walk.jpg" alt="Cleethorpes Walk" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Promenade</span></div></div>
+    <div class="gallery-item" data-index="0"><img fetchpriority="high" decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/22_cleethorpes_sea-640.webp 640w, img/22_cleethorpes_sea-1280.webp 1280w, 22_cleethorpes_sea.jpg 2000w" src="22_cleethorpes_sea.jpg" alt="Cleethorpes Sea" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Sea Figures</span></div></div>
+    <div class="gallery-item" data-index="1"><img decoding="async" height="2000" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/39_cleethorpes_dusk-640.webp 640w, img/39_cleethorpes_dusk-1280.webp 1280w, 39_cleethorpes_dusk.jpg 2000w" src="39_cleethorpes_dusk.jpg" alt="Cleethorpes Dusk" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Dusk</span></div></div>
+    <div class="gallery-item" data-index="2"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/15_cleethorpes_pier-640.webp 640w, img/15_cleethorpes_pier-1280.webp 1280w, 15_cleethorpes_pier.jpg 2000w" src="15_cleethorpes_pier.jpg" alt="Cleethorpes Pier" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Pier</span></div></div>
+    <div class="gallery-item" data-index="3"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/23_cleethorpes_walk-640.webp 640w, img/23_cleethorpes_walk-1280.webp 1280w, 23_cleethorpes_walk.jpg 1333w" src="23_cleethorpes_walk.jpg" alt="Cleethorpes Walk" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Promenade</span></div></div>
   </div>
 </section>
 <footer>
@@ -113,9 +112,9 @@
   <img src="" alt="" id="lbImg" />
   <button class="lightbox-nav lightbox-next" id="lbNext">&#8250;</button>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="site.js?v=2"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="site.js?v=2"></script>
 <script>
   var burger=document.getElementById('navBurger'),navLinks=document.getElementById('navLinks');
   if(burger&&navLinks){burger.addEventListener('click',function(){burger.classList.toggle('open');navLinks.classList.toggle('open');});navLinks.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){burger.classList.remove('open');navLinks.classList.remove('open');});});}

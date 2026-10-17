@@ -111,6 +111,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
 .post-missing a { color: var(--accent); }
 @media (max-width: 768px) { .post { padding: 7.5rem 1.25rem 4rem; } .post-nav { grid-template-columns: 1fr; } .post-nav .next { grid-column: 1; text-align: left; } }
 
+.post-figure img[width] { width: min(100%, calc(82vh * var(--ar, 1))); height: auto; aspect-ratio: var(--ar); max-height: none; }
+
 /* Lightbox (photo zoom on post pages) */
 .lightbox { position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; }
 .lightbox.active { display: flex; }
