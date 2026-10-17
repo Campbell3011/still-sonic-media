@@ -74,8 +74,8 @@
   <noscript><p class="blog-empty">Turn on JavaScript to see the latest posts.</p></noscript>
 </section>
 
-<script src="img/manifest.js"></script>
-<script src="blog-posts.js?v=1"></script>
+<!-- Always load the latest posts and photo list (skips the browser's cached copy) -->
+<script>(function(){var t=Date.now();document.write('<script src="img/manifest.js?t='+t+'"><\/script><script src="blog-posts.js?t='+t+'"><\/script>');})();</script>
 <script>
   /* Shared helpers for the blog pages */
   var POSTS = (window.SSM_POSTS || []).filter(function (p) { return p && p.slug && !p.draft; })

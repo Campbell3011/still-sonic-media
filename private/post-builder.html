@@ -236,8 +236,8 @@
 
 <div class="pb-toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="../img/manifest.js"></script>
-<script src="../blog-posts.js"></script>
+<!-- Always load the latest posts and photo list (skips the browser's cached copy) -->
+<script>(function(){var t=Date.now();document.write('<script src="../img/manifest.js?t='+t+'"><\/script><script src="../blog-posts.js?t='+t+'"><\/script>');})();</script>
 <script>
 (function () {
   var IMAGES = window.SSM_IMAGES || {};
