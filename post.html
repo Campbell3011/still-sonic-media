@@ -15,8 +15,8 @@
   <link rel="stylesheet" href="blog.css?v=1" />
   <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="brand.css?v=2" />
-  <script src="consent.js?v=1" defer></script>
+  <link rel="stylesheet" href="brand.css?v=3" />
+  <script src="consent.js?v=2" defer></script>
 </head>
 <body>
 <nav>
@@ -125,9 +125,18 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
   }
 </script>
-<footer>
-  <a href="blog.html" class="footer-back">&#8592; All Posts</a>
-  <span>&#169; 2026 Still Sonic Media</span>
+<footer class="ssm-footer">
+  <div class="ssm-footer-left"><a href="blog.html" class="ssm-footer-back">&#8592; All posts</a></div>
+  <div class="ssm-footer-mid">
+    <a href="index.html" class="ssm-footer-mark" aria-label="Still Sonic Media home">SS<span>M</span></a>
+    <span class="ssm-footer-copy">&#169; 2026 Still Sonic Media</span>
+  </div>
+  <div class="ssm-footer-right">
+    <a href="https://instagram.com/stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="https://www.youtube.com/@stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg></a>
+    <span class="ssm-footer-rule" aria-hidden="true"></span>
+    <button type="button" class="ssm-cookie-link">Cookies</button>
+  </div>
 </footer>
 
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

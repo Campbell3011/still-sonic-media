@@ -76,7 +76,9 @@
   /* "Cookies" link in the footer to reopen the choice */
   function addFooterLink() {
     var f = document.querySelector('footer');
-    if (!f || f.querySelector('.ssm-cookie-link')) return;
+    if (!f) return;
+    var existing = f.querySelector('.ssm-cookie-link');      // the footer already has a Cookies button
+    if (existing) { existing.addEventListener('click', showBanner); return; }
     if (!document.querySelector('style[data-ssm-consent]')) {
       var st = document.createElement('style'); st.setAttribute('data-ssm-consent', ''); st.textContent = css; document.head.appendChild(st);
     }

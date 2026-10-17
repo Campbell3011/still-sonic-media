@@ -42,3 +42,32 @@ footer, .footer-back, .footer-instagram {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ============================================
+   FOOTER (option B: three even columns)
+   Same on every page. Left: the page's back link (or Prints · Book on Home).
+   Middle: monogram + copyright, always dead centre. Right: socials + Cookies.
+   ============================================ */
+footer.ssm-footer { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: 1rem; padding: 2.25rem 3rem; border-top: 1px solid #241f1a; background: transparent; text-align: left; flex-direction: initial; }
+footer.ssm-footer a { color: #a39a8e; text-decoration: none; transition: color 0.2s; }
+footer.ssm-footer a:hover, footer.ssm-footer button:hover { color: #c8a97e; }
+.ssm-footer-left { justify-self: start; display: flex; align-items: center; gap: 0.75rem; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.ssm-footer-left a { padding: 0.75rem 0; }
+footer.ssm-footer .ssm-footer-back { color: #c8a97e; }
+footer.ssm-footer .ssm-footer-back:hover { color: #f7f2ea; }
+.ssm-footer-dot { color: #4a443d; }
+.ssm-footer-mid { justify-self: center; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+footer.ssm-footer .ssm-footer-mark { font-family: 'Redaction35', Georgia, serif; font-size: 1.6rem; line-height: 1; letter-spacing: 0; text-transform: none; color: #f7f2ea; }
+.ssm-footer-mark span { color: #c8a97e; }
+.ssm-footer-copy { font-family: 'Space Mono', monospace !important; font-size: 0.62rem; letter-spacing: 0.14em !important; text-transform: uppercase; color: #7a7268; }
+.ssm-footer-right { justify-self: end; display: flex; align-items: center; gap: 0.25rem; }
+.ssm-footer-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+.ssm-footer-rule { width: 1px; height: 18px; background: #2e2821; margin: 0 0.6rem; }
+footer.ssm-footer .ssm-cookie-link { background: none; border: none; cursor: pointer; padding: 0.75rem 0.25rem; color: #a39a8e; opacity: 1; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; }
+footer.ssm-footer a:focus-visible, footer.ssm-footer button:focus-visible { outline: 1px solid #c8a97e; outline-offset: 3px; }
+@media (max-width: 768px) {
+  footer.ssm-footer { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 2rem 1rem 2.25rem; text-align: center; }
+  .ssm-footer-left, .ssm-footer-right { justify-self: auto; }
+  .ssm-footer-mid { display: contents; }
+  .ssm-footer-left { order: 1; } .ssm-footer-mark { order: 2; } .ssm-footer-right { order: 3; } .ssm-footer-copy { order: 4; }
+}
