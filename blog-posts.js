@@ -41,6 +41,21 @@
    ============================================ */
 
 window.SSM_POSTS = [
+     {
+    slug: 'tiger-under-the-spotlight',
+    type: 'text',
+    title: 'Where To Next..?',
+    date: '2026-10-17',
+    tag: 'News',
+    excerpt: 'There are sometimes certain photos I obsess over...',
+    body: [
+      'I’ve been thinking about new things to explore in my shooting. I’ve recently got a car, which will open things up a lot, both for photographing the car itself and for wherever I end up going in it. I really like the last few months of the year. Autumn (or fall, for those of you across the pond) and winter can both seem harsh and unforgiving, but they come with a beauty you can’t find anywhere else.',
+      'I once photographed the family car one winter morning after it had snowed. It was early, so the snow was fresh and untouched, which made every impression in it, mine and those of the other early risers, stand out all the more. Snow and frost had gathered all over the car, not just on the body. I thought it looked best in the grille and on the badges: on the three spokes of the Mercedes-Benz badge there were tiny crystals of ice, along with residue where it had started to melt by the time I arrived. These were some of my best automotive photos, and some of my only ones, with a level of detail I’d never seen in my work until then. It’s something I want to recreate with water and close-up detail on my own car, to get some decent photos to share across my platforms.',
+      'This time of year also calls for more nature photography, as everything takes on a deep red hue that soon fades. With a lack of events coming up (apart from maybe a Christmas market or two), I really want to find something to photograph, or even video.',
+      '2027 is stacked, though: James Marriott, a Paris trip and Blink-182 (with PTV), Oasis, and a trip to Turkey. If everything falls at the right time, vlogs could be on the way too, as I’ve been thinking about editing again and how much I miss it. Paired with new ideas and plans, that makes for a promising rest of this year and next.'
+    ],
+    lead: true
+  },
    {
     slug: 'tiger-under-the-spotlight',
     type: 'image-text',
