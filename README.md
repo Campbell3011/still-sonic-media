@@ -35,7 +35,7 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 ├── sitemap.xml         List of public pages for search engines
 ├── fonts/              Redaction (display) + Space Mono (labels) webfonts
 ├── img/                Auto-made WebP sizes of every photo + manifest.js (don't edit)
-├── tools/              optimise_images.py — run after adding photos
+├── tools/              optimise_images.py — runs automatically via .github/workflows
 ├── *.jpg               All photos, kept loose at the repo root. Numbered by project
 │                       (01–03 camels = Tunisia, 04–08 = PTV/portrait, fl_* = florida, etc.)
 └── private/            Unlisted client pages — NOT linked from any menu or the sitemap,
@@ -60,10 +60,11 @@ it's ready. Instructions are at the top of the file.
 **Add a photo to a gallery page** — upload the .jpg to the repo root, then add a
 `<div class="gallery-item">…</div>` block to that page's `#galleryGrid`, copying
 an existing one and changing the filename, alt text, and label.
-Then run `python3 tools/optimise_images.py` (needs `pip install Pillow`). It makes
-small WebP copies in `img/` and adds the size info to every page, so phones load
-a ~100 KB file instead of the 2000 px original. Safe to run any time. If you
-skip it, the photo still works, it just loads slower.
+Upload photos on GitHub with **Add file → Upload files** (drag the photo in, then
+Commit). Within about a minute, GitHub automatically makes small WebP copies in
+`img/`, shrinks the original if it's over 2000 px, and updates every page (see the
+**Actions** tab). Nothing to run yourself. Tip: name photos in lowercase with
+no spaces, e.g. `tiger_spotlight.jpg`.
 
 **Add a new project** — copy an existing project page (e.g. `cleethorpes.html`),
 swap the images and text, then add a project card for it on `index.html`.
