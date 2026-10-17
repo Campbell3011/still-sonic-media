@@ -34,3 +34,11 @@ footer, .footer-back, .footer-instagram {
 
 /* Monogram sizing in the nav */
 .nav-logo svg { height: 34px; width: auto; }
+
+/* Keyboard focus on gallery photos (Tab to reach, Enter to open) */
+.gallery-item:focus-visible { outline: 2px solid #c8a97e; outline-offset: 3px; }
+
+/* Visitors who prefer less motion: no zooms or fades */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

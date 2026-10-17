@@ -16,14 +16,6 @@
   <meta name="description" content="Still Sonic Media &#8212; UK photography covering live music, portrait, travel and street. Based in England, shooting across Europe and beyond." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="site.css?v=4" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQ900SQ106"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GQ900SQ106');
-  </script>
   <style>
     @font-face {
       font-family: 'Redaction35';
@@ -115,6 +107,15 @@
     .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,13,11,0.8) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
     .gallery-item-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); }
+    /* Featured filter buttons */
+    .gallery-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin: -1.5rem auto 2.5rem; }
+    .gallery-filter { background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.7rem 1.3rem; min-height: 44px; cursor: pointer; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+    .gallery-filter:hover { color: var(--text); border-color: #3a332b; }
+    .gallery-filter.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+    .gallery-filter:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+    .gallery-item.is-filtered { display: none; }
+    .gallery-item.filter-in { animation: filterIn 0.45s ease both; }
+    @keyframes filterIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
     @media (max-width: 768px) { .gallery-grid { columns: 2 160px; } }
     @media (max-width: 480px) { .gallery-grid { columns: 1; } }
 
@@ -126,6 +127,14 @@
     .vlog-card { flex: 0 0 min(560px, 82vw); scroll-snap-align: center; background: var(--bg); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.3s; }
     .vlog-card:hover { border-color: rgba(200,169,126,0.3); }
     .vlog-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    /* Click-to-load YouTube: a thumbnail until someone presses play (saves ~500 KB per video) */
+    .yt-lite { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: none; background: #000; cursor: pointer; display: block; }
+    .yt-lite img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity 0.3s, transform 0.6s; }
+    .yt-lite:hover img, .yt-lite:focus-visible img { opacity: 1; transform: scale(1.02); }
+    .yt-play { position: absolute; left: 50%; top: 50%; width: 68px; height: 68px; margin: -34px 0 0 -34px; border-radius: 50%; border: 1px solid rgba(247,242,234,0.7); background: rgba(15,13,11,0.6); transition: background 0.2s, border-color 0.2s; }
+    .yt-play::after { content: ''; position: absolute; left: 27px; top: 22px; border-style: solid; border-width: 12px 0 12px 19px; border-color: transparent transparent transparent #f7f2ea; }
+    .yt-lite:hover .yt-play, .yt-lite:focus-visible .yt-play { background: #c8a97e; border-color: #c8a97e; }
+    .yt-lite:focus-visible { outline: 1px solid #c8a97e; outline-offset: 3px; }
     .vlog-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     .vlog-info { padding: 1.5rem; }
     .vlog-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
@@ -176,7 +185,49 @@
   </style>
   <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="brand.css?v=1" />
+  <link rel="stylesheet" href="brand.css?v=2" />
+  <link rel="canonical" href="https://stillsonicmedia.co.uk/" />
+  <script src="consent.js?v=1" defer></script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ProfessionalService",
+ "@id": "https://stillsonicmedia.co.uk/#business",
+ "name": "Still Sonic Media",
+ "description": "Live music, portrait, event and food photography by Campbell Downie, based near Doncaster and Sheffield.",
+ "url": "https://stillsonicmedia.co.uk/",
+ "image": "https://stillsonicmedia.co.uk/photos/concert/26_concert_guitarist_red.jpg",
+ "logo": "https://stillsonicmedia.co.uk/favicon.svg",
+ "email": "hello@stillsonicmedia.co.uk",
+ "founder": {
+  "@type": "Person",
+  "name": "Campbell Downie"
+ },
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Doncaster",
+  "addressRegion": "South Yorkshire",
+  "addressCountry": "GB"
+ },
+ "areaServed": [
+  "Doncaster",
+  "Sheffield",
+  "South Yorkshire",
+  "United Kingdom"
+ ],
+ "priceRange": "£120–£400+",
+ "knowsAbout": [
+  "Concert photography",
+  "Portrait photography",
+  "Event photography",
+  "Food and product photography"
+ ],
+ "sameAs": [
+  "https://instagram.com/stillsonicmedia",
+  "https://www.youtube.com/@stillsonicmedia"
+ ]
+}
+  </script>
 </head>
 <body>
 
@@ -315,34 +366,57 @@
     <span class="section-eyebrow">Selected Work</span>
     <h2 class="section-title">Featured</h2>
   </div>
+  <div class="gallery-filters" role="group" aria-label="Filter featured photos">
+    <button type="button" class="gallery-filter active" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" class="gallery-filter" data-filter="live" aria-pressed="false">Live</button>
+    <button type="button" class="gallery-filter" data-filter="portrait" aria-pressed="false">Portrait</button>
+    <button type="button" class="gallery-filter" data-filter="travel" aria-pressed="false">Travel</button>
+    <button type="button" class="gallery-filter" data-filter="food" aria-pressed="false">Food</button>
+  </div>
   <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item" data-index="0">
+    <div class="gallery-item" data-cat="portrait" data-index="0">
       <img decoding="async" height="935" width="1400" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/42_jimbo_portrait_purple-640.webp 640w, img/jimbo/42_jimbo_portrait_purple-1280.webp 1280w, photos/jimbo/42_jimbo_portrait_purple.jpg 1400w" src="photos/jimbo/42_jimbo_portrait_purple.jpg" alt="James Marriott Portrait" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">James Marriott &#8212; Portrait</span></div>
     </div>
-    <div class="gallery-item" data-index="1">
+    <div class="gallery-item" data-cat="travel" data-index="1">
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/01_camel_handler-640.webp 640w, img/tunisia/01_camel_handler-1280.webp 1280w, photos/tunisia/01_camel_handler.jpg 2000w" src="photos/tunisia/01_camel_handler.jpg" alt="Tunisia Camel Handler" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Travel</span></div>
     </div>
-    <div class="gallery-item" data-index="2">
+    <div class="gallery-item" data-cat="live" data-index="2">
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/concert/26_concert_guitarist_red-640.webp 640w, img/concert/26_concert_guitarist_red-1280.webp 1280w, photos/concert/26_concert_guitarist_red.jpg 2000w" src="photos/concert/26_concert_guitarist_red.jpg" alt="Concert Guitarist" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Live Music &#8212; Concert</span></div>
     </div>
-    <div class="gallery-item" data-index="3">
+    <div class="gallery-item" data-cat="travel" data-index="3">
       <img decoding="async" height="2000" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/cleethorpes/39_cleethorpes_dusk-640.webp 640w, img/cleethorpes/39_cleethorpes_dusk-1280.webp 1280w, photos/cleethorpes/39_cleethorpes_dusk.jpg 2000w" src="photos/cleethorpes/39_cleethorpes_dusk.jpg" alt="Cleethorpes Dusk" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Coastal</span></div>
     </div>
-    <div class="gallery-item" data-index="4">
+    <div class="gallery-item" data-cat="travel" data-index="4">
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/scotland/17_scotland_binoculars-640.webp 640w, img/scotland/17_scotland_binoculars-1280.webp 1280w, photos/scotland/17_scotland_binoculars.jpg 2000w" src="photos/scotland/17_scotland_binoculars.jpg" alt="Scotland" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Scotland &#8212; Travel</span></div>
     </div>
-    <div class="gallery-item" data-index="5">
+    <div class="gallery-item" data-cat="portrait" data-index="5">
       <img decoding="async" height="1400" width="933" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/41_jimbo_mazza_bw_small-640.webp 640w, photos/jimbo/41_jimbo_mazza_bw_small.jpg 933w" src="photos/jimbo/41_jimbo_mazza_bw_small.jpg" alt="James Marriott BW" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">James Marriott &#8212; Portrait</span></div>
     </div>
-    <div class="gallery-item" data-index="6">
+    <div class="gallery-item" data-cat="travel" data-index="6">
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/35_tunisia_desert_a-640.webp 640w, img/tunisia/35_tunisia_desert_a-1280.webp 1280w, photos/tunisia/35_tunisia_desert_a.jpg 2000w" src="photos/tunisia/35_tunisia_desert_a.jpg" alt="Tunisia Desert" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert</span></div>
+    </div>
+    <div class="gallery-item" data-index="7" data-cat="live">
+      <img decoding="async" height="1125" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/concert/18_concert_stage-640.webp 640w, img/concert/18_concert_stage-1280.webp 1280w, photos/concert/18_concert_stage.jpg 2000w" src="photos/concert/18_concert_stage.jpg" alt="Live stage bathed in blue light" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Live Music &#8212; Stage</span></div>
+    </div>
+    <div class="gallery-item" data-index="8" data-cat="food">
+      <img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/48_food_french_toast-640.webp 640w, img/food/48_food_french_toast-1280.webp 1280w, photos/food/48_food_french_toast.jpg 1334w" src="photos/food/48_food_french_toast.jpg" alt="Strawberry french toast at a brunch table" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Food &#8212; Brunch</span></div>
+    </div>
+    <div class="gallery-item" data-index="9" data-cat="live">
+      <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/28_concert_vocalist_red-640.webp 640w, img/jimbo/28_concert_vocalist_red-1280.webp 1280w, photos/jimbo/28_concert_vocalist_red.jpg 1333w" src="photos/jimbo/28_concert_vocalist_red.jpg" alt="Vocalist under deep red stage light" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Live Music &#8212; Vocalist</span></div>
+    </div>
+    <div class="gallery-item" data-index="10" data-cat="food">
+      <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/52_food_martini_pour-640.webp 640w, img/food/52_food_martini_pour-1280.webp 1280w, photos/food/52_food_martini_pour.jpg 1333w" src="photos/food/52_food_martini_pour.jpg" alt="Espresso martini being poured" loading="lazy" />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Food &#8212; Cocktails</span></div>
     </div>
   </div>
 </section>
@@ -357,7 +431,7 @@
     <div class="vlog-carousel" id="vlogCarousel">
       <div class="vlog-card">
         <div class="vlog-embed">
-          <iframe src="https://www.youtube.com/embed/TyC5s6iYOYQ" title="Theres Goes My Hero - Foo Fighters 2026" allowfullscreen loading="lazy"></iframe>
+          <button type="button" class="yt-lite" data-id="TyC5s6iYOYQ" data-title="Theres Goes My Hero - Foo Fighters 2026" aria-label="Play video: Theres Goes My Hero - Foo Fighters 2026"><img src="https://i.ytimg.com/vi/TyC5s6iYOYQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" /><span class="yt-play" aria-hidden="true"></span></button>
         </div>
         <div class="vlog-info">
           <p class="vlog-label">Concert Vlog</p>
@@ -367,7 +441,7 @@
       </div>
       <div class="vlog-card">
         <div class="vlog-embed">
-          <iframe src="https://www.youtube.com/embed/47lZUcWyX3c" title="WE WANT BASS | Dizzee Rascal" allowfullscreen loading="lazy"></iframe>
+          <button type="button" class="yt-lite" data-id="47lZUcWyX3c" data-title="WE WANT BASS | Dizzee Rascal" aria-label="Play video: WE WANT BASS | Dizzee Rascal"><img src="https://i.ytimg.com/vi/47lZUcWyX3c/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" /><span class="yt-play" aria-hidden="true"></span></button>
         </div>
         <div class="vlog-info">
           <p class="vlog-label">Concert Vlog</p>
@@ -377,7 +451,7 @@
       </div>
       <div class="vlog-card">
         <div class="vlog-embed">
-          <iframe src="https://www.youtube.com/embed/xIQ62JBSj3Y" title="JAMES 2025" allowfullscreen loading="lazy"></iframe>
+          <button type="button" class="yt-lite" data-id="xIQ62JBSj3Y" data-title="JAMES 2025" aria-label="Play video: JAMES 2025"><img src="https://i.ytimg.com/vi/xIQ62JBSj3Y/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" /><span class="yt-play" aria-hidden="true"></span></button>
         </div>
         <div class="vlog-info">
           <p class="vlog-label">Concert Vlog</p>
@@ -387,7 +461,7 @@
       </div>
       <div class="vlog-card">
         <div class="vlog-embed">
-          <iframe src="https://www.youtube.com/embed/xelgjKldl1Q" title="PTV 2025" allowfullscreen loading="lazy"></iframe>
+          <button type="button" class="yt-lite" data-id="xelgjKldl1Q" data-title="PTV 2025" aria-label="Play video: PTV 2025"><img src="https://i.ytimg.com/vi/xelgjKldl1Q/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" /><span class="yt-play" aria-hidden="true"></span></button>
         </div>
         <div class="vlog-info">
           <p class="vlog-label">Concert Vlog</p>
@@ -446,7 +520,7 @@
 
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="site.js?v=2"></script>
+<script defer src="site.js?v=3"></script>
 <script>
   // Hamburger
   var burger = document.getElementById('navBurger');
@@ -471,7 +545,14 @@
   var current = 0;
   function openLightbox(index) { current = index; lbImg.src = items[current].querySelector('img').src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
   function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-  function navigate(dir) { current = (current + dir + items.length) % items.length; lbImg.src = items[current].querySelector('img').src; }
+  function navigate(dir) {
+    // skip photos hidden by the filter
+    for (var step = 0; step < items.length; step++) {
+      current = (current + dir + items.length) % items.length;
+      if (!items[current].classList.contains('is-filtered')) break;
+    }
+    lbImg.src = items[current].querySelector('img').src;
+  }
   items.forEach(function(item, i) { item.addEventListener('click', function() { openLightbox(i); }); });
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   document.getElementById('lbPrev').addEventListener('click', function() { navigate(-1); });
@@ -491,6 +572,37 @@
     document.getElementById('vlogPrev').addEventListener('click', function() { vlogCarousel.scrollBy({ left: -cardWidth(), behavior: 'smooth' }); });
     document.getElementById('vlogNext').addEventListener('click', function() { vlogCarousel.scrollBy({ left: cardWidth(), behavior: 'smooth' }); });
   }
+</script>
+<script>
+  /* Swap a YouTube thumbnail for the real player only when pressed */
+  document.querySelectorAll('.yt-lite').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.id + '?autoplay=1&rel=0';
+      f.title = b.dataset.title; f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+      b.replaceWith(f);
+    });
+  });
+</script>
+<script>
+  /* Featured filter: Live / Portrait / Travel / Food */
+  (function () {
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.gallery-filter'));
+    var tiles = Array.prototype.slice.call(document.querySelectorAll('#galleryGrid .gallery-item'));
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-filter');
+        btns.forEach(function (x) { var on = x === b; x.classList.toggle('active', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        tiles.forEach(function (t) {
+          var show = f === 'all' || t.getAttribute('data-cat') === f;
+          t.classList.toggle('is-filtered', !show);
+          t.classList.remove('filter-in');
+          if (show) { void t.offsetWidth; t.classList.add('filter-in'); t.style.opacity = 1; t.style.transform = 'none'; }
+        });
+        if (window.ScrollTrigger) ScrollTrigger.refresh();
+      });
+    });
+  })();
 </script>
 </body>
 </html>

@@ -13,23 +13,10 @@
   function qs(sel) { return document.querySelector(sel); }
   function qsa(sel) { return gsap.utils.toArray(sel); }
 
-  /* ------------------------------------------
-     GOOGLE ANALYTICS (all pages)
-     Injected here so every page that loads site.js
-     is tracked without editing each file. Pages that
-     already have the gtag snippet in their <head>
-     (index.html, book.html) are skipped by the guard.
-  ------------------------------------------ */
-  if (!window.gtag) {
-    var gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-GQ900SQ106';
-    document.head.appendChild(gaScript);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { dataLayer.push(arguments); };
-    gtag('js', new Date());
-    gtag('config', 'G-GQ900SQ106');
-  }
+  /* Google Analytics is loaded by consent.js, and only after a visitor accepts cookies. */
+
+  /* Visitors who've asked their device for less motion get no curtain or scroll animations */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------
      PAGE TRANSITION
@@ -45,6 +32,8 @@
   document.body.appendChild(overlay);
 
   // Curtain reveal on load: overlay slides away, SS logo fades out
+  if (reduceMotion) { gsap.set(overlay, { scaleY: 0 }); gsap.set(ssLogo, { opacity: 0 }); }
+  else {
   gsap.set(overlay, { scaleY: 1, transformOrigin: 'top center' });
   gsap.set(ssLogo, { opacity: 1 });
   gsap.to(overlay, {
@@ -59,9 +48,11 @@
     duration: 0.28,
     delay: 0.05
   });
+  }
 
   // Exit curtain: SS flashes in as overlay covers, then navigates
   document.addEventListener('click', function (e) {
+    if (reduceMotion) return;
     var link = e.target.closest('a[href]');
     if (!link) return;
     var href = link.getAttribute('href');
@@ -162,6 +153,7 @@
      SCROLL ANIMATIONS
   ------------------------------------------ */
   gsap.registerPlugin(ScrollTrigger);
+  if (!reduceMotion) {
 
   // --- Hero elements (index page) ---
   var heroEls = [
@@ -265,5 +257,23 @@
       }
     );
   });
+  } // end of scroll animations
+
+  /* ------------------------------------------
+     KEYBOARD-FRIENDLY GALLERIES
+     Photos that open in the lightbox can be reached with Tab
+     and opened with Enter or Space.
+  ------------------------------------------ */
+  if (document.getElementById('lightbox')) {
+    document.querySelectorAll('.gallery-item').forEach(function (item) {
+      var img = item.querySelector('img');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('role', 'button');
+      item.setAttribute('aria-label', 'View photo' + (img && img.alt ? ': ' + img.alt : ''));
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+      });
+    });
+  }
 
 })();

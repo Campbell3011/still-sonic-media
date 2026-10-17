@@ -28,6 +28,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'img')
 WIDTHS = [640, 1280]
 QUALITY = 80
+# Size limits: grainy or very detailed shots get re-encoded at a lower quality
+# until they fit. Keeps every page light without visibly hurting the photo.
+CAP_KB = {640: 70, 1280: 190}       # phone copies in img/
+ORIGINAL_CAP_KB = 550               # the full-size original used by the lightbox
 PAGES = [p for p in glob.glob(os.path.join(ROOT, '*.html')) if not p.endswith('index_prototype.html')]
 
 # How wide each kind of image shows on screen, so the browser picks well.
@@ -47,8 +51,19 @@ def find_photos():
     return sorted(p for p in found if os.path.isfile(p) and p.lower().endswith(PHOTO_EXT))
 
 def shrink_original(path, im):
-    """Cap originals at MAX_EDGE px so the lightbox doesn't pull a 6 MB file."""
+    """Cap originals at MAX_EDGE px (and ORIGINAL_CAP_KB) so the lightbox stays quick."""
     if max(im.size) <= MAX_EDGE:
+        if not path.lower().endswith('.png') and os.path.getsize(path) > ORIGINAL_CAP_KB * 1024:
+            import io
+            for q in (84, 80, 76, 72):
+                buf = io.BytesIO()
+                im.convert('RGB').save(buf, 'JPEG', quality=q, optimize=True, progressive=True)
+                if buf.tell() <= ORIGINAL_CAP_KB * 1024:
+                    break
+            if buf.tell() < os.path.getsize(path):
+                old = os.path.getsize(path) // 1024
+                open(path, 'wb').write(buf.getvalue())
+                print('lightened', os.path.basename(path), f'{old} KB -> {buf.tell()//1024} KB (q{q})')
         return im
     im.thumbnail((MAX_EDGE, MAX_EDGE), Image.LANCZOS)
     if path.lower().endswith('.png'):
@@ -80,9 +95,15 @@ def build_variants():
             if target >= w:
                 continue
             out = os.path.join(out_dir, f'{stem}-{target}.webp')
-            if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(path):
-                im.convert('RGB').resize((target, round(h * target / w)), Image.LANCZOS).save(out, 'WEBP', quality=QUALITY, method=6)
-                print('made', os.path.relpath(out, ROOT))
+            stale = not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(path)
+            too_big = os.path.exists(out) and os.path.getsize(out) > CAP_KB[target] * 1024
+            if stale or too_big:
+                small = im.convert('RGB').resize((target, round(h * target / w)), Image.LANCZOS)
+                for q in (QUALITY, 74, 68, 62, 56):
+                    small.save(out, 'WEBP', quality=q, method=6)
+                    if os.path.getsize(out) <= CAP_KB[target] * 1024:
+                        break
+                print('made', os.path.relpath(out, ROOT), f'q{q}', f'{os.path.getsize(out)//1024} KB')
             entries.append(os.path.relpath(out, ROOT).replace(os.sep, '/') + f' {target}w')
         entries.append(f'{name} {w}w')
         manifest[name] = {'w': w, 'h': h, 'srcset': ', '.join(entries)}
