@@ -19,6 +19,10 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 ├── florida.html
 ├── skate.html          ("Coming soon" placeholder)
 ├── skull-rose.html     ("Coming soon" placeholder)
+├── blog.html           Blog list — filter by Photos / Words / Stories
+├── post.html           Single blog post page (post.html?p=<slug>)
+├── blog-posts.js       All blog posts live here — edit this file to add one
+├── blog.css            Styles for the two blog pages
 ├── book.html           Booking page — pricing tiers + enquiry form (Formspree,
 │                       submissions arrive by email). Linked from the home nav.
 ├── prints.html         Print sales page (not linked from anywhere yet)
@@ -39,6 +43,11 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 ```
 
 ## Common jobs
+
+**Write a blog post** — open `blog-posts.js`, copy an existing post to the top of
+the list and edit it. Pick a `type`: `'image'` (photo + caption), `'text'` (words
+only) or `'image-text'` (photo + paragraphs). Set `draft: true` to hide it until
+it's ready. Instructions are at the top of the file.
 
 **Add a photo to a gallery page** — upload the .jpg to the repo root, then add a
 `<div class="gallery-item">…</div>` block to that page's `#galleryGrid`, copying

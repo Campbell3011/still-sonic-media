@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Still Sonic Media" />
+  <meta property="og:title" content="Blog &#8212; Still Sonic Media" />
+  <meta property="og:description" content="Gig write-ups, single frames and notes from the road by Still Sonic Media." />
+  <meta property="og:image" content="https://stillsonicmedia.co.uk/39_cleethorpes_dusk.jpg" />
+  <meta property="og:url" content="https://stillsonicmedia.co.uk/blog.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Photography Blog &#8212; Still Sonic Media</title>
+  <meta name="description" content="The Still Sonic Media blog: gig write-ups, single photographs and notes from shoots across the UK and beyond." />
+  <link rel="canonical" href="https://stillsonicmedia.co.uk/blog.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="site.css?v=4" />
+  <link rel="stylesheet" href="blog.css?v=1" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQ900SQ106"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GQ900SQ106');
+  </script>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="Still Sonic Media home">
+    <svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="54" fill="#e8e8e8" font-family="'Redaction35', Georgia, serif" font-size="50">S</text>
+      <text x="32" y="54" fill="#c8a96e" font-family="'Redaction35', Georgia, serif" font-size="50">S</text>
+    </svg>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#projects">Work</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="book.html">Book</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://instagram.com/stillsonicmedia" class="nav-instagram" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <button class="nav-hamburger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <p class="hero-eyebrow">Still Sonic Media &#8212; Journal</p>
+  <h1 class="hero-title">Blog</h1>
+  <p class="hero-subtitle">Frames, words &amp; stories from the road</p>
+  <div class="page-hero-line"></div>
+</div>
+
+<div class="blog-filters" role="group" aria-label="Filter posts">
+  <button class="blog-filter active" data-filter="all" aria-pressed="true">All</button>
+  <button class="blog-filter" data-filter="image" aria-pressed="false">Photos</button>
+  <button class="blog-filter" data-filter="text" aria-pressed="false">Words</button>
+  <button class="blog-filter" data-filter="image-text" aria-pressed="false">Stories</button>
+</div>
+
+<section id="posts">
+  <div class="blog-grid" id="blogGrid"></div>
+  <p class="blog-empty" id="blogEmpty" hidden>No posts here yet &#8212; check back soon.</p>
+  <noscript><p class="blog-empty">Turn on JavaScript to see the latest posts.</p></noscript>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-back">&#8592; Home</a>
+  <span>&#169; 2026 Still Sonic Media</span>
+</footer>
+
+<script src="blog-posts.js?v=1"></script>
+<script>
+  /* Shared helpers for the blog pages */
+  var POSTS = (window.SSM_POSTS || []).filter(function (p) { return p && p.slug && !p.draft; })
+    .sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+  var TYPE_NAMES = { 'image': 'Photo', 'text': 'Words', 'image-text': 'Story' };
+  function fmtDate(d) {
+    if (!d) return '';
+    var dt = new Date(d + 'T12:00:00');
+    return isNaN(dt) ? d : dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function plain(html) { var d = document.createElement('div'); d.innerHTML = html || ''; return d.textContent || ''; }
+  function excerptOf(p) {
+    if (p.excerpt) return p.excerpt;
+    var first = plain((p.body || [])[0] || p.caption || '');
+    return first.length > 180 ? first.slice(0, 177).replace(/\s+\S*$/, '') + '\u2026' : first;
+  }
+  function metaHTML(p) {
+    return '<div class="post-meta"><span class="tag">' + esc(p.tag || TYPE_NAMES[p.type] || 'Post') + '</span><span class="dot"></span><time datetime="' + esc(p.date) + '">' + esc(fmtDate(p.date)) + '</time></div>';
+  }
+
+  /* Build one card per post. Runs before site.js so the cursor and page
+     transitions pick the cards up like any other link. */
+  var grid = document.getElementById('blogGrid');
+  var empty = document.getElementById('blogEmpty');
+  grid.innerHTML = POSTS.map(function (p) {
+    var href = 'post.html?p=' + encodeURIComponent(p.slug);
+    var img = p.image ? '<div class="post-card-img"><img src="' + esc(p.image) + '" alt="' + esc(p.imageAlt || p.title) + '" loading="lazy" /></div>' : '';
+    if (p.type === 'image') {
+      return '<a class="post-card post-card--image" data-type="image" href="' + href + '">' + img +
+        '<div class="post-card-overlay">' + metaHTML(p) + '<h2 class="post-card-title">' + esc(p.title) + '</h2></div></a>';
+    }
+    var isText = p.type === 'text';
+    return '<a class="post-card ' + (isText ? 'post-card--text' : 'post-card--story') + '" data-type="' + (isText ? 'text' : 'image-text') + '" href="' + href + '">' +
+      (isText ? '' : img) +
+      '<div class="post-card-body">' + metaHTML(p) + '<h2 class="post-card-title">' + esc(p.title) + '</h2>' +
+      '<p class="post-card-excerpt">' + esc(excerptOf(p)) + '</p><span class="read-more">Read &#8594;</span></div></a>';
+  }).join('');
+  empty.hidden = POSTS.length > 0;
+
+  /* Filter buttons */
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.blog-filter'));
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.post-card'));
+  function applyFilter(type) {
+    var shown = 0;
+    cards.forEach(function (c) {
+      var match = type === 'all' || c.getAttribute('data-type') === type;
+      c.classList.toggle('is-hidden', !match);
+      if (match) shown++;
+    });
+    empty.hidden = shown > 0;
+    buttons.forEach(function (b) {
+      var on = b.getAttribute('data-filter') === type;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { applyFilter(b.getAttribute('data-filter')); }); });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="site.js?v=2"></script>
+<script>
+  var burger=document.getElementById('navBurger'),navLinks=document.getElementById('navLinks');
+  if(burger&&navLinks){burger.addEventListener('click',function(){burger.classList.toggle('open');navLinks.classList.toggle('open');});navLinks.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){burger.classList.remove('open');navLinks.classList.remove('open');});});}
+</script>
+</body>
+</html>

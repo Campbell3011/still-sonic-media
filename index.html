@@ -99,6 +99,10 @@
     .project-card-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #111 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; }
     .project-card-placeholder-inner { text-align: center; opacity: 0.25; }
     .project-card-placeholder-inner svg { width: 48px; height: 48px; }
+    .project-card--soon { cursor: default; border: 1px dashed rgba(200,169,110,0.25); }
+    .project-card--soon .project-card-placeholder-inner { opacity: 0.35; transition: opacity 0.4s, transform 0.6s; }
+    .project-card--soon:hover .project-card-placeholder-inner { opacity: 0.6; transform: scale(1.06); }
+    .project-card-soon-badge { position: absolute; top: 1.25rem; right: 1.25rem; font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(200,169,110,0.4); padding: 0.4rem 0.7rem; }
     @media (max-width: 1024px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 540px) { .projects-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; } .project-card-title { font-size: 1.3rem; } }
 
@@ -183,6 +187,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="#projects">Work</a></li>
+    <li><a href="blog.html">Blog</a></li>
     <li><a href="#vlogs">Vlogs</a></li>
     <li><a href="book.html">Book</a></li>
     <li><a href="#about">About</a></li>
@@ -283,6 +288,20 @@
       </div>
       <div class="project-card-arrow">&#8594;</div>
     </a>
+
+    <div class="project-card project-card--soon" aria-label="Animals and Wildlife, coming soon">
+      <div class="project-card-placeholder">
+        <div class="project-card-placeholder-inner">
+          <svg viewBox="0 0 64 64" fill="#c8a96e" aria-hidden="true"><ellipse cx="32" cy="44" rx="13" ry="11"/><ellipse cx="14" cy="28" rx="5.5" ry="7.5" transform="rotate(-20 14 28)"/><ellipse cx="25" cy="17" rx="5.5" ry="8"/><ellipse cx="39" cy="17" rx="5.5" ry="8"/><ellipse cx="50" cy="28" rx="5.5" ry="7.5" transform="rotate(20 50 28)"/></svg>
+        </div>
+      </div>
+      <div class="project-card-overlay">
+        <div class="project-card-label">Wildlife &#8212; Coming Soon</div>
+        <div class="project-card-title">Animals &amp; Wildlife</div>
+        <div class="project-card-meta">Work in Progress</div>
+      </div>
+      <div class="project-card-soon-badge">Soon</div>
+    </div>
 
   </div>
 </section>
