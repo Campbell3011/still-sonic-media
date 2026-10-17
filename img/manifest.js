@@ -319,5 +319,10 @@ window.SSM_IMAGES = {
   "w": 1125,
   "h": 2000,
   "srcset": "img/fl_12-640.webp 640w, fl_12.jpg 1125w"
+ },
+ "tiger_spotlight.JPEG": {
+  "w": 2000,
+  "h": 1333,
+  "srcset": "img/tiger_spotlight-640.webp 640w, img/tiger_spotlight-1280.webp 1280w, tiger_spotlight.JPEG 2000w"
  }
 };
