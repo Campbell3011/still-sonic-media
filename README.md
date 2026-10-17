@@ -17,8 +17,6 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 ├── tunisia.html
 ├── cleethorpes.html
 ├── florida.html
-├── skate.html          ("Coming soon" placeholder)
-├── skull-rose.html     ("Coming soon" placeholder)
 ├── blog.html           Blog list — filter by Photos / Words / Stories
 ├── post.html           Single blog post page (post.html?p=<slug>)
 ├── blog-posts.js       All blog posts live here — edit this file to add one
@@ -38,7 +36,12 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 ├── sitemap.xml         List of public pages for search engines
 ├── fonts/              Redaction (display) + Space Mono (labels) webfonts
 ├── img/                Auto-made WebP sizes of every photo + manifest.js (don't edit)
-├── tools/              optimise_images.py — runs automatically via .github/workflows
+├── 404.html            Branded 'page not found' page (GitHub Pages uses it automatically)
+├── tools/
+│   ├── optimise_images.py   Phone-sized WebP copies of photos (runs automatically)
+│   ├── sync_layout.py       Copies the menu + footer into every page, applies photo
+│   │                        descriptions, rebuilds sitemap.xml (runs automatically)
+│   └── layout/              nav.html, footer.html, pages.json — THE menu and footer
 ├── photos/             All photos, one folder per gallery page:
 │   ├── concert/  jimbo/  scotland/  tunisia/  cleethorpes/  florida/  food/
 │   ├── wildlife/       Animals & Wildlife (page coming soon)
@@ -51,6 +54,14 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 ```
 
 ## Common jobs
+
+**Change the menu or footer** — edit `tools/layout/nav.html` or `tools/layout/footer.html`
+(not the pages). Push, and GitHub copies it into every page within a minute.
+A new page? Add it to `tools/layout/pages.json` with its footer back-link.
+
+**Describe a photo** — add a line to `photos/alt-text.json`:
+`"photos/food/59_food_brunch.jpg": "Pancakes stacked with berries on a white plate"`.
+Every page showing that photo picks it up automatically.
 
 **Write a blog post (easy way)** — go to `stillsonicmedia.co.uk/private/post-builder.html`
 (bookmark it; it's not linked anywhere). Fill in the form, check the preview, press

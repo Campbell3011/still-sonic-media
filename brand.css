@@ -71,3 +71,38 @@ footer.ssm-footer a:focus-visible, footer.ssm-footer button:focus-visible { outl
   .ssm-footer-mid { display: contents; }
   .ssm-footer-left { order: 1; } .ssm-footer-mark { order: 2; } .ssm-footer-right { order: 3; } .ssm-footer-copy { order: 4; }
 }
+
+/* ============================================
+   MENU (shared by every page - markup comes from tools/layout/nav.html)
+   ============================================ */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(15,13,11,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; }
+.nav-links a { text-decoration: none; color: #7a7268; font-size: 0.7rem; text-transform: uppercase; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.nav-active { color: #f7f2ea; }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.nav-instagram { color: #7a7268; text-decoration: none; display: flex; align-items: center; transition: color 0.3s; }
+.nav-instagram:hover { color: #f7f2ea; }
+.nav-hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 10px 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 1px; background: #a39a8e; transition: transform 0.3s, opacity 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.nav-links a:focus-visible, .nav-hamburger:focus-visible, .nav-instagram:focus-visible, .nav-logo:focus-visible { outline: 1px solid #c8a97e; outline-offset: 4px; }
+@media (max-width: 1100px) { .nav-links { gap: 1.6rem; } nav { padding: 1.5rem 2rem; } }
+@media (max-width: 860px) {
+  nav { padding: 1.2rem 1.5rem; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  .nav-hamburger { display: flex; position: relative; z-index: 2001; }
+  .nav-links { display: none; position: fixed; inset: 0; background: rgba(15,13,11,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem; z-index: 2000; }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 1.05rem; letter-spacing: 0.2em; }
+}
+
+/* Footer: Prints link sits beside Cookies */
+footer.ssm-footer .ssm-footer-link { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.75rem 0.5rem; }
+
+/* Lightbox extras added by ui.js: caption + "3 / 12" counter */
+.lightbox-meta { position: absolute; left: 0; right: 0; bottom: 1.25rem; display: flex; justify-content: center; align-items: baseline; gap: 1.25rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: #a39a8e; pointer-events: none; padding: 0 1rem; text-align: center; }
+.lightbox-count { color: #c8a97e; white-space: nowrap; }
+.lightbox-close, .lightbox-nav { min-width: 44px; min-height: 44px; }
+.lightbox-close:focus-visible, .lightbox-nav:focus-visible { outline: 1px solid #c8a97e; outline-offset: 2px; }

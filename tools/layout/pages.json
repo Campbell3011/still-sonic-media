@@ -1,0 +1,15 @@
+{
+  "_help": "Which pages get the shared menu + footer, and what the footer's left-hand link says on each. Add a new page here, then push: GitHub fills in its menu and footer.",
+  "index.html":       {"home": "",           "left": "<a href=\"book.html\" class=\"ssm-footer-back\">Book a shoot &#8594;</a>"},
+  "blog.html":        {"home": "index.html", "left": "<a href=\"index.html\" class=\"ssm-footer-back\">&#8592; Home</a>"},
+  "post.html":        {"home": "index.html", "left": "<a href=\"blog.html\" class=\"ssm-footer-back\">&#8592; All posts</a>"},
+  "book.html":        {"home": "index.html", "left": "<a href=\"index.html\" class=\"ssm-footer-back\">&#8592; Home</a>"},
+  "prints.html":      {"home": "index.html", "left": "<a href=\"index.html\" class=\"ssm-footer-back\">&#8592; Home</a>"},
+  "concert.html":     {"home": "index.html", "left": "<a href=\"index.html#projects\" class=\"ssm-footer-back\">&#8592; All projects</a>"},
+  "jimbo.html":       {"home": "index.html", "left": "<a href=\"index.html#projects\" class=\"ssm-footer-back\">&#8592; All projects</a>"},
+  "scotland.html":    {"home": "index.html", "left": "<a href=\"index.html#projects\" class=\"ssm-footer-back\">&#8592; All projects</a>"},
+  "tunisia.html":     {"home": "index.html", "left": "<a href=\"index.html#projects\" class=\"ssm-footer-back\">&#8592; All projects</a>"},
+  "cleethorpes.html": {"home": "index.html", "left": "<a href=\"index.html#projects\" class=\"ssm-footer-back\">&#8592; All projects</a>"},
+  "florida.html":     {"home": "index.html", "left": "<a href=\"index.html#projects\" class=\"ssm-footer-back\">&#8592; All projects</a>"},
+  "food.html":        {"home": "index.html", "left": "<a href=\"index.html#projects\" class=\"ssm-footer-back\">&#8592; All projects</a>"}
+}

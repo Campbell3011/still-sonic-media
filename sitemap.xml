@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://stillsonicmedia.co.uk/</loc><priority>1.0</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/blog.html</loc><priority>0.8</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/post.html</loc><priority>0.6</priority></url>
   <url><loc>https://stillsonicmedia.co.uk/book.html</loc><priority>0.9</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/prints.html</loc><priority>0.8</priority></url>
   <url><loc>https://stillsonicmedia.co.uk/concert.html</loc><priority>0.8</priority></url>
   <url><loc>https://stillsonicmedia.co.uk/jimbo.html</loc><priority>0.8</priority></url>
-  <url><loc>https://stillsonicmedia.co.uk/scotland.html</loc><priority>0.7</priority></url>
-  <url><loc>https://stillsonicmedia.co.uk/tunisia.html</loc><priority>0.7</priority></url>
-  <url><loc>https://stillsonicmedia.co.uk/cleethorpes.html</loc><priority>0.7</priority></url>
-  <url><loc>https://stillsonicmedia.co.uk/florida.html</loc><priority>0.7</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/scotland.html</loc><priority>0.8</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/tunisia.html</loc><priority>0.8</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/cleethorpes.html</loc><priority>0.8</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/florida.html</loc><priority>0.8</priority></url>
   <url><loc>https://stillsonicmedia.co.uk/food.html</loc><priority>0.8</priority></url>
-  <url><loc>https://stillsonicmedia.co.uk/blog.html</loc><priority>0.8</priority></url>
-  <url><loc>https://stillsonicmedia.co.uk/prints.html</loc><priority>0.5</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/post.html?p=tiger-under-the-spotlight</loc><priority>0.6</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/post.html?p=next-up-animals-and-wildlife</loc><priority>0.6</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/post.html?p=cleethorpes-at-dusk</loc><priority>0.6</priority></url>
+  <url><loc>https://stillsonicmedia.co.uk/post.html?p=welcome-to-the-blog</loc><priority>0.6</priority></url>
 </urlset>

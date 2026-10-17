@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Page not found &#8212; Still Sonic Media</title>
+  <!-- GitHub Pages shows this page for any address that doesn't exist.
+       Links use "/" at the start so they work from any depth. -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preload" href="/fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: 'Redaction35'; src: url('/fonts/Redaction_35-Regular.woff2') format('woff2'); font-display: swap; }
+    @font-face { font-family: 'Space Mono'; src: url('/fonts/SpaceMono-Regular.woff2') format('woff2'); font-display: swap; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { background: #0f0d0b; color: #f7f2ea; font-family: 'Redaction35', Georgia, serif; display: flex; flex-direction: column; }
+    body::after { content: ''; position: fixed; inset: 0; pointer-events: none; opacity: 0.08; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 200px 200px; }
+    header { padding: 1.5rem 3rem; }
+    header a { font-size: 1.9rem; color: #f7f2ea; text-decoration: none; line-height: 1; }
+    header a span, .mark span { color: #c8a97e; }
+    main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1.5rem 4rem; }
+    .k { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: #c8a97e; margin-bottom: 1.25rem; }
+    h1 { font-size: clamp(3rem, 10vw, 6.5rem); font-weight: 400; line-height: 1; }
+    h1 em { color: #c8a97e; }
+    p { color: #a39a8e; font-size: 1.05rem; line-height: 1.7; max-width: 30rem; margin: 1.5rem 0 2.5rem; }
+    .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+    .links a { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 0.95rem 1.5rem; min-height: 44px; border: 1px solid #c8a97e; color: #c8a97e; transition: background 0.2s, color 0.2s; }
+    .links a.primary, .links a:hover { background: #c8a97e; color: #0f0d0b; }
+    .links a:focus-visible, header a:focus-visible { outline: 1px solid #f7f2ea; outline-offset: 3px; }
+    footer { padding: 1.75rem 3rem; border-top: 1px solid #241f1a; font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #7a7268; text-align: center; }
+    @media (max-width: 600px) { header { padding: 1.2rem 1.5rem; } }
+  </style>
+</head>
+<body>
+  <header><a href="/" aria-label="Still Sonic Media home">SS<span>M</span></a></header>
+  <main>
+    <span class="k">Error 404</span>
+    <h1>Out of <em>frame</em></h1>
+    <p>This page doesn't exist, or it's moved. Try one of these instead.</p>
+    <nav class="links" aria-label="Suggested pages">
+      <a href="/#projects" class="primary">See the work</a>
+      <a href="/blog.html">Read the blog</a>
+      <a href="/book.html">Book a shoot</a>
+    </nav>
+  </main>
+  <footer>&#169; 2026 Still Sonic Media</footer>
+</body>
+</html>

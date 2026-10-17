@@ -3,7 +3,7 @@
 # tools/optimise_images.py on GitHub's servers and commits the result
 # (phone-sized WebP copies in img/, updated srcset on pages, img/manifest.js).
 # Nothing to run yourself. Check progress under the repo's "Actions" tab.
-name: Optimise images
+name: Optimise images + sync layout
 
 on:
   push:
@@ -18,6 +18,9 @@ on:
       - '*.PNG'
       - '*.html'
       - 'tools/optimise_images.py'
+      - 'tools/sync_layout.py'
+      - 'tools/layout/**'
+      - 'blog-posts.js'
       - '.github/workflows/optimise-images.yml'
   workflow_dispatch: {}   # adds a "Run workflow" button in the Actions tab
 
@@ -44,6 +47,9 @@ jobs:
       - name: Make phone-sized images
         run: python3 tools/optimise_images.py
 
+      - name: Sync menu, footer, photo descriptions and sitemap
+        run: python3 tools/sync_layout.py
+
       - name: Commit results
         run: |
           git config user.name "ssm-image-bot"
@@ -52,6 +58,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nothing new to optimise."
           else
-            git commit -m "Optimise images (automatic)"
+            git commit -m "Optimise images / sync layout (automatic)"
             git push
           fi

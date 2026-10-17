@@ -78,21 +78,11 @@
     #projects { padding: 8rem 2rem 4rem; }
     .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1400px; margin: 0 auto; }
     .project-card { position: relative; overflow: hidden; aspect-ratio: 3/4; display: block; text-decoration: none; cursor: pointer; }
-    /* Credits strip under the hero */
-    .credits { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem 2.5rem; padding: 2.25rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .credits-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
-    .credits-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.5rem 2.25rem; margin: 0; padding: 0; }
-    .credits-list li { display: flex; align-items: baseline; }
-    .credits-list li + li::before { content: '·'; color: #4a443d; margin-right: 2.25rem; }
-    .credits-list a { font-family: 'Redaction35', Georgia, serif; font-size: 1.35rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
-    .credits-list a span { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-left: 0.35rem; }
-    .credits-list a:hover { color: var(--accent); }
-    @media (max-width: 600px) { .credits { flex-direction: column; gap: 0.9rem; } .credits-list { flex-direction: column; gap: 0.4rem; align-items: center; } .credits-list li + li::before { display: none; } }
     /* Project cards: a second photo fades in on hover (mouse devices only) */
-    .project-card-alt { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; display: none; }
+    .project-card .project-card-alt { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s ease, transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.8s ease; display: none; }
     @media (hover: hover) and (pointer: fine) {
-      .project-card-alt { display: block; }
-      .project-card:hover .project-card-alt, .project-card:focus-visible .project-card-alt { opacity: 1; }
+      .project-card .project-card-alt { display: block; }
+      .project-card:hover .project-card-alt, .project-card:focus-visible .project-card-alt { opacity: 1; transition-delay: 0.1s; }
     }
     .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.6); }
     .project-card:hover img { transform: scale(1.06); filter: brightness(0.75); }
@@ -201,7 +191,7 @@
   </style>
   <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="brand.css?v=3" />
+  <link rel="stylesheet" href="brand.css?v=4" />
   <link rel="canonical" href="https://stillsonicmedia.co.uk/" />
   <script src="consent.js?v=2" defer></script>
   <script type="application/ld+json">
@@ -247,8 +237,9 @@
 </head>
 <body>
 
+<!-- ssm:nav -->
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="index.html" class="nav-logo" aria-label="Still Sonic Media home">
     <svg class="ssm-mark" width="80" height="34" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <text x="0" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
       <text x="31" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
@@ -266,13 +257,12 @@
   </ul>
   <div class="nav-right">
     <a href="https://instagram.com/stillsonicmedia" class="nav-instagram" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
-    <button class="nav-hamburger" id="navBurger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-hamburger" id="navBurger" aria-label="Menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<!-- /ssm:nav -->
 
 <section id="home">
   <div class="hero-bg"></div>
@@ -283,15 +273,6 @@
   <div class="hero-scroll">Scroll</div>
 </section>
 
-<section class="credits" aria-label="Artists and events photographed">
-  <span class="credits-label">Photographed</span>
-  <ul class="credits-list">
-    <li><a href="jimbo.html">James Marriott</a></li>
-    <li><a href="concert.html">Pierce The Veil</a></li>
-    <li><a href="concert.html">EmoFest</a></li>
-  </ul>
-</section>
-
 <section id="projects">
   <div class="section-header">
     <span class="section-eyebrow">The Work</span>
@@ -300,7 +281,7 @@
   <div class="projects-grid">
 
     <a href="jimbo.html" class="project-card">
-      <img decoding="async" height="935" width="1400" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/jimbo/42_jimbo_portrait_purple-640.webp 640w, img/jimbo/42_jimbo_portrait_purple-1280.webp 1280w, photos/jimbo/42_jimbo_portrait_purple.jpg 1400w" src="photos/jimbo/42_jimbo_portrait_purple.jpg" alt="James Marriott" />
+      <img decoding="async" height="935" width="1400" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/jimbo/42_jimbo_portrait_purple-640.webp 640w, img/jimbo/42_jimbo_portrait_purple-1280.webp 1280w, photos/jimbo/42_jimbo_portrait_purple.jpg 1400w" src="photos/jimbo/42_jimbo_portrait_purple.jpg" alt="James Marriott singing into the microphone under purple and blue stage light" />
       <img decoding="async" height="933" width="1400" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/45_jimbo_guitarist_purple-640.webp 640w, img/jimbo/45_jimbo_guitarist_purple-1280.webp 1280w, photos/jimbo/45_jimbo_guitarist_purple.jpg 1400w" class="project-card-alt" src="photos/jimbo/45_jimbo_guitarist_purple.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Portrait &amp; Live &#8212; 2024</div>
@@ -311,7 +292,7 @@
     </a>
 
     <a href="concert.html" class="project-card">
-      <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/concert/26_concert_guitarist_red-640.webp 640w, img/concert/26_concert_guitarist_red-1280.webp 1280w, photos/concert/26_concert_guitarist_red.jpg 2000w" src="photos/concert/26_concert_guitarist_red.jpg" alt="Live Music" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/concert/26_concert_guitarist_red-640.webp 640w, img/concert/26_concert_guitarist_red-1280.webp 1280w, photos/concert/26_concert_guitarist_red.jpg 2000w" src="photos/concert/26_concert_guitarist_red.jpg" alt="Curly-haired guitarist singing and smiling under red and purple stage light" loading="lazy" />
       <img decoding="async" height="1125" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/concert/18_concert_stage-640.webp 640w, img/concert/18_concert_stage-1280.webp 1280w, photos/concert/18_concert_stage.jpg 2000w" class="project-card-alt" src="photos/concert/18_concert_stage.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Concert Photography &#8212; Ongoing</div>
@@ -322,7 +303,7 @@
     </a>
 
     <a href="scotland.html" class="project-card">
-      <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/scotland/17_scotland_binoculars-640.webp 640w, img/scotland/17_scotland_binoculars-1280.webp 1280w, photos/scotland/17_scotland_binoculars.jpg 2000w" src="photos/scotland/17_scotland_binoculars.jpg" alt="Scotland" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/scotland/17_scotland_binoculars-640.webp 640w, img/scotland/17_scotland_binoculars-1280.webp 1280w, photos/scotland/17_scotland_binoculars.jpg 2000w" src="photos/scotland/17_scotland_binoculars.jpg" alt="Close-up of a person peering through small binoculars" loading="lazy" />
       <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/scotland/20_scotland_cobbles-640.webp 640w, img/scotland/20_scotland_cobbles-1280.webp 1280w, photos/scotland/20_scotland_cobbles.jpg 1333w" class="project-card-alt" src="photos/scotland/20_scotland_cobbles.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Travel &amp; Street &#8212; 2023&#8211;24</div>
@@ -333,7 +314,7 @@
     </a>
 
     <a href="tunisia.html" class="project-card">
-      <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/tunisia/01_camel_handler-640.webp 640w, img/tunisia/01_camel_handler-1280.webp 1280w, photos/tunisia/01_camel_handler.jpg 2000w" src="photos/tunisia/01_camel_handler.jpg" alt="Tunisia" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/tunisia/01_camel_handler-640.webp 640w, img/tunisia/01_camel_handler-1280.webp 1280w, photos/tunisia/01_camel_handler.jpg 2000w" src="photos/tunisia/01_camel_handler.jpg" alt="Camel handler leading a tourist on a decorated camel past horses in Tunisia" loading="lazy" />
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/35_tunisia_desert_a-640.webp 640w, img/tunisia/35_tunisia_desert_a-1280.webp 1280w, photos/tunisia/35_tunisia_desert_a.jpg 2000w" class="project-card-alt" src="photos/tunisia/35_tunisia_desert_a.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Travel &#8212; 2024</div>
@@ -344,7 +325,7 @@
     </a>
 
     <a href="cleethorpes.html" class="project-card">
-      <img decoding="async" height="2000" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/cleethorpes/39_cleethorpes_dusk-640.webp 640w, img/cleethorpes/39_cleethorpes_dusk-1280.webp 1280w, photos/cleethorpes/39_cleethorpes_dusk.jpg 2000w" src="photos/cleethorpes/39_cleethorpes_dusk.jpg" alt="Cleethorpes" loading="lazy" />
+      <img decoding="async" height="2000" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/cleethorpes/39_cleethorpes_dusk-640.webp 640w, img/cleethorpes/39_cleethorpes_dusk-1280.webp 1280w, photos/cleethorpes/39_cleethorpes_dusk.jpg 2000w" src="photos/cleethorpes/39_cleethorpes_dusk.jpg" alt="Lone seagull gliding through a soft blue dusk sky over Cleethorpes" loading="lazy" />
       <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/cleethorpes/22_cleethorpes_sea-640.webp 640w, img/cleethorpes/22_cleethorpes_sea-1280.webp 1280w, photos/cleethorpes/22_cleethorpes_sea.jpg 2000w" class="project-card-alt" src="photos/cleethorpes/22_cleethorpes_sea.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Coastal Street &#8212; 2024</div>
@@ -355,7 +336,7 @@
     </a>
 
     <a href="florida.html" class="project-card">
-      <img decoding="async" height="1356" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/florida/12_florida_planes-640.webp 640w, img/florida/12_florida_planes-1280.webp 1280w, photos/florida/12_florida_planes.jpg 2000w" src="photos/florida/12_florida_planes.jpg" alt="Florida" loading="lazy" />
+      <img decoding="async" height="1356" width="2000" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/florida/12_florida_planes-640.webp 640w, img/florida/12_florida_planes-1280.webp 1280w, photos/florida/12_florida_planes.jpg 2000w" src="photos/florida/12_florida_planes.jpg" alt="Silhouette of a traveller at an airport window with Cathay Pacific and Virgin Atlantic planes outside" loading="lazy" />
       <img decoding="async" height="1123" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/florida/fl_03-640.webp 640w, img/florida/fl_03-1280.webp 1280w, photos/florida/fl_03.jpg 2000w" class="project-card-alt" src="photos/florida/fl_03.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Travel &#8212; 2023</div>
@@ -366,7 +347,7 @@
     </a>
 
     <a href="food.html" class="project-card">
-      <img decoding="async" height="2000" width="1334" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/food/48_food_french_toast-640.webp 640w, img/food/48_food_french_toast-1280.webp 1280w, photos/food/48_food_french_toast.jpg 1334w" src="photos/food/48_food_french_toast.jpg" alt="Food and Product" loading="lazy" />
+      <img decoding="async" height="2000" width="1334" sizes="(max-width: 1024px) 50vw, 340px" srcset="img/food/48_food_french_toast-640.webp 640w, img/food/48_food_french_toast-1280.webp 1280w, photos/food/48_food_french_toast.jpg 1334w" src="photos/food/48_food_french_toast.jpg" alt="Strawberry-topped french toast on a speckled plate at a candlelit brunch table" loading="lazy" />
       <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/52_food_martini_pour-640.webp 640w, img/food/52_food_martini_pour-1280.webp 1280w, photos/food/52_food_martini_pour.jpg 1333w" class="project-card-alt" src="photos/food/52_food_martini_pour.jpg" alt="" aria-hidden="true" loading="lazy" />
       <div class="project-card-overlay">
         <div class="project-card-label">Food &amp; Product &#8212; Ongoing</div>
@@ -407,47 +388,47 @@
   </div>
   <div class="gallery-grid" id="galleryGrid">
     <div class="gallery-item" data-cat="portrait" data-index="0">
-      <img decoding="async" height="935" width="1400" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/42_jimbo_portrait_purple-640.webp 640w, img/jimbo/42_jimbo_portrait_purple-1280.webp 1280w, photos/jimbo/42_jimbo_portrait_purple.jpg 1400w" src="photos/jimbo/42_jimbo_portrait_purple.jpg" alt="James Marriott Portrait" />
+      <img decoding="async" height="935" width="1400" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/42_jimbo_portrait_purple-640.webp 640w, img/jimbo/42_jimbo_portrait_purple-1280.webp 1280w, photos/jimbo/42_jimbo_portrait_purple.jpg 1400w" src="photos/jimbo/42_jimbo_portrait_purple.jpg" alt="James Marriott singing into the microphone under purple and blue stage light" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">James Marriott &#8212; Portrait</span></div>
     </div>
     <div class="gallery-item" data-cat="travel" data-index="1">
-      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/01_camel_handler-640.webp 640w, img/tunisia/01_camel_handler-1280.webp 1280w, photos/tunisia/01_camel_handler.jpg 2000w" src="photos/tunisia/01_camel_handler.jpg" alt="Tunisia Camel Handler" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/01_camel_handler-640.webp 640w, img/tunisia/01_camel_handler-1280.webp 1280w, photos/tunisia/01_camel_handler.jpg 2000w" src="photos/tunisia/01_camel_handler.jpg" alt="Camel handler leading a tourist on a decorated camel past horses in Tunisia" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Travel</span></div>
     </div>
     <div class="gallery-item" data-cat="live" data-index="2">
-      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/concert/26_concert_guitarist_red-640.webp 640w, img/concert/26_concert_guitarist_red-1280.webp 1280w, photos/concert/26_concert_guitarist_red.jpg 2000w" src="photos/concert/26_concert_guitarist_red.jpg" alt="Concert Guitarist" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/concert/26_concert_guitarist_red-640.webp 640w, img/concert/26_concert_guitarist_red-1280.webp 1280w, photos/concert/26_concert_guitarist_red.jpg 2000w" src="photos/concert/26_concert_guitarist_red.jpg" alt="Curly-haired guitarist singing and smiling under red and purple stage light" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Live Music &#8212; Concert</span></div>
     </div>
     <div class="gallery-item" data-cat="travel" data-index="3">
-      <img decoding="async" height="2000" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/cleethorpes/39_cleethorpes_dusk-640.webp 640w, img/cleethorpes/39_cleethorpes_dusk-1280.webp 1280w, photos/cleethorpes/39_cleethorpes_dusk.jpg 2000w" src="photos/cleethorpes/39_cleethorpes_dusk.jpg" alt="Cleethorpes Dusk" loading="lazy" />
+      <img decoding="async" height="2000" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/cleethorpes/39_cleethorpes_dusk-640.webp 640w, img/cleethorpes/39_cleethorpes_dusk-1280.webp 1280w, photos/cleethorpes/39_cleethorpes_dusk.jpg 2000w" src="photos/cleethorpes/39_cleethorpes_dusk.jpg" alt="Lone seagull gliding through a soft blue dusk sky over Cleethorpes" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Cleethorpes &#8212; Coastal</span></div>
     </div>
     <div class="gallery-item" data-cat="travel" data-index="4">
-      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/scotland/17_scotland_binoculars-640.webp 640w, img/scotland/17_scotland_binoculars-1280.webp 1280w, photos/scotland/17_scotland_binoculars.jpg 2000w" src="photos/scotland/17_scotland_binoculars.jpg" alt="Scotland" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/scotland/17_scotland_binoculars-640.webp 640w, img/scotland/17_scotland_binoculars-1280.webp 1280w, photos/scotland/17_scotland_binoculars.jpg 2000w" src="photos/scotland/17_scotland_binoculars.jpg" alt="Close-up of a person peering through small binoculars" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Scotland &#8212; Travel</span></div>
     </div>
     <div class="gallery-item" data-cat="portrait" data-index="5">
-      <img decoding="async" height="1400" width="933" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/41_jimbo_mazza_bw_small-640.webp 640w, photos/jimbo/41_jimbo_mazza_bw_small.jpg 933w" src="photos/jimbo/41_jimbo_mazza_bw_small.jpg" alt="James Marriott BW" loading="lazy" />
+      <img decoding="async" height="1400" width="933" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/41_jimbo_mazza_bw_small-640.webp 640w, photos/jimbo/41_jimbo_mazza_bw_small.jpg 933w" src="photos/jimbo/41_jimbo_mazza_bw_small.jpg" alt="Black and white shot of James Marriott holding the microphone out to the crowd" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">James Marriott &#8212; Portrait</span></div>
     </div>
     <div class="gallery-item" data-cat="travel" data-index="6">
-      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/35_tunisia_desert_a-640.webp 640w, img/tunisia/35_tunisia_desert_a-1280.webp 1280w, photos/tunisia/35_tunisia_desert_a.jpg 2000w" src="photos/tunisia/35_tunisia_desert_a.jpg" alt="Tunisia Desert" loading="lazy" />
+      <img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/35_tunisia_desert_a-640.webp 640w, img/tunisia/35_tunisia_desert_a-1280.webp 1280w, photos/tunisia/35_tunisia_desert_a.jpg 2000w" src="photos/tunisia/35_tunisia_desert_a.jpg" alt="White and pink flowers on a cafe table in Tunisia" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert</span></div>
     </div>
     <div class="gallery-item" data-index="7" data-cat="live">
-      <img decoding="async" height="1125" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/concert/18_concert_stage-640.webp 640w, img/concert/18_concert_stage-1280.webp 1280w, photos/concert/18_concert_stage.jpg 2000w" src="photos/concert/18_concert_stage.jpg" alt="Live stage bathed in blue light" loading="lazy" />
+      <img decoding="async" height="1125" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/concert/18_concert_stage-640.webp 640w, img/concert/18_concert_stage-1280.webp 1280w, photos/concert/18_concert_stage.jpg 2000w" src="photos/concert/18_concert_stage.jpg" alt="Blue and purple stage lights sweeping over a crowd before a band comes on" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Live Music &#8212; Stage</span></div>
     </div>
     <div class="gallery-item" data-index="8" data-cat="food">
-      <img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/48_food_french_toast-640.webp 640w, img/food/48_food_french_toast-1280.webp 1280w, photos/food/48_food_french_toast.jpg 1334w" src="photos/food/48_food_french_toast.jpg" alt="Strawberry french toast at a brunch table" loading="lazy" />
+      <img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/48_food_french_toast-640.webp 640w, img/food/48_food_french_toast-1280.webp 1280w, photos/food/48_food_french_toast.jpg 1334w" src="photos/food/48_food_french_toast.jpg" alt="Strawberry-topped french toast on a speckled plate at a candlelit brunch table" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Food &#8212; Brunch</span></div>
     </div>
     <div class="gallery-item" data-index="9" data-cat="live">
-      <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/28_concert_vocalist_red-640.webp 640w, img/jimbo/28_concert_vocalist_red-1280.webp 1280w, photos/jimbo/28_concert_vocalist_red.jpg 1333w" src="photos/jimbo/28_concert_vocalist_red.jpg" alt="Vocalist under deep red stage light" loading="lazy" />
+      <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/jimbo/28_concert_vocalist_red-640.webp 640w, img/jimbo/28_concert_vocalist_red-1280.webp 1280w, photos/jimbo/28_concert_vocalist_red.jpg 1333w" src="photos/jimbo/28_concert_vocalist_red.jpg" alt="James Marriott playing guitar under deep red stage light" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Live Music &#8212; Vocalist</span></div>
     </div>
     <div class="gallery-item" data-index="10" data-cat="food">
-      <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/52_food_martini_pour-640.webp 640w, img/food/52_food_martini_pour-1280.webp 1280w, photos/food/52_food_martini_pour.jpg 1333w" src="photos/food/52_food_martini_pour.jpg" alt="Espresso martini being poured" loading="lazy" />
+      <img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/52_food_martini_pour-640.webp 640w, img/food/52_food_martini_pour-1280.webp 1280w, photos/food/52_food_martini_pour.jpg 1333w" src="photos/food/52_food_martini_pour.jpg" alt="Espresso martini with a creamy top and two black straws" loading="lazy" />
       <div class="gallery-item-overlay"><span class="gallery-item-label">Food &#8212; Cocktails</span></div>
     </div>
   </div>
@@ -534,8 +515,9 @@
   <a href="mailto:hello@stillsonicmedia.co.uk" class="contact-email">hello@stillsonicmedia.co.uk</a>
 </section>
 
+<!-- ssm:footer -->
 <footer class="ssm-footer">
-  <div class="ssm-footer-left"><a href="prints.html">Prints</a><span class="ssm-footer-dot" aria-hidden="true">·</span><a href="book.html">Book</a></div>
+  <div class="ssm-footer-left"><a href="book.html" class="ssm-footer-back">Book a shoot &#8594;</a></div>
   <div class="ssm-footer-mid">
     <a href="index.html" class="ssm-footer-mark" aria-label="Still Sonic Media home">SS<span>M</span></a>
     <span class="ssm-footer-copy">&#169; 2026 Still Sonic Media</span>
@@ -544,9 +526,11 @@
     <a href="https://instagram.com/stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
     <a href="https://www.youtube.com/@stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg></a>
     <span class="ssm-footer-rule" aria-hidden="true"></span>
+    <a href="prints.html" class="ssm-footer-link">Prints</a>
     <button type="button" class="ssm-cookie-link">Cookies</button>
   </div>
 </footer>
+<!-- /ssm:footer -->
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lbClose">&#x2715;</button>
@@ -559,49 +543,6 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="site.js?v=3"></script>
 <script>
-  // Hamburger
-  var burger = document.getElementById('navBurger');
-  var navLinks = document.getElementById('navLinks');
-  if (burger && navLinks) {
-    burger.addEventListener('click', function() {
-      burger.classList.toggle('open');
-      navLinks.classList.toggle('open');
-    });
-    navLinks.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        burger.classList.remove('open');
-        navLinks.classList.remove('open');
-      });
-    });
-  }
-
-  // Lightbox (featured section)
-  var items = Array.from(document.querySelectorAll('.gallery-item'));
-  var lightbox = document.getElementById('lightbox');
-  var lbImg = document.getElementById('lbImg');
-  var current = 0;
-  function openLightbox(index) { current = index; lbImg.src = items[current].querySelector('img').src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-  function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-  function navigate(dir) {
-    // skip photos hidden by the filter
-    for (var step = 0; step < items.length; step++) {
-      current = (current + dir + items.length) % items.length;
-      if (!items[current].classList.contains('is-filtered')) break;
-    }
-    lbImg.src = items[current].querySelector('img').src;
-  }
-  items.forEach(function(item, i) { item.addEventListener('click', function() { openLightbox(i); }); });
-  document.getElementById('lbClose').addEventListener('click', closeLightbox);
-  document.getElementById('lbPrev').addEventListener('click', function() { navigate(-1); });
-  document.getElementById('lbNext').addEventListener('click', function() { navigate(1); });
-  lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', function(e) {
-    if (!lightbox.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') navigate(-1);
-    if (e.key === 'ArrowRight') navigate(1);
-  });
-
   // Vlogs carousel arrows
   var vlogCarousel = document.getElementById('vlogCarousel');
   if (vlogCarousel) {
@@ -641,5 +582,6 @@
     });
   })();
 </script>
+<script src="ui.js?v=2" defer></script>
 </body>
 </html>

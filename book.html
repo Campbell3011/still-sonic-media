@@ -13,15 +13,7 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-weight: 400; overflow-x: hidden; }
 
-    /* ── nav ── */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .nav-logo { text-decoration: none; }
-    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.3s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-icons { display: flex; align-items: center; gap: 1rem; margin-left: 1.5rem; }
-    .nav-icon { color: var(--muted); text-decoration: none; display: flex; align-items: center; transition: color 0.3s; }
-    .nav-icon:hover { color: var(--text); }
+
 
     /* ── hero ── */
     .page-hero { min-height: 42vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
@@ -90,36 +82,9 @@
 
     /* ── responsive ── */
     @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
-    @media (max-width: 768px) { nav { padding: 1.2rem 1.5rem; } .nav-links { gap: 1.25rem; } .row { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
-    @media (max-width: 480px) { .nav-links { display: none; } }
+    @media (max-width: 768px) { .row { grid-template-columns: 1fr; } }
 
-    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 201; position: relative; }
-.mobile-menu-logo { display: none; }
-    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s; }
-    .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav-toggle.open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-    @media (max-width: 480px) {
-      .nav-toggle { display: flex; }
-      nav { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-      .nav-links { position: fixed; inset: 0; background: rgba(10,10,10,0.88); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.4rem; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding-top: 8rem; }
-      .nav-links.open { opacity: 1; pointer-events: auto; }
-      .nav-links > li { opacity: 0; transform: translateY(18px); transition: opacity 0.4s ease, transform 0.4s ease; }
-      .nav-links .mobile-menu-logo { display: block; position: absolute; top: 1.5rem; left: 0; right: 0; text-align: center; transform: none; opacity: 0; transition: opacity 0.4s ease 0.03s; list-style: none; }
-      .nav-links.open > li { opacity: 1; transform: translateY(0); }
-      .nav-links.open > li:nth-child(2) { transition-delay: 0.08s; }
-      .nav-links.open > li:nth-child(3) { transition-delay: 0.14s; }
-      .nav-links.open > li:nth-child(4) { transition-delay: 0.2s; }
-      .nav-links.open > li:nth-child(5) { transition-delay: 0.26s; }
-      .nav-links.open > li:nth-child(6) { transition-delay: 0.32s; }
-      .nav-links.open > li:nth-child(7) { transition-delay: 0.38s; }
-      .nav-links.open > li:nth-child(8) { transition-delay: 0.44s; }
-      .nav-links.open > li:nth-child(9) { transition-delay: 0.5s; }
-      .nav-links.open > li:nth-child(10) { transition-delay: 0.56s; }
-      .nav-links.open > li:nth-child(11) { transition-delay: 0.62s; }
-      .nav-links.open .mobile-menu-logo { opacity: 1; }
-      .nav-links a { font-size: 1.1rem; letter-spacing: 0.2em; }
-    }
+
   </style>
     <style>
       @font-face {
@@ -146,7 +111,7 @@
   <meta name="twitter:image" content="https://stillsonicmedia.co.uk/photos/concert/26_concert_guitarist_red.jpg" />
   <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="brand.css?v=3" />
+  <link rel="stylesheet" href="brand.css?v=4" />
   <link rel="canonical" href="https://stillsonicmedia.co.uk/book.html" />
   <script src="consent.js?v=2" defer></script>
   <script type="application/ld+json">
@@ -205,27 +170,32 @@
 </head>
 <body>
 
+<!-- ssm:nav -->
 <nav>
-  <a href="index.html" class="nav-logo"><svg class="ssm-mark" width="80" height="34" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <a href="index.html" class="nav-logo" aria-label="Still Sonic Media home">
+    <svg class="ssm-mark" width="80" height="34" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <text x="0" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
       <text x="31" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
       <text x="62" y="46" fill="#c8a97e" font-family="'Redaction35', Georgia, serif" font-size="52">M</text>
-    </svg></a>
-  <ul class="nav-links">
+    </svg>
+  </a>
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#projects">Work</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="index.html#vlogs">Vlogs</a></li>
-    <li><a href="book.html" class="active">Book</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/#contact">Contact</a></li>
+    <li><a href="book.html">Book</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <div class="nav-icons">
-    <a href="https://www.youtube.com/@stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg></a>
-    <a href="https://instagram.com/stillsonicmedia" class="nav-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+  <div class="nav-right">
+    <a href="https://instagram.com/stillsonicmedia" class="nav-instagram" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <button class="nav-hamburger" id="navBurger" aria-label="Menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<!-- /ssm:nav -->
 
 <div class="page-hero">
   <div class="page-hero-bg"></div>
@@ -349,6 +319,7 @@
   </div>
 </section>
 
+<!-- ssm:footer -->
 <footer class="ssm-footer">
   <div class="ssm-footer-left"><a href="index.html" class="ssm-footer-back">&#8592; Home</a></div>
   <div class="ssm-footer-mid">
@@ -359,9 +330,11 @@
     <a href="https://instagram.com/stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
     <a href="https://www.youtube.com/@stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg></a>
     <span class="ssm-footer-rule" aria-hidden="true"></span>
+    <a href="prints.html" class="ssm-footer-link">Prints</a>
     <button type="button" class="ssm-cookie-link">Cookies</button>
   </div>
 </footer>
+<!-- /ssm:footer -->
 
 <script>
   // Intercept form → fetch to Formspree → show success state without page reload
@@ -399,16 +372,7 @@
     }
   });
 </script>
-<script>
-(function(){
-  var t=document.getElementById('navToggle'),nl=document.querySelector('.nav-links');
-  var ll=document.createElement('li');ll.className='mobile-menu-logo';
-  ll.innerHTML='<a href="index.html" style="text-decoration:none;display:block;"><svg width="96" height="40" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg"><text x="0" y="46" fill="#f7f2ea" font-family="Redaction35,Georgia,serif" font-size="52">S</text><text x="31" y="46" fill="#f7f2ea" font-family="Redaction35,Georgia,serif" font-size="52">S</text><text x="62" y="46" fill="#c8a97e" font-family="Redaction35,Georgia,serif" font-size="52">M</text></svg></a>';
-  nl.insertBefore(ll,nl.firstChild);
-  t.addEventListener('click',function(){var o=nl.classList.toggle('open');t.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
-  nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');t.classList.remove('open');document.body.style.overflow='';});});
-})();
-</script>
+<script src="ui.js?v=2" defer></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script defer src="site.js?v=3"></script>

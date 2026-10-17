@@ -14,13 +14,14 @@
   <link rel="stylesheet" href="gallery-page.css?v=1" />
   <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="brand.css?v=3" />
+  <link rel="stylesheet" href="brand.css?v=4" />
   <link rel="canonical" href="https://stillsonicmedia.co.uk/food.html" />
   <script src="consent.js?v=2" defer></script>
 </head>
 <body>
+<!-- ssm:nav -->
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="index.html" class="nav-logo" aria-label="Still Sonic Media home">
     <svg class="ssm-mark" width="80" height="34" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <text x="0" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
       <text x="31" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
@@ -31,16 +32,19 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#projects">Work</a></li>
     <li><a href="blog.html">Blog</a></li>
+    <li><a href="index.html#vlogs">Vlogs</a></li>
+    <li><a href="book.html">Book</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
     <a href="https://instagram.com/stillsonicmedia" class="nav-instagram" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
-    <button class="nav-hamburger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-hamburger" id="navBurger" aria-label="Menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<!-- /ssm:nav -->
 <div class="page-hero">
   <div class="page-hero-bg"></div>
   <p class="gallery-hero-eyebrow">Still Sonic Media &#8212; Food &amp; Product</p>
@@ -50,19 +54,20 @@
 </div>
 <section id="gallery">
   <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item" data-index="0"><img fetchpriority="high" decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/48_food_french_toast-640.webp 640w, img/food/48_food_french_toast-1280.webp 1280w, photos/food/48_food_french_toast.jpg 1334w" src="photos/food/48_food_french_toast.jpg" alt="Strawberry french toast served at a brunch table" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
-    <div class="gallery-item" data-index="1"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/52_food_martini_pour-640.webp 640w, img/food/52_food_martini_pour-1280.webp 1280w, photos/food/52_food_martini_pour.jpg 1333w" src="photos/food/52_food_martini_pour.jpg" alt="Espresso martini being poured" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Cocktails</span></div></div>
-    <div class="gallery-item" data-index="2"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/50_food_patatas-640.webp 640w, img/food/50_food_patatas-1280.webp 1280w, photos/food/50_food_patatas.jpg 1334w" src="photos/food/50_food_patatas.jpg" alt="Sweet potato dish on dark slate plate" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Small Plates</span></div></div>
-    <div class="gallery-item" data-index="3"><img decoding="async" height="1125" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/55_food_lilac_cafe-640.webp 640w, img/food/55_food_lilac_cafe-1280.webp 1280w, photos/food/55_food_lilac_cafe.jpg 2000w" src="photos/food/55_food_lilac_cafe.jpg" alt="Lilac eatery and coffee house shopfront" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">London &#8212; Caf&#233; Brand</span></div></div>
-    <div class="gallery-item" data-index="4"><img decoding="async" height="2000" width="1600" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/53_food_steak_dinner-640.webp 640w, img/food/53_food_steak_dinner-1280.webp 1280w, photos/food/53_food_steak_dinner.jpg 1600w" src="photos/food/53_food_steak_dinner.jpg" alt="Steak dinner being carved at the table" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Dinner Service</span></div></div>
-    <div class="gallery-item" data-index="5"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/49_food_berry_toast-640.webp 640w, img/food/49_food_berry_toast-1280.webp 1280w, photos/food/49_food_berry_toast.jpg 1334w" src="photos/food/49_food_berry_toast.jpg" alt="Berry-topped french toast close up" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
-    <div class="gallery-item" data-index="6"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/57_food_tunisia_cola-640.webp 640w, img/food/57_food_tunisia_cola-1280.webp 1280w, photos/food/57_food_tunisia_cola.jpg 1333w" src="photos/food/57_food_tunisia_cola.jpg" alt="Arabic cola bottle in the sun" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Product</span></div></div>
-    <div class="gallery-item" data-index="7"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/56_food_cafe_window-640.webp 640w, img/food/56_food_cafe_window-1280.webp 1280w, photos/food/56_food_cafe_window.jpg 2000w" src="photos/food/56_food_cafe_window.jpg" alt="Cafe window seat with fresh flowers" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">London &#8212; Interiors</span></div></div>
-    <div class="gallery-item" data-index="8"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/51_food_salmon_brioche-640.webp 640w, img/food/51_food_salmon_brioche-1280.webp 1280w, photos/food/51_food_salmon_brioche.jpg 1334w" src="photos/food/51_food_salmon_brioche.jpg" alt="Salmon brioche sandwich" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
-    <div class="gallery-item" data-index="9"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/58_food_flatbread-640.webp 640w, img/food/58_food_flatbread-1280.webp 1280w, photos/food/58_food_flatbread.jpg 2000w" src="photos/food/58_food_flatbread.jpg" alt="Traditional flatbread being made in a clay oven" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Food Culture</span></div></div>
-    <div class="gallery-item" data-index="10"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/54_food_dessert_wine-640.webp 640w, img/food/54_food_dessert_wine-1280.webp 1280w, photos/food/54_food_dessert_wine.jpg 1333w" src="photos/food/54_food_dessert_wine.jpg" alt="Dessert with candle beside a glass of red wine" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Dessert</span></div></div>
+    <div class="gallery-item" data-index="0"><img fetchpriority="high" decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/48_food_french_toast-640.webp 640w, img/food/48_food_french_toast-1280.webp 1280w, photos/food/48_food_french_toast.jpg 1334w" src="photos/food/48_food_french_toast.jpg" alt="Strawberry-topped french toast on a speckled plate at a candlelit brunch table" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
+    <div class="gallery-item" data-index="1"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/52_food_martini_pour-640.webp 640w, img/food/52_food_martini_pour-1280.webp 1280w, photos/food/52_food_martini_pour.jpg 1333w" src="photos/food/52_food_martini_pour.jpg" alt="Espresso martini with a creamy top and two black straws" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Cocktails</span></div></div>
+    <div class="gallery-item" data-index="2"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/50_food_patatas-640.webp 640w, img/food/50_food_patatas-1280.webp 1280w, photos/food/50_food_patatas.jpg 1334w" src="photos/food/50_food_patatas.jpg" alt="Spiced sweet potato cubes with lemon wedges on a dark plate" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Small Plates</span></div></div>
+    <div class="gallery-item" data-index="3"><img decoding="async" height="1125" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/55_food_lilac_cafe-640.webp 640w, img/food/55_food_lilac_cafe-1280.webp 1280w, photos/food/55_food_lilac_cafe.jpg 2000w" src="photos/food/55_food_lilac_cafe.jpg" alt="Navy shopfront of Lilac eatery and coffee house with a purple flower logo" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">London &#8212; Caf&#233; Brand</span></div></div>
+    <div class="gallery-item" data-index="4"><img decoding="async" height="2000" width="1600" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/53_food_steak_dinner-640.webp 640w, img/food/53_food_steak_dinner-1280.webp 1280w, photos/food/53_food_steak_dinner.jpg 1600w" src="photos/food/53_food_steak_dinner.jpg" alt="Steak being cut beside roast potatoes, slaw and a pot of sauce" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Dinner Service</span></div></div>
+    <div class="gallery-item" data-index="5"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/49_food_berry_toast-640.webp 640w, img/food/49_food_berry_toast-1280.webp 1280w, photos/food/49_food_berry_toast.jpg 1334w" src="photos/food/49_food_berry_toast.jpg" alt="Close-up of berry and cream french toast in a dark bowl" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
+    <div class="gallery-item" data-index="6"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/57_food_tunisia_cola-640.webp 640w, img/food/57_food_tunisia_cola-1280.webp 1280w, photos/food/57_food_tunisia_cola.jpg 1333w" src="photos/food/57_food_tunisia_cola.jpg" alt="Glass bottle of Coca-Cola with an Arabic label on a cafe table in Tunisia" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Product</span></div></div>
+    <div class="gallery-item" data-index="7"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/56_food_cafe_window-640.webp 640w, img/food/56_food_cafe_window-1280.webp 1280w, photos/food/56_food_cafe_window.jpg 2000w" src="photos/food/56_food_cafe_window.jpg" alt="Jug of pink flowers on a wooden shelf by a cafe window with white tiles" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">London &#8212; Interiors</span></div></div>
+    <div class="gallery-item" data-index="8"><img decoding="async" height="2000" width="1334" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/51_food_salmon_brioche-640.webp 640w, img/food/51_food_salmon_brioche-1280.webp 1280w, photos/food/51_food_salmon_brioche.jpg 1334w" src="photos/food/51_food_salmon_brioche.jpg" alt="Toasted brioche sandwich with smoked salmon and a fried egg on a pink plate" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Sheffield &#8212; Brunch</span></div></div>
+    <div class="gallery-item" data-index="9"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/58_food_flatbread-640.webp 640w, img/food/58_food_flatbread-1280.webp 1280w, photos/food/58_food_flatbread.jpg 2000w" src="photos/food/58_food_flatbread.jpg" alt="Flatbread being made in a traditional clay oven in Tunisia" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Food Culture</span></div></div>
+    <div class="gallery-item" data-index="10"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/food/54_food_dessert_wine-640.webp 640w, img/food/54_food_dessert_wine-1280.webp 1280w, photos/food/54_food_dessert_wine.jpg 1333w" src="photos/food/54_food_dessert_wine.jpg" alt="Slice of cheesecake with a lit candle beside a glass of red wine" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Doncaster &#8212; Dessert</span></div></div>
   </div>
 </section>
+<!-- ssm:footer -->
 <footer class="ssm-footer">
   <div class="ssm-footer-left"><a href="index.html#projects" class="ssm-footer-back">&#8592; All projects</a></div>
   <div class="ssm-footer-mid">
@@ -73,9 +78,11 @@
     <a href="https://instagram.com/stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
     <a href="https://www.youtube.com/@stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg></a>
     <span class="ssm-footer-rule" aria-hidden="true"></span>
+    <a href="prints.html" class="ssm-footer-link">Prints</a>
     <button type="button" class="ssm-cookie-link">Cookies</button>
   </div>
 </footer>
+<!-- /ssm:footer -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lbClose">&#x2715;</button>
   <button class="lightbox-nav lightbox-prev" id="lbPrev">&#8249;</button>
@@ -85,6 +92,6 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="site.js?v=3"></script>
-<script src="ui.js?v=1" defer></script>
+<script src="ui.js?v=2" defer></script>
 </body>
 </html>

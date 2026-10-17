@@ -14,13 +14,14 @@
   <link rel="stylesheet" href="gallery-page.css?v=1" />
   <link rel="preload" href="fonts/Redaction_35-Regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="brand.css?v=3" />
+  <link rel="stylesheet" href="brand.css?v=4" />
   <link rel="canonical" href="https://stillsonicmedia.co.uk/tunisia.html" />
   <script src="consent.js?v=2" defer></script>
 </head>
 <body>
+<!-- ssm:nav -->
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="index.html" class="nav-logo" aria-label="Still Sonic Media home">
     <svg class="ssm-mark" width="80" height="34" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <text x="0" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
       <text x="31" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
@@ -31,16 +32,19 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#projects">Work</a></li>
     <li><a href="blog.html">Blog</a></li>
+    <li><a href="index.html#vlogs">Vlogs</a></li>
+    <li><a href="book.html">Book</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
     <a href="https://instagram.com/stillsonicmedia" class="nav-instagram" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
-    <button class="nav-hamburger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-hamburger" id="navBurger" aria-label="Menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<!-- /ssm:nav -->
 <div class="page-hero">
   <div class="page-hero-bg"></div>
   <p class="gallery-hero-eyebrow">Still Sonic Media &#8212; Travel</p>
@@ -50,14 +54,15 @@
 </div>
 <section id="gallery">
   <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item" data-index="0"><img fetchpriority="high" decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/01_camel_handler-640.webp 640w, img/tunisia/01_camel_handler-1280.webp 1280w, photos/tunisia/01_camel_handler.jpg 2000w" src="photos/tunisia/01_camel_handler.jpg" alt="Camel Handler" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Camel Handler</span></div></div>
-    <div class="gallery-item" data-index="1"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/02_camels_chained-640.webp 640w, img/tunisia/02_camels_chained-1280.webp 1280w, photos/tunisia/02_camels_chained.jpg 1333w" src="photos/tunisia/02_camels_chained.jpg" alt="Camels Chained" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert Camels</span></div></div>
-    <div class="gallery-item" data-index="2"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/03_camel_face-640.webp 640w, img/tunisia/03_camel_face-1280.webp 1280w, photos/tunisia/03_camel_face.jpg 1333w" src="photos/tunisia/03_camel_face.jpg" alt="Camel Face" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Portrait</span></div></div>
-    <div class="gallery-item" data-index="3"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/35_tunisia_desert_a-640.webp 640w, img/tunisia/35_tunisia_desert_a-1280.webp 1280w, photos/tunisia/35_tunisia_desert_a.jpg 2000w" src="photos/tunisia/35_tunisia_desert_a.jpg" alt="Tunisia Desert A" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert A</span></div></div>
-    <div class="gallery-item" data-index="4"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/36_tunisia_desert_b-640.webp 640w, img/tunisia/36_tunisia_desert_b-1280.webp 1280w, photos/tunisia/36_tunisia_desert_b.jpg 1333w" src="photos/tunisia/36_tunisia_desert_b.jpg" alt="Tunisia Desert B" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert B</span></div></div>
-    <div class="gallery-item" data-index="5"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/37_tunisia_desert_c-640.webp 640w, img/tunisia/37_tunisia_desert_c-1280.webp 1280w, photos/tunisia/37_tunisia_desert_c.jpg 1333w" src="photos/tunisia/37_tunisia_desert_c.jpg" alt="Tunisia Desert C" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert C</span></div></div>
+    <div class="gallery-item" data-index="0"><img fetchpriority="high" decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/01_camel_handler-640.webp 640w, img/tunisia/01_camel_handler-1280.webp 1280w, photos/tunisia/01_camel_handler.jpg 2000w" src="photos/tunisia/01_camel_handler.jpg" alt="Camel handler leading a tourist on a decorated camel past horses in Tunisia" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Camel Handler</span></div></div>
+    <div class="gallery-item" data-index="1"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/02_camels_chained-640.webp 640w, img/tunisia/02_camels_chained-1280.webp 1280w, photos/tunisia/02_camels_chained.jpg 1333w" src="photos/tunisia/02_camels_chained.jpg" alt="Muzzled camels resting together in the shade in Tunisia" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert Camels</span></div></div>
+    <div class="gallery-item" data-index="2"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/03_camel_face-640.webp 640w, img/tunisia/03_camel_face-1280.webp 1280w, photos/tunisia/03_camel_face.jpg 1333w" src="photos/tunisia/03_camel_face.jpg" alt="Close-up of a muzzled camel&#x27;s face beside a striped saddle blanket" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Portrait</span></div></div>
+    <div class="gallery-item" data-index="3"><img decoding="async" height="1333" width="2000" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/35_tunisia_desert_a-640.webp 640w, img/tunisia/35_tunisia_desert_a-1280.webp 1280w, photos/tunisia/35_tunisia_desert_a.jpg 2000w" src="photos/tunisia/35_tunisia_desert_a.jpg" alt="White and pink flowers on a cafe table in Tunisia" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert A</span></div></div>
+    <div class="gallery-item" data-index="4"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/36_tunisia_desert_b-640.webp 640w, img/tunisia/36_tunisia_desert_b-1280.webp 1280w, photos/tunisia/36_tunisia_desert_b.jpg 1333w" src="photos/tunisia/36_tunisia_desert_b.jpg" alt="Young camel nuzzling its mother under a striped saddle blanket" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert B</span></div></div>
+    <div class="gallery-item" data-index="5"><img decoding="async" height="2000" width="1333" sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 460px" srcset="img/tunisia/37_tunisia_desert_c-640.webp 640w, img/tunisia/37_tunisia_desert_c-1280.webp 1280w, photos/tunisia/37_tunisia_desert_c.jpg 1333w" src="photos/tunisia/37_tunisia_desert_c.jpg" alt="Saddled camels with striped blankets and a young camel looking on" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-item-label">Tunisia &#8212; Desert C</span></div></div>
   </div>
 </section>
+<!-- ssm:footer -->
 <footer class="ssm-footer">
   <div class="ssm-footer-left"><a href="index.html#projects" class="ssm-footer-back">&#8592; All projects</a></div>
   <div class="ssm-footer-mid">
@@ -68,9 +73,11 @@
     <a href="https://instagram.com/stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
     <a href="https://www.youtube.com/@stillsonicmedia" class="ssm-footer-icon" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg></a>
     <span class="ssm-footer-rule" aria-hidden="true"></span>
+    <a href="prints.html" class="ssm-footer-link">Prints</a>
     <button type="button" class="ssm-cookie-link">Cookies</button>
   </div>
 </footer>
+<!-- /ssm:footer -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lbClose">&#x2715;</button>
   <button class="lightbox-nav lightbox-prev" id="lbPrev">&#8249;</button>
@@ -80,6 +87,6 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="site.js?v=3"></script>
-<script src="ui.js?v=1" defer></script>
+<script src="ui.js?v=2" defer></script>
 </body>
 </html>
