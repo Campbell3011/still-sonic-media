@@ -320,6 +320,11 @@ window.SSM_IMAGES = {
   "h": 2000,
   "srcset": "img/unused/31_avant_skater-640.webp 640w, img/unused/31_avant_skater-1280.webp 1280w, photos/unused/31_avant_skater.jpg 1333w"
  },
+ "photos/wildlife/IMG_0309.JPEG": {
+  "w": 2000,
+  "h": 1333,
+  "srcset": "img/wildlife/IMG_0309-640.webp 640w, img/wildlife/IMG_0309-1280.webp 1280w, photos/wildlife/IMG_0309.JPEG 2000w"
+ },
  "photos/wildlife/tiger_spotlight.JPEG": {
   "w": 2000,
   "h": 1333,
