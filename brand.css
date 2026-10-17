@@ -1,0 +1,28 @@
+/* ============================================
+   Still Sonic Media — Brand layer (SSM rebrand, Oct 2026)
+   Loaded LAST on every page so it overrides the page's own styles.
+
+   Brand tokens
+   · Ink    #0f0d0b  (background)
+   · Cream  #f7f2ea  (text / "bone" in the monogram)
+   · Amber  #c8a97e  (accent / the M in the monogram)
+   · Redaction for display type, Space Mono for small labels
+   ============================================ */
+
+/* Small uppercase labels → Space Mono.
+   Mono runs wider than Redaction, so tracking is pulled in a little. */
+.nav-links a,
+.hero-eyebrow, .section-eyebrow, .gallery-hero-eyebrow, .page-hero-eyebrow, .page-hero-sub, .form-eyebrow, .field label,
+.hero-subtitle, .gallery-hero-subtitle, .hero-scroll, .hero-cta,
+.project-card-label, .project-card-meta, .project-card-soon-badge,
+.gallery-item-label, .vlog-label, .vlog-meta, .vlog-cta a,
+.stat-label, .tier-label, .tier-from, .tier-cta, .prints-cta,
+.post-meta, .blog-filter, .read-more, .post-nav .label, .post-figure figcaption,
+footer, .footer-back, .footer-instagram {
+  font-family: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  letter-spacing: 0.14em !important;
+}
+.nav-links a { font-size: 0.7rem; }
+
+/* Monogram sizing in the nav */
+.nav-logo svg { height: 34px; width: auto; }

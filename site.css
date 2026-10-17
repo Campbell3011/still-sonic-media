@@ -10,7 +10,7 @@
    · Scroll-triggered fade-in animations (powered by GSAP)
    · Mobile menu fix (see bottom of file)
 
-   To change the gold accent colour, search for #c8a96e and replace it.
+   To change the gold accent colour, search for #c8a97e and replace it.
    ============================================ */
 
 /* === CUSTOM CURSOR (desktop/mouse only) === */
@@ -20,7 +20,7 @@
   .cursor-dot {
     width: 7px;
     height: 7px;
-    background: #c8a96e;
+    background: #c8a97e;
     border-radius: 50%;
     position: fixed;
     top: 0;
@@ -34,7 +34,7 @@
   .cursor-ring {
     width: 34px;
     height: 34px;
-    border: 1px solid rgba(200, 169, 110, 0.55);
+    border: 1px solid rgba(200, 169, 126, 0.55);
     border-radius: 50%;
     position: fixed;
     top: 0;
@@ -50,7 +50,7 @@
 .ssm-overlay {
   position: fixed;
   inset: 0;
-  background: #0a0a0a;
+  background: #0b0a08;
   z-index: 99990;
   pointer-events: none;
   transform: scaleY(0);
@@ -65,7 +65,7 @@
   font-family: 'Redaction35', Georgia, serif;
   font-size: 3.5rem;
   font-weight: 700;
-  color: #c8a96e;
+  color: #c8a97e;
   letter-spacing: 0.08em;
   opacity: 0;
   will-change: opacity;
@@ -75,13 +75,13 @@
 
 /* === ACTIVE NAV STATE === */
 .nav-active {
-  color: #c8a96e !important;
+  color: #c8a97e !important;
   opacity: 1 !important;
 }
 
 /* === BACKGROUND === */
 body {
-  background-color: #0e0e0e !important;
+  background-color: #0f0d0b !important;
 }
 
 /* === ANCHOR SCROLL OFFSET (accounts for fixed nav) === */

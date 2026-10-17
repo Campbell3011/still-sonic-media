@@ -39,7 +39,7 @@
 
   var ssLogo = document.createElement('div');
   ssLogo.className = 'ssm-logo';
-  ssLogo.textContent = 'SS';
+  ssLogo.textContent = 'SSM';
   overlay.appendChild(ssLogo);
 
   document.body.appendChild(overlay);

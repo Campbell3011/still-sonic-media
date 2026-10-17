@@ -34,13 +34,13 @@
       font-display: swap;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #0e0e0e; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #9B6BBF; }
+    :root { --bg: #0f0d0b; --surface: #15120f; --border: #241f1a; --text: #f7f2ea; --muted: #7a7268; --accent: #9B6BBF; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-weight: 400; overflow-x: hidden; }
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: transparent; border-bottom: 1px solid transparent; transition: background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease; }
-    nav.scrolled { background: rgba(14,14,14,0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    nav.scrolled { background: rgba(15,13,11,0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; font-family: 'Redaction35', Georgia, serif; }
@@ -57,7 +57,7 @@
     @media (max-width: 768px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-hamburger { display: flex; }
-      .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(14,14,14,0.97); backdrop-filter: blur(12px); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; z-index: 99; }
+      .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15,13,11,0.97); backdrop-filter: blur(12px); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; z-index: 99; }
       .nav-links.open { display: flex; }
       .nav-links a { font-size: 1.1rem; letter-spacing: 0.22em; }
     }
@@ -76,8 +76,8 @@
     .hero-cta { display: inline-block; text-decoration: none; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.95rem 2.5rem; transition: background 0.3s, color 0.3s, border-color 0.3s; font-family: 'Redaction35', Georgia, serif; }
     .hero-cta-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; }
     .hero-cta-primary:hover { background: #855aa8; border-color: #855aa8; }
-    .hero-cta-secondary { border: 1px solid rgba(232,232,232,0.5); color: var(--text); background: transparent; }
-    .hero-cta-secondary:hover { background: rgba(232,232,232,0.1); border-color: var(--text); }
+    .hero-cta-secondary { border: 1px solid rgba(247,242,234,0.5); color: var(--text); background: transparent; }
+    .hero-cta-secondary:hover { background: rgba(247,242,234,0.1); border-color: var(--text); }
     .hero-scroll { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); opacity: 0.6; animation: bounce 2s infinite; }
     .hero-scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent); }
     @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
@@ -97,11 +97,11 @@
     .project-card { position: relative; overflow: hidden; aspect-ratio: 3/4; display: block; text-decoration: none; cursor: pointer; }
     .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.75); }
     .project-card:hover img { transform: scale(1.06); filter: brightness(0.55); }
-    .project-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,14,14,0.95) 0%, rgba(14,14,14,0.4) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.75rem; transform: translateY(100%); transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .project-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,13,11,0.95) 0%, rgba(15,13,11,0.4) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.75rem; transform: translateY(100%); transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); }
     .project-card:hover .project-card-overlay { transform: translateY(0); }
     .project-card-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
     .project-card-title { font-family: 'Redaction35', Georgia, serif; font-size: 1.8rem; font-weight: 400; color: #fff; line-height: 1.1; }
-    .project-card-meta { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,232,232,0.45); margin-top: 0.75rem; transition: color 0.3s; }
+    .project-card-meta { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,242,234,0.45); margin-top: 0.75rem; transition: color 0.3s; }
     .project-card:hover .project-card-meta { color: var(--accent); }
     .project-card-arrow { position: absolute; top: 1.5rem; right: 1.5rem; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--text); font-size: 1.1rem; opacity: 0; transition: opacity 0.3s; }
     .project-card:hover .project-card-arrow { opacity: 1; }
@@ -118,7 +118,7 @@
     .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; cursor: pointer; }
     .gallery-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .gallery-item:hover img { transform: scale(1.04); }
-    .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,14,14,0.8) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
+    .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,13,11,0.8) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
     .gallery-item-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); }
     @media (max-width: 768px) { .gallery-grid { columns: 2 160px; } }
@@ -159,6 +159,10 @@
     .footer-instagram:hover { color: var(--accent); }
     @media (max-width: 768px) { footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="brand.css?v=1" />
 </head>
 <body>
 <script>
@@ -174,9 +178,10 @@
 
 <nav id="siteNav">
   <a href="index.html" class="nav-logo">
-    <svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg">
-      <text x="0" y="54" fill="#e8e8e8" font-family="'Redaction35', Georgia, serif" font-size="50">S</text>
-      <text x="32" y="54" fill="#9B6BBF" font-family="'Redaction35', Georgia, serif" font-size="50">S</text>
+    <svg class="ssm-mark" width="80" height="34" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <text x="0" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
+      <text x="31" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
+      <text x="62" y="46" fill="#c8a97e" font-family="'Redaction35', Georgia, serif" font-size="52">M</text>
     </svg>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -278,7 +283,7 @@
     <a href="skate.html" class="project-card">
       <div class="project-card-placeholder">
         <div class="project-card-placeholder-inner">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 40L24 8L40 40" stroke="#e8e8e8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 32H36" stroke="#e8e8e8" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 40L24 8L40 40" stroke="#f7f2ea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 32H36" stroke="#f7f2ea" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
       </div>
       <div class="project-card-overlay">
@@ -292,7 +297,7 @@
     <a href="skull-rose.html" class="project-card">
       <div class="project-card-placeholder">
         <div class="project-card-placeholder-inner">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="20" r="10" stroke="#e8e8e8" stroke-width="1.5"/><path d="M18 30V36M30 30V36" stroke="#e8e8e8" stroke-width="1.5" stroke-linecap="round"/><path d="M20 36H28" stroke="#e8e8e8" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="20" r="10" stroke="#f7f2ea" stroke-width="1.5"/><path d="M18 30V36M30 30V36" stroke="#f7f2ea" stroke-width="1.5" stroke-linecap="round"/><path d="M20 36H28" stroke="#f7f2ea" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
       </div>
       <div class="project-card-overlay">

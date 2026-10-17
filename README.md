@@ -27,8 +27,9 @@ every commit to `main` automatically deploys to https://stillsonicmedia.co.uk
 │                       submissions arrive by email). Linked from the home nav.
 ├── prints.html         Print sales page (not linked from anywhere yet)
 ├── site.css            Small shared stylesheet (loaded by every page)
+├── brand.css           SSM brand layer — colours, Space Mono labels (loaded last)
 ├── site.js             Shared JavaScript — GSAP scroll animations
-├── favicon.svg         The "SS" browser-tab icon
+├── favicon.svg         The "SSM" browser-tab icon
 ├── CNAME               Tells GitHub Pages to serve the site at stillsonicmedia.co.uk.
 │                       ⚠ Don't delete or edit this file.
 ├── sitemap.xml         List of public pages for search engines

@@ -15,10 +15,10 @@
     @font-face { font-family: 'Redaction35'; src: url('fonts/Redaction_35-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
     @font-face { font-family: 'Redaction35'; src: url('fonts/Redaction_35-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #0e0e0e; --surface: #111111; --border: #1e1e1e; --text: #e8e8e8; --muted: #666; --accent: #c8a96e; }
+    :root { --bg: #0f0d0b; --surface: #15120f; --border: #241f1a; --text: #f7f2ea; --muted: #7a7268; --accent: #c8a97e; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: 'Redaction35', Georgia, serif; font-weight: 400; overflow-x: hidden; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(14,14,14,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(15,13,11,0.95) 0%, transparent 100%); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; font-family: 'Redaction35', Georgia, serif; }
@@ -31,9 +31,9 @@
     .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-    @media (max-width: 768px) { nav { padding: 1.2rem 1.5rem; } .nav-hamburger { display: flex; } .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(14,14,14,0.97); backdrop-filter: blur(12px); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; z-index: 99; } .nav-links.open { display: flex; } .nav-links a { font-size: 1.1rem; letter-spacing: 0.22em; } }
+    @media (max-width: 768px) { nav { padding: 1.2rem 1.5rem; } .nav-hamburger { display: flex; } .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15,13,11,0.97); backdrop-filter: blur(12px); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; z-index: 99; } .nav-links.open { display: flex; } .nav-links a { font-size: 1.1rem; letter-spacing: 0.22em; } }
     .page-hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10rem 2rem 4rem; position: relative; overflow: hidden; }
-    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,110,0.05) 0%, transparent 70%); pointer-events: none; }
+    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,126,0.05) 0%, transparent 70%); pointer-events: none; }
     .gallery-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
     .gallery-hero-title { font-family: 'Redaction35', Georgia, serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 400; line-height: 1.0; }
     .gallery-hero-subtitle { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 1.5rem; }
@@ -43,7 +43,7 @@
     .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; cursor: pointer; }
     .gallery-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
     .gallery-item:hover img { transform: scale(1.04); }
-    .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,14,14,0.8) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
+    .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,13,11,0.8) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 1.5rem; }
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
     .gallery-item-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); }
     .lightbox { position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; }
@@ -60,13 +60,18 @@
     .footer-back:hover { opacity: 0.7; }
     @media (max-width: 768px) { .gallery-grid { columns: 1; } footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="brand.css?v=1" />
 </head>
 <body>
 <nav>
   <a href="index.html" class="nav-logo">
-    <svg width="44" height="52" viewBox="0 0 68 72" xmlns="http://www.w3.org/2000/svg">
-      <text x="0" y="54" fill="#e8e8e8" font-family="'Redaction35', Georgia, serif" font-size="50">S</text>
-      <text x="32" y="54" fill="#c8a96e" font-family="'Redaction35', Georgia, serif" font-size="50">S</text>
+    <svg class="ssm-mark" width="80" height="34" viewBox="0 0 132 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <text x="0" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
+      <text x="31" y="46" fill="#f7f2ea" font-family="'Redaction35', Georgia, serif" font-size="52">S</text>
+      <text x="62" y="46" fill="#c8a97e" font-family="'Redaction35', Georgia, serif" font-size="52">M</text>
     </svg>
   </a>
   <ul class="nav-links" id="navLinks">
