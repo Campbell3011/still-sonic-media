@@ -17,6 +17,7 @@ on:
       - '*.PNG'
       - '*.html'
       - 'tools/optimise_images.py'
+      - '.github/workflows/optimise-images.yml'
   workflow_dispatch: {}   # adds a "Run workflow" button in the Actions tab
 
 permissions:
@@ -46,7 +47,7 @@ jobs:
         run: |
           git config user.name "ssm-image-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A img *.html *.jpg *.jpeg *.JPG *.JPEG *.png *.PNG 2>/dev/null || true
+          git add -A
           if git diff --cached --quiet; then
             echo "Nothing new to optimise."
           else
